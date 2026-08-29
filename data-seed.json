@@ -1,0 +1,731 @@
+{
+  "users": [
+    {
+      "id": "hany-gm",
+      "username": "hany",
+      "name": "Mr. Hany",
+      "role": "GM",
+      "title": "General Manager",
+      "email": "hany@hotel.local",
+      "phone": "",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
+      "status": "Active",
+      "skills": [],
+      "pin": "scrypt$6a0c4c3cb697bb367cba5682dd6ccb94$c53ab7b3849af2d827869f159523fe9698833cfd20e7fba73db185786c1f6dcc8fcf5af21fa1c28613149c964f6f4239902379e02289d064ebab4e56ff618fe8",
+      "password": "scrypt$0328d51716377467df73d666e3d76f2c$c6b7a687b3f8f0d2c9117ad08dd61a7d54d4bde2bfc6c68ab0f25182af18f79f04c9cada0a362af25da76a5ef5123b3062fe6d74487551d90a76a94dd0bed3d7",
+      "departmentId": "operations",
+      "parentId": null,
+      "positionCode": "General Manager",
+      "updatedAt": "2026-08-21T00:00:00.000Z"
+    },
+    {
+      "id": "george-director",
+      "username": "george",
+      "name": "George",
+      "role": "Director",
+      "title": "Director IT",
+      "email": "george@hotel.local",
+      "phone": "",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
+      "status": "Active",
+      "skills": [],
+      "pin": "scrypt$a7cd4e491816a4ffc58088c7b5f0d3c2$dfb3f10f9131bc22f2c2aa035fb2b72dd8fdc728f31a207b578586841487a728757eddcfa37ca6d4c2e2c3b2abc6cc022e2cfad3c0f3743e0538f95318c4b90a",
+      "password": "scrypt$b623f5ed2cbadf2530ef49db90113742$7a0fe29dffa090f1db73c92a32122510180235bf446810293c8d9282cdcbfb8161355fd326df293f7209e2aba1d86659494432972eb255b55c4b51b3fbe0c32d",
+      "departmentId": "it",
+      "parentId": "hany-gm",
+      "positionCode": "Director IT",
+      "updatedAt": "2026-08-21T00:00:00.000Z"
+    },
+    {
+      "id": "ibrahim-director",
+      "username": "ibrahim",
+      "name": "Ibrahim",
+      "role": "Director",
+      "title": "Director F&B",
+      "email": "ibrahim@hotel.local",
+      "phone": "",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
+      "status": "Active",
+      "skills": [],
+      "pin": "scrypt$bcb371f15b2974c9ddc6f8ec070202df$60f1efdf7637b273e32dff85650276bb1729c17e8d83b6da86720252ccf01743ae51f288fdaac7b33c27c00e81e90a069a7ec472c192261368d0eaada6ee5339",
+      "password": "scrypt$40602cd3e7c3d52d1c2f459202a8f073$88bf4d1811bbb041d176a3da0d1d2ed3a296e2b8426b85498bf04dbd6a66a08cd34137d17416c7e12e4514b6641fe99a75f1e300a1a4188d3c3ac862de542c2e",
+      "departmentId": "fnb",
+      "parentId": "hany-gm",
+      "positionCode": "Director F&B",
+      "updatedAt": "2026-08-21T00:00:00.000Z"
+    },
+    {
+      "id": "mina-director",
+      "username": "mina",
+      "name": "Mina",
+      "role": "Director",
+      "title": "Director Rooms",
+      "email": "mina@hotel.local",
+      "phone": "",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
+      "status": "Active",
+      "skills": [],
+      "pin": "scrypt$4271e88c5a7affcabd2b8c40b917bce4$406212154b74cefbc8460e5415e6236c43e238f1c96f704e3e9b518fc5f5df1fe43fc56061e35886c4656e5aaf413ad89e772918f03a19d6b94d49d1226746a9",
+      "password": "scrypt$ddf71c6b57d327d68dcac20c9daf480b$2f1993b4ebb9795b82e3dc8ef358631fb2288fd6e131348d2b7c170e2b629a8a8b55af290c60820af6d1fa7134d6382693b757f8c8aeb8cb7d52f829fa24a425",
+      "departmentId": "rooms",
+      "parentId": "hany-gm",
+      "positionCode": "Director Rooms",
+      "updatedAt": "2026-08-21T00:00:00.000Z"
+    },
+    {
+      "id": "abdallah-director",
+      "username": "abdallah",
+      "name": "Abdallah",
+      "role": "Director",
+      "title": "Director Operations",
+      "email": "abdallah@hotel.local",
+      "phone": "",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
+      "status": "Active",
+      "skills": [],
+      "pin": "scrypt$0909262d3273206945f2425050e0c261$e8e8db0d79759a0d71afb6a373aa71cffa7ada73e41c2fd5354d6878232bb813b971c081cd6ed0fe4b5c9f4b44e73448d5f9b545fd1ea9ebcb2bf99d67a62dc4",
+      "password": "scrypt$7bd3cddf5bde39add629b724458d81c3$c13b7977f4b1b276dcbc4a6e4a74f1d9d36e470ff0452e0c875fec98d4a9cabdd1652b2ff738a1c68e383a367424729f3634fc05ecbf5cdef07b628d1acda6f2",
+      "departmentId": "operations",
+      "parentId": "hany-gm",
+      "positionCode": "Director Operations",
+      "updatedAt": "2026-08-21T00:00:00.000Z"
+    },
+    {
+      "id": "matar-manager",
+      "username": "maittar",
+      "name": "Maittar",
+      "role": "Manager",
+      "title": "IT Manager",
+      "email": "maittar@hotel.local",
+      "phone": "",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
+      "status": "Active",
+      "skills": [],
+      "pin": "scrypt$77c01441a982cbd5e656e1ad387345df$fb6cf370fb823fb7bec2e7d1048e468c7ab525ba3a0e522cdd20a1d718c80e7f8ee5271dfea5e5cf2f9b2c5671ded3b80460e79a900ac26e896608c594878ddb",
+      "password": "scrypt$2510e8a8e2f9b82577d301cfbb664822$662b687f9b978ac038c60c99b7230621c42fe155fcd6e921dd59ff74c946b64419621afd3c00b3274b98a3cb651ff8bee35396ce018ec356c49f48908f52cc1e",
+      "departmentId": "it",
+      "parentId": "george-director",
+      "positionCode": "IT Manager",
+      "updatedAt": "2026-08-21T00:00:00.000Z"
+    },
+    {
+      "id": "youssef-manager",
+      "username": "youssef",
+      "name": "Youssef",
+      "role": "Manager",
+      "title": "IT Manager",
+      "email": "youssef@hotel.local",
+      "phone": "",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
+      "status": "Active",
+      "skills": [],
+      "pin": "scrypt$8e4c5d7de4313e8dbd976b2aa8dc2898$ec5710de5063b42623fb4914a87725232e13db4aac757a5644321daa04e254dcfb31c835f38601fa531bcf4bc513c8fdad8d916a32797c44fdf26371bba90b6d",
+      "password": "scrypt$524b49bce823e97fd633b8c0c6608db5$f1707181ba7906bca1fe2a86ddb0c1ea2aeab10ce1b73df5b2dca01b9e7b96306a4b6536715c6ff12aa0401a21097f0cd0eed1b575c78820bc1735caa34feec7",
+      "departmentId": "it",
+      "parentId": "george-director",
+      "positionCode": "IT Manager",
+      "updatedAt": "2026-08-21T00:00:00.000Z"
+    },
+    {
+      "id": "ahmed-assistant",
+      "username": "ahmed",
+      "name": "Ahmed",
+      "role": "Assistant",
+      "title": "IT Assistant",
+      "email": "ahmed@hotel.local",
+      "phone": "",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
+      "status": "Active",
+      "skills": [],
+      "pin": "scrypt$fe0f81a525ca899081e9a06dd4206004$28dcd81aa211f7dec363619109958b7817814593637b35af2817ea7de5067754a27b4d6cd51ea81177f48fc801c848372b1c91dd588b7d6f8fe80b8b09f2709d",
+      "password": "scrypt$9c88ab9f03c0b6a86d5a4ec1b4b26abf$ea30e49b3407e57fd50e66494ec67af143d0a71cc4203f4c74a54ebba268b7376dd04f2f4f86b0e72689ce6c3eb10f9385fcdfa472fa74a7d8f0d5f43a06753e",
+      "departmentId": "it",
+      "parentId": "matar-manager",
+      "positionCode": "IT Assistant",
+      "updatedAt": "2026-08-21T00:00:00.000Z"
+    },
+    {
+      "id": "khaled-assistant",
+      "username": "khaled",
+      "name": "Khaled",
+      "role": "Assistant",
+      "title": "IT Assistant",
+      "email": "khaled@hotel.local",
+      "phone": "",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
+      "status": "Active",
+      "skills": [],
+      "pin": "scrypt$ef05a910196e7f5273bd5b77b8910df7$4f1de21eb2ebc3bb56bff8224e7de77aee08df250ad7f4f305d56a6f37f0f69caa52ab8ed52d358ffba4a96cc6de379899ca3ab1982906042de1f193c5d61f4a",
+      "password": "scrypt$3eb4d7a7cd79c9729d19a69141fcc066$de2c5a8ed865defc4bf5c8cf3d977f9f725ca4ea35d8160e2d770aa69d59aac5381df191eaa26003c9d153fa58045e48fed60eabfbc741597b5ed3a74bbe1e44",
+      "departmentId": "it",
+      "parentId": "matar-manager",
+      "positionCode": "IT Assistant",
+      "updatedAt": "2026-08-21T00:00:00.000Z"
+    },
+    {
+      "id": "mohamed-assistant",
+      "username": "mohamed",
+      "name": "Mohamed",
+      "role": "Assistant",
+      "title": "IT Assistant",
+      "email": "mohamed@hotel.local",
+      "phone": "",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
+      "status": "Active",
+      "skills": [],
+      "pin": "scrypt$46dc6c1e57593186c466fd3765afac02$aa6d6f002b2c948052364ffa372855e29f7c1c2d9a2294ecaaee15fab2d6232e7755be44cee150c1e8c5037b0fe48403416efe93a6fe98a15889efc504742ff8",
+      "password": "scrypt$e43d3dca52feba969546a597c078d992$866508dcc8711cee3b6574d62a3e9a330a213d0e9d8a7d614492eb668f392beb204defa58ac4749c031c75b1049ade9c1169c08aa2cc2a7758fcbcad18b7fa02",
+      "departmentId": "it",
+      "parentId": "youssef-manager",
+      "positionCode": "IT Assistant",
+      "updatedAt": "2026-08-21T00:00:00.000Z"
+    },
+    {
+      "id": "emad-assistant",
+      "username": "emad",
+      "name": "Emad",
+      "role": "Assistant",
+      "title": "IT Assistant",
+      "email": "emad@hotel.local",
+      "phone": "",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150",
+      "status": "Active",
+      "skills": [],
+      "pin": "scrypt$1a77db85367464f9fc3b9beabbd6c887$d999d47ec40a2dee85f026f3942cb88eb0099598ca22a32387bbad2a0ae0733f7b6fc1ce7542abd207e4dfbb6a95dcf8eb0c54378c9b2d1e13600f5b8034805c",
+      "password": "scrypt$79a5a20fde575602b1db52aa8b2ed3ec$0b9ff800818e2bfface81792a1fd52b222cd266cd6a8fbaef54d1059f9e910c6847ca474efc30c003fe1980c321288206fd5cc557e7152cdd887d4aaec8daf75",
+      "departmentId": "it",
+      "parentId": "youssef-manager",
+      "positionCode": "IT Assistant",
+      "updatedAt": "2026-08-21T00:00:00.000Z"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task-aug-01",
+      "title": "Investigate guest Wi-Fi intermittent drops",
+      "description": "Review access point logs and isolate the affected floor.",
+      "priority": "Critical",
+      "status": "In Progress",
+      "assigneeId": "ahmed-assistant",
+      "createdBy": "george-director",
+      "assignedBy": "george-director",
+      "departmentId": "it",
+      "deadline": "2026-08-25T09:30:00+03:00",
+      "createdAt": "2026-08-25T07:40:00+03:00",
+      "startedAt": "2026-08-25T08:05:00+03:00",
+      "notes": [
+        "Floor 3 reports intermittent disconnects."
+      ],
+      "attachments": [],
+      "isOverdue": true,
+      "version": 1,
+      "updatedAt": "2026-08-25T10:20:00+03:00"
+    },
+    {
+      "id": "task-aug-02",
+      "title": "Validate nightly POS backup completion",
+      "description": "Confirm the latest backup and restore point status.",
+      "priority": "High",
+      "status": "Completed",
+      "assigneeId": "khaled-assistant",
+      "createdBy": "matar-manager",
+      "assignedBy": "matar-manager",
+      "departmentId": "it",
+      "deadline": "2026-08-25T08:30:00+03:00",
+      "createdAt": "2026-08-25T07:10:00+03:00",
+      "completedById": "khaled-assistant",
+      "completedAt": "2026-08-25T08:12:00+03:00",
+      "notes": [],
+      "attachments": [],
+      "version": 1,
+      "updatedAt": "2026-08-25T08:12:00+03:00"
+    },
+    {
+      "id": "task-aug-03",
+      "title": "Replace failed switch power module",
+      "description": "Replace the failed module and verify redundancy.",
+      "priority": "High",
+      "status": "Open",
+      "assigneeId": "mohamed-assistant",
+      "createdBy": "matar-manager",
+      "assignedBy": "matar-manager",
+      "departmentId": "it",
+      "deadline": "2026-08-25T10:00:00+03:00",
+      "createdAt": "2026-08-25T08:20:00+03:00",
+      "notes": [],
+      "attachments": [],
+      "isOverdue": true,
+      "version": 1,
+      "updatedAt": "2026-08-25T10:45:00+03:00"
+    },
+    {
+      "id": "task-aug-04",
+      "title": "Review firewall alert queue",
+      "description": "Review non-critical firewall alerts and close false positives.",
+      "priority": "Medium",
+      "status": "In Progress",
+      "assigneeId": "emad-assistant",
+      "createdBy": "youssef-manager",
+      "assignedBy": "youssef-manager",
+      "departmentId": "it",
+      "deadline": "2026-08-25T15:00:00+03:00",
+      "createdAt": "2026-08-25T09:00:00+03:00",
+      "startedAt": "2026-08-25T09:25:00+03:00",
+      "notes": [],
+      "attachments": [],
+      "version": 1,
+      "updatedAt": "2026-08-25T09:25:00+03:00"
+    },
+    {
+      "id": "task-aug-05",
+      "title": "Check server room temperature sensors",
+      "description": "Verify environmental readings and sensor connectivity.",
+      "priority": "Medium",
+      "status": "Completed",
+      "assigneeId": "ahmed-assistant",
+      "createdBy": "matar-manager",
+      "assignedBy": "matar-manager",
+      "departmentId": "it",
+      "deadline": "2026-08-24T13:00:00+03:00",
+      "createdAt": "2026-08-24T09:00:00+03:00",
+      "completedById": "ahmed-assistant",
+      "completedAt": "2026-08-24T12:10:00+03:00",
+      "notes": [],
+      "attachments": [],
+      "version": 1,
+      "updatedAt": "2026-08-24T12:10:00+03:00"
+    },
+    {
+      "id": "task-aug-06",
+      "title": "Update guest network documentation",
+      "description": "Update the network map after recent access point changes.",
+      "priority": "Low",
+      "status": "Open",
+      "assigneeId": null,
+      "createdBy": "george-director",
+      "assignedBy": "george-director",
+      "departmentId": "it",
+      "deadline": "2026-08-26T12:00:00+03:00",
+      "createdAt": "2026-08-25T09:40:00+03:00",
+      "notes": [],
+      "attachments": [],
+      "version": 1,
+      "updatedAt": "2026-08-25T09:40:00+03:00"
+    },
+    {
+      "id": "task-aug-07",
+      "title": "Test backup restore procedure",
+      "description": "Run a controlled restore test for the latest backup set.",
+      "priority": "High",
+      "status": "Completed",
+      "assigneeId": "khaled-assistant",
+      "createdBy": "matar-manager",
+      "assignedBy": "matar-manager",
+      "departmentId": "it",
+      "deadline": "2026-08-23T14:00:00+03:00",
+      "createdAt": "2026-08-23T09:00:00+03:00",
+      "completedById": "khaled-assistant",
+      "completedAt": "2026-08-23T13:20:00+03:00",
+      "notes": [],
+      "attachments": [],
+      "version": 1,
+      "updatedAt": "2026-08-23T13:20:00+03:00"
+    },
+    {
+      "id": "task-aug-08",
+      "title": "Audit access permissions for PMS support accounts",
+      "description": "Review active support accounts and remove stale access.",
+      "priority": "High",
+      "status": "Completed",
+      "assigneeId": "emad-assistant",
+      "createdBy": "youssef-manager",
+      "assignedBy": "youssef-manager",
+      "departmentId": "it",
+      "deadline": "2026-08-22T16:00:00+03:00",
+      "createdAt": "2026-08-22T10:00:00+03:00",
+      "completedById": "emad-assistant",
+      "completedAt": "2026-08-22T15:10:00+03:00",
+      "notes": [],
+      "attachments": [],
+      "version": 1,
+      "updatedAt": "2026-08-22T15:10:00+03:00"
+    }
+  ],
+  "checklists": [
+    {
+      "id": "chk-daily",
+      "type": "Daily",
+      "title": "Hotel IT Server Room Inspection",
+      "description": "Ensure baseline physical security, environmental conditioning, and critical core interface performance.",
+      "assignedToId": "ahmed-assistant",
+      "items": [
+        {
+          "id": "daily-1",
+          "text": "Verify server room temperature and humidity",
+          "completed": true,
+          "completedAt": "2026-08-25T07:20:00+03:00",
+          "completedBy": "ahmed-assistant"
+        },
+        {
+          "id": "daily-2",
+          "text": "Confirm nightly backup status",
+          "completed": true,
+          "completedAt": "2026-08-25T07:35:00+03:00",
+          "completedBy": "ahmed-assistant"
+        },
+        {
+          "id": "daily-3",
+          "text": "Check core switch health indicators",
+          "completed": false
+        },
+        {
+          "id": "daily-4",
+          "text": "Verify UPS status",
+          "completed": true,
+          "completedAt": "2026-08-25T07:50:00+03:00",
+          "completedBy": "ahmed-assistant"
+        },
+        {
+          "id": "daily-5",
+          "text": "Check physical access log",
+          "completed": false
+        }
+      ],
+      "departmentId": "it",
+      "version": 1,
+      "updatedAt": "2026-08-25T08:30:00+03:00"
+    },
+    {
+      "id": "chk-weekly",
+      "type": "Weekly",
+      "title": "Hospitality Networks & Firewall Review",
+      "description": "Complete auditing scans and optimize critical hotel systems performance metrics.",
+      "assignedToId": null,
+      "items": [
+        {
+          "id": "weekly-1",
+          "text": "Review firewall rule alerts",
+          "completed": true,
+          "completedAt": "2026-08-24T11:00:00+03:00",
+          "completedBy": "emad-assistant"
+        },
+        {
+          "id": "weekly-2",
+          "text": "Validate switch port health",
+          "completed": false
+        },
+        {
+          "id": "weekly-3",
+          "text": "Review guest Wi-Fi coverage alerts",
+          "completed": false
+        },
+        {
+          "id": "weekly-4",
+          "text": "Verify tamper alarms and network room access",
+          "completed": true,
+          "completedAt": "2026-08-24T12:00:00+03:00",
+          "completedBy": "khaled-assistant"
+        }
+      ],
+      "departmentId": "it",
+      "version": 1,
+      "updatedAt": "2026-08-25T08:30:00+03:00"
+    },
+    {
+      "id": "chk-monthly",
+      "type": "Monthly",
+      "title": "Hotel IT Directory & Disaster Audits",
+      "description": "Mandatory structural privilege sweeps and business contingency hot-testing workflows.",
+      "assignedToId": "ahmed-assistant",
+      "items": [
+        {
+          "id": "monthly-1",
+          "text": "Review privileged PMS accounts",
+          "completed": true,
+          "completedAt": "2026-08-21T12:00:00+03:00",
+          "completedBy": "youssef-manager"
+        },
+        {
+          "id": "monthly-2",
+          "text": "Run database restore validation",
+          "completed": true,
+          "completedAt": "2026-08-22T14:00:00+03:00",
+          "completedBy": "khaled-assistant"
+        },
+        {
+          "id": "monthly-3",
+          "text": "Validate POS encryption update schedule",
+          "completed": false
+        },
+        {
+          "id": "monthly-4",
+          "text": "Review disaster recovery contact list",
+          "completed": false
+        }
+      ],
+      "departmentId": "it",
+      "version": 1,
+      "updatedAt": "2026-08-25T08:30:00+03:00"
+    }
+  ],
+  "checklistHistory": [
+    {
+      "date": "2026-08-25",
+      "type": "Daily",
+      "itemsAttempted": 5,
+      "itemsCompleted": 3,
+      "completedBy": "ahmed-assistant",
+      "timestamp": "2026-08-25T08:00:00+03:00"
+    },
+    {
+      "date": "2026-08-24",
+      "type": "Weekly",
+      "itemsAttempted": 4,
+      "itemsCompleted": 2,
+      "completedBy": "emad-assistant",
+      "timestamp": "2026-08-24T12:10:00+03:00"
+    },
+    {
+      "date": "2026-08-23",
+      "type": "Daily",
+      "itemsAttempted": 5,
+      "itemsCompleted": 5,
+      "completedBy": "ahmed-assistant",
+      "timestamp": "2026-08-23T08:05:00+03:00"
+    },
+    {
+      "date": "2026-08-22",
+      "type": "Monthly",
+      "itemsAttempted": 4,
+      "itemsCompleted": 2,
+      "completedBy": "youssef-manager",
+      "timestamp": "2026-08-22T14:10:00+03:00"
+    },
+    {
+      "date": "2026-08-21",
+      "type": "Daily",
+      "itemsAttempted": 5,
+      "itemsCompleted": 4,
+      "completedBy": "khaled-assistant",
+      "timestamp": "2026-08-21T08:00:00+03:00"
+    }
+  ],
+  "projects": [
+    {
+      "id": "proj-aug-01",
+      "name": "Guest Wi-Fi Stabilization",
+      "description": "Stabilize guest wireless service and validate coverage after recent network changes.",
+      "progress": 70,
+      "managerId": "george-director",
+      "teamIds": [
+        "ahmed-assistant",
+        "emad-assistant"
+      ],
+      "deadline": "2026-08-29T17:00:00+03:00",
+      "delayStatus": false,
+      "milestones": [
+        {
+          "id": "m-aug-1",
+          "title": "Review Floor 3 access point logs",
+          "deadline": "2026-08-25T12:00:00+03:00",
+          "completed": false
+        },
+        {
+          "id": "m-aug-2",
+          "title": "Validate post-fix coverage",
+          "deadline": "2026-08-28T16:00:00+03:00",
+          "completed": false
+        }
+      ],
+      "documents": [],
+      "notes": [
+        "Temporary August demo project data."
+      ],
+      "version": 1,
+      "updatedAt": "2026-08-25T09:00:00+03:00"
+    },
+    {
+      "id": "proj-aug-02",
+      "name": "PMS Backup Validation Cycle",
+      "description": "Validate backup integrity and restore readiness for hotel PMS databases.",
+      "progress": 90,
+      "managerId": "matar-manager",
+      "teamIds": [
+        "khaled-assistant",
+        "youssef-manager"
+      ],
+      "deadline": "2026-08-27T15:00:00+03:00",
+      "delayStatus": false,
+      "milestones": [
+        {
+          "id": "pm-aug-1",
+          "title": "Backup integrity verification",
+          "deadline": "2026-08-24T12:00:00+03:00",
+          "completed": true
+        },
+        {
+          "id": "pm-aug-2",
+          "title": "Controlled restore test",
+          "deadline": "2026-08-26T14:00:00+03:00",
+          "completed": false
+        }
+      ],
+      "documents": [],
+      "notes": [
+        "Temporary August demo project data."
+      ],
+      "version": 1,
+      "updatedAt": "2026-08-25T09:10:00+03:00"
+    }
+  ],
+  "notifications": [],
+  "chats": [
+    {
+      "id": "welcome-message",
+      "sender": "assistant",
+      "text": "Hello! I am your AI hospitality operations coordinator. I monitor current hotel IT operations, tasks, checklists, complaints, and operational alerts.",
+      "timestamp": "2026-08-25T07:00:00+03:00"
+    },
+    {
+      "id": "msg-aug-01",
+      "sender": "user",
+      "text": "What needs attention today?",
+      "timestamp": "2026-08-25T09:30:00+03:00"
+    },
+    {
+      "id": "ai-msg-aug-01",
+      "sender": "assistant",
+      "text": "There are critical operational items requiring follow-up today, including a guest Wi-Fi issue and an overdue switch power task.",
+      "timestamp": "2026-08-25T09:30:05+03:00"
+    }
+  ],
+  "departments": [
+    {
+      "id": "it",
+      "name": "IT Department",
+      "description": "Wi-Fi, network and technology",
+      "managerIds": [
+        "george-director"
+      ],
+      "directorId": "george-director",
+      "complaintReasons": [
+        "Wi-Fi Problems",
+        "Internet Problems",
+        "Network Problems",
+        "IT Problems"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "fnb",
+      "name": "Food & Beverage",
+      "description": "Food and beverage service",
+      "managerIds": [
+        "ibrahim-director"
+      ],
+      "directorId": "ibrahim-director",
+      "complaintReasons": [
+        "Food & Beverage Problems",
+        "Food Problems",
+        "Beverage Problems",
+        "Restaurant Problems"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "rooms",
+      "name": "Rooms Division",
+      "description": "Rooms and guest accommodation",
+      "managerIds": [
+        "mina-director"
+      ],
+      "directorId": "mina-director",
+      "complaintReasons": [
+        "Room Problems",
+        "Housekeeping Problems"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "operations",
+      "name": "Operations",
+      "description": "Hotel operations",
+      "managerIds": [
+        "abdallah-director"
+      ],
+      "directorId": "abdallah-director",
+      "complaintReasons": [
+        "Operations Problems",
+        "General Operations Problems"
+      ],
+      "isActive": true
+    }
+  ],
+  "complaints": [
+    {
+      "id": "cmp-aug-01",
+      "title": "Guest Wi-Fi disconnects on Floor 3",
+      "description": "Guest reports intermittent Wi-Fi connection in several rooms.",
+      "source": "Exclusivi",
+      "departmentId": "it",
+      "assignedToId": "ahmed-assistant",
+      "createdBy": "hany-gm",
+      "status": "In Progress",
+      "priority": "Critical",
+      "createdAt": "2026-08-25T07:30:00+03:00",
+      "updatedAt": "2026-08-25T09:20:00+03:00",
+      "history": [],
+      "version": 1
+    },
+    {
+      "id": "cmp-aug-02",
+      "title": "Slow internet at reception",
+      "description": "Front desk reports slow internet during the morning shift.",
+      "source": "Exclusivi",
+      "departmentId": "it",
+      "assignedToId": "emad-assistant",
+      "createdBy": "abdallah-director",
+      "status": "Open",
+      "priority": "High",
+      "createdAt": "2026-08-24T08:10:00+03:00",
+      "updatedAt": "2026-08-24T08:10:00+03:00",
+      "history": [],
+      "version": 1
+    },
+    {
+      "id": "cmp-aug-03",
+      "title": "Printer unavailable at purchasing",
+      "description": "Purchasing printer stopped responding after a network change.",
+      "source": "Exclusivi",
+      "departmentId": "it",
+      "assignedToId": "khaled-assistant",
+      "createdBy": "matar-manager",
+      "status": "Resolved",
+      "priority": "Medium",
+      "createdAt": "2026-08-23T09:00:00+03:00",
+      "updatedAt": "2026-08-23T10:30:00+03:00",
+      "resolvedAt": "2026-08-23T10:30:00+03:00",
+      "resolutionNote": "Network queue restarted and printer reconnected.",
+      "history": [],
+      "version": 1
+    },
+    {
+      "id": "cmp-aug-04",
+      "title": "Guest internet setup question",
+      "description": "Guest requested assistance connecting a personal device.",
+      "source": "Exclusivi",
+      "departmentId": "it",
+      "assignedToId": "ahmed-assistant",
+      "createdBy": "george-director",
+      "status": "Closed",
+      "priority": "Low",
+      "createdAt": "2026-08-21T11:00:00+03:00",
+      "updatedAt": "2026-08-21T11:30:00+03:00",
+      "resolvedAt": "2026-08-21T11:30:00+03:00",
+      "resolutionNote": "Guest device connected successfully.",
+      "history": [],
+      "version": 1
+    }
+  ],
+  "demoDataVersion": "command-center-aug-2026-v3"
+}

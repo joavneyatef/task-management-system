@@ -1,0 +1,60 @@
+name: maintenance
+
+# Weekly health check: dependency audit + a full regression run against the
+# latest transitive deps, plus a coverage snapshot in the job summary.
+on:
+  schedule:
+    - cron: '0 6 * * 1' # Mondays 06:00 UTC
+  workflow_dispatch:
+
+jobs:
+  audit:
+    name: dependency audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Fail on high / critical advisories
+        run: npm audit --audit-level=high
+      - name: Full advisory report (informational)
+        if: always()
+        run: npm audit || true
+      - name: Outdated packages (informational)
+        if: always()
+        run: npm outdated || true
+
+  regression:
+    name: full regression + coverage snapshot
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx prisma generate
+      - run: npx playwright install --with-deps chromium
+      - name: Unit + integration (coverage)
+        run: npm run test:cov
+      - name: Coverage snapshot → job summary
+        if: always()
+        run: node scripts/coverage-trend.mjs --summary >> "$GITHUB_STEP_SUMMARY"
+      - name: Coverage drift canary
+        if: always()
+        run: node scripts/coverage-trend.mjs --check
+      - name: End-to-end + a11y + perf
+        run: npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: maintenance-artifacts
+          path: |
+            coverage/
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore

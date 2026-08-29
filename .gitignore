@@ -1,0 +1,29 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+
+# test artifacts
+coverage/
+test-results/
+playwright-report/
+.playwright/
+
+# disposable test database + generated test schema + JSON store sandbox
+prisma/test.db
+prisma/e2e.db
+prisma/*.db-journal
+prisma/.test.schema.prisma
+prisma/.tmp/
+
+# Phase 6 E2E: disposable sqlite + schema + seeded JSON store
+e2e/.tmp/
+
+# local env / runtime data
+.env
+.env.*
+!.env.example
+*.log
+cookies*.txt
+.system_generated/

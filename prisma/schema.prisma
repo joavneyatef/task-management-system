@@ -1,0 +1,154 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Department {
+  id               String      @id
+  name             String
+  description      String?
+  directorId       String?
+  isActive         Boolean     @default(true)
+  complaintReasons String?     // JSON string array
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+
+  users            User[]
+  tasks            Task[]
+  checklists       Checklist[]
+}
+
+model User {
+  id           String      @id
+  username     String      @unique
+  name         String
+  email        String      @unique
+  phone        String?     @default("")
+  avatar       String?     @default("")
+  role         String      // GM, Director, Manager, Assistant
+  title        String
+  status       String      @default("Active") // Active, On Leave, Off Duty
+  password     String      // Salted Scrypt hash
+  pin          String?     // Salted Scrypt hash
+  skills       String?     // JSON string array
+  departmentId String?
+  parentId     String?     // Supervisor ID (Reports To)
+  managerId    String?     // Legacy compatibility
+  positionCode String?
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+
+  department   Department? @relation(fields: [departmentId], references: [id])
+}
+
+model Task {
+  id                  String            @id
+  title               String
+  description         String
+  priority            String            // Critical, High, Medium, Low
+  status              String            @default("Open") // Open, In Progress, Completed, Archived
+  category            String            @default("Operations")
+  deadline            DateTime
+  isOverdue           Boolean           @default(false)
+  departmentId        String?
+  creatorId           String?
+  assignedBy          String?
+  assigneeId          String?
+  assigneeIds         String?           // JSON string array of user IDs
+  lastTransferredById String?
+  notes               String?           // JSON string array of notes
+  version             Int               @default(1)
+  createdAt           DateTime          @default(now())
+  updatedAt           DateTime          @updatedAt
+
+  department          Department?       @relation(fields: [departmentId], references: [id])
+  history             TaskHistory[]
+}
+
+model TaskHistory {
+  id         String   @id
+  taskId     String
+  type       String   // create, claim, start, complete, note, assign
+  userId     String
+  userName   String
+  userAvatar String?
+  details    String?
+  timestamp  DateTime @default(now())
+
+  task       Task     @relation(fields: [taskId], references: [id], onDelete: Cascade)
+}
+
+model Checklist {
+  id           String             @id
+  type         String             // Daily, Weekly, Monthly
+  title        String
+  description  String?
+  departmentId String?
+  assignedToId String?
+  items        String             // JSON string array of checklist items
+  score        Float?             @default(0)
+  version      Int                @default(1)
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+
+  department   Department?        @relation(fields: [departmentId], references: [id])
+  history      ChecklistHistory[]
+}
+
+model ChecklistHistory {
+  id             String    @id
+  checklistId    String
+  date           String    // YYYY-MM-DD
+  type           String?   // Daily, Weekly, Monthly
+  itemsAttempted Int       @default(0)
+  itemsCompleted Int       @default(0)
+  completedBy    String
+  timestamp      DateTime  @default(now())
+  items          String?   // JSON string array
+
+  checklist      Checklist @relation(fields: [checklistId], references: [id], onDelete: Cascade)
+}
+
+model Project {
+  id          String    @id
+  name        String
+  description String?
+  progress    Int       @default(0) // 0 to 100
+  managerId   String?
+  teamIds     String?   // JSON string array
+  milestones  String?   // JSON string array
+  documents   String?   // JSON string array
+  deadline    DateTime?
+  delayStatus Boolean   @default(false)
+  notes       String?   // JSON string array
+  version     Int       @default(1)
+  updatedAt   DateTime  @updatedAt
+}
+
+model Notification {
+  id              String    @id
+  recipientUserId String
+  title           String
+  message         String
+  category        String    // Task, Checklist, Project, Alert, System
+  isRead          Boolean   @default(false)
+  acknowledgedAt  DateTime?
+  eventKey        String?
+  channels        String?   // JSON { inApp, telegram, email }
+  createdAt       DateTime  @default(now())
+}
+
+model ChatMessage {
+  id           String   @id
+  channel      String   // general, department-it, etc.
+  senderId     String
+  senderName   String
+  senderAvatar String?
+  text         String
+  attachments  String?  // JSON string array
+  createdAt    DateTime @default(now())
+}

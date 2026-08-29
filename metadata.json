@@ -1,0 +1,6 @@
+{
+  "name": "Long Beach",
+  "description": "A premium AI-powered operations management dashboard for Long Beach Resort IT department to track tasks, checklists, projects, team leaves, and run deep AI trend analytics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

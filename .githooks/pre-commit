@@ -1,0 +1,5 @@
+#!/bin/sh
+# Phase 9 fast gate — typecheck + tests for changed files.
+# Enable once per clone:  npm run hooks:install
+# Bypass for a WIP commit:  git commit --no-verify
+node scripts/precommit.mjs

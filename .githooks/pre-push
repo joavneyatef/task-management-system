@@ -1,0 +1,5 @@
+#!/bin/sh
+# Phase 9 push gate — the full unit + integration suite with coverage thresholds.
+# E2E and the bundle budget run in CI / `npm run release-gate`, not here.
+# Bypass (use sparingly):  git push --no-verify
+npm run verify
