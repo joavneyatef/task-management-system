@@ -24,8 +24,6 @@ const DATA_DIR = process.env.DATA_DIR || process.cwd();
 const DATA_FILE = path.join(DATA_DIR, 'data.json');
 const TEST_DATA_FILE = path.join(DATA_DIR, 'data-test.json');
 const BACKUPS_DIR = process.env.BACKUPS_DIR || path.join(DATA_DIR, 'backups');
-const DEMO_DATA_VERSION = 'command-center-aug-2026-v3';
-const DEMO_SEED_FILE = path.join(process.cwd(), 'data-seed.json');
 
 function getDataFilePath(): string {
   return activeEnv === 'test' ? TEST_DATA_FILE : DATA_FILE;
@@ -116,310 +114,13 @@ async function requireAuth(req: express.Request, res: express.Response, next: ex
   }
 }
 
-function getInitialData(): SystemData {
-  const users: User[] = [
-    {
-      id: 'sarah',
-      username: 'george.hany',
-      name: 'George Hany',
-      role: 'GeneralManager',
-      title: 'General Manager (المدير العام)',
-      email: 'george.hany@plaza-hotel.com',
-      phone: '+20 100 123 4567',
-      avatar: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150',
-      status: 'Active',
-      skills: ['Network Security', 'Opera cloud PMS', 'PCI DSS', 'SLA Management']
-    },
-    {
-      id: 'david',
-      username: 'ahmed.matar',
-      name: 'Ahmed Matar',
-      role: 'Manager',
-      title: 'IT Operations Manager (مدير الإدارة)',
-      email: 'ahmed.matar@plaza-hotel.com',
-      phone: '+20 111 234 5678',
-      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150',
-      status: 'Active',
-      skills: ['Switch VLAN Configuration', 'Cisco CallManager', 'Virtualization', 'UPS Infrastructure']
-    },
-    {
-      id: 'ahmed',
-      username: 'ahmed.khaled',
-      name: 'Ahmed Khaled',
-      role: 'Coordinator',
-      title: 'Senior IT Coordinator (كردنيتر)',
-      email: 'ahmed.khaled@plaza-hotel.com',
-      phone: '+20 122 345 6789',
-      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150',
-      status: 'Active',
-      skills: ['PMS Interfaces', 'Symphony POS', 'Server Virtualization', 'Backup Recovery']
-    },
-    {
-      id: 'elena',
-      username: 'ahmed.adel',
-      name: 'Ahmed Adel',
-      role: 'Coordinator',
-      title: 'Network & SLA Coordinator (كردنيتر)',
-      email: 'ahmed.adel@plaza-hotel.com',
-      phone: '+20 115 456 7890',
-      avatar: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150',
-      status: 'Active',
-      skills: ['Firewall Management', 'Cisco Wireless Controllers', 'CCTV Maintenance', 'IP Phones']
-    },
-    {
-      id: 'john',
-      username: 'mohamed.emad',
-      name: 'Mohamed Emad',
-      role: 'Coordinator',
-      title: 'IT Helpdesk & Systems Coordinator (كردنيتر)',
-      email: 'mohamed.emad@plaza-hotel.com',
-      phone: '+20 106 567 8901',
-      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150',
-      status: 'On Leave', // Starts on leave to demonstrate Redistribution system
-      skills: ['Windows Server', 'Active Directory Sync', 'POS Hardware', 'Hotel IPTV Solutions']
-    }
-  ];
-
-  // Fresh installs receive a temporary bootstrap password. It is immediately stored as a hash.
-  users.forEach(u => { if (!u.password) u.password = hashPassword('123456'); if (!u.pin) u.pin = hashPassword('123456'); });
-
-  // Helper reference timestamps
-  const now = new Date();
-  const threeDaysAgo = new Date(now.getTime() - 3 * 24 * 60 * 60 * 1000).toISOString();
-  const yesterday = new Date(now.getTime() - 24 * 60 * 60 * 1000).toISOString();
-  const deadlineIn2Days = new Date(now.getTime() + 2 * 24 * 60 * 60 * 1000).toISOString();
-  const deadlineIn5Days = new Date(now.getTime() + 5 * 24 * 60 * 60 * 1000).toISOString();
-  const overdueDeadline = new Date(now.getTime() - 12 * 60 * 60 * 1000).toISOString();
-
-  const tasks: Task[] = [
-    {
-      id: 'task-1',
-      title: 'POS Server Database Backup Validation Failures',
-      description: 'The automated database backup schedule for the main Banquets & Restaurant POS server failed last night due to storage capacity limits in the network backup share partition.',
-      priority: 'Critical',
-      status: 'In Progress',
-      assigneeId: 'elena',
-      createdBy: 'david',
-      deadline: overdueDeadline, // Overdue to demonstrate delayed alerts
-      createdAt: threeDaysAgo,
-      startedAt: yesterday,
-      notes: [
-        'Cleared 50GB of stale transaction imagery backups to verify storage partition size.',
-        'Requested Elena to re-run backup manually and confirm snapshot validity.'
-      ],
-      attachments: ['pos_backup_log_err.txt', 'disk_utilization_chart.png'],
-      isOverdue: true
-    },
-    {
-      id: 'task-2',
-      title: 'Audit Deactivated AD Accounts in Opera PMS Sync',
-      description: 'Run comprehensive directory synchronization comparison. Disable legacy profiles for staff transferred or parted ways this quarter.',
-      priority: 'Low',
-      status: 'Open',
-      assigneeId: null, // Open task available for Coordinators to claim
-      createdBy: 'sarah',
-      deadline: deadlineIn5Days,
-      createdAt: yesterday,
-      notes: [],
-      attachments: ['active_employee_list_q2.csv']
-    },
-    {
-      id: 'task-3',
-      title: 'Inspect Backup Generator Server UPS Power Redundancy',
-      description: 'Perform a live power load simulation on the battery stack of Row B UPS rack serving critical switches and the backup Opera PMS application container.',
-      priority: 'High',
-      status: 'Completed',
-      assigneeId: 'ahmed',
-      createdBy: 'david',
-      deadline: yesterday,
-      createdAt: threeDaysAgo,
-      startedAt: threeDaysAgo,
-      completedAt: yesterday,
-      actualDurationSec: 3600 * 3.5, // 3.5 hours
-      notes: [
-        'Checked voltage level across all batteries. All cells display green status.',
-        'Load transfer completed in 2.4 milliseconds. Opera server remained fully operational.'
-      ],
-      attachments: ['ups_load_simulation_results.pdf'],
-      isOverdue: false
-    }
-  ];
-
-  const checklists: Checklist[] = [
-    {
-      id: 'chk-daily',
-      type: 'Daily',
-      departmentId: 'it',
-      title: 'Hotel IT Server Room Inspection',
-      description: 'Ensure baseline physical security, environmental conditioning, and critical core interface performance.',
-      assignedToId: 'ahmed-assistant', // Assigned to Active coordinator Ahmed
-      items: [
-        { id: 'daily-1', text: 'Server Room Air Conditioner Units thermostat display at 19Â°C (66.2Â°F) & water drains clear.', completed: true, completedAt: yesterday, completedBy: 'ahmed-assistant' },
-        { id: 'daily-2', text: 'Validate main NAS Backup array synchronization logs show success.', completed: true, completedAt: yesterday, completedBy: 'ahmed-assistant' },
-        { id: 'daily-3', text: 'Check UPS power outputs, review battery capacities, verify diagnostic alarm indicators are clean.', completed: false },
-        { id: 'daily-4', text: 'Inspect Core Firewall interface activity. Check threat log triggers or unmitigated blocklists.', completed: false },
-        { id: 'daily-5', text: 'Verify Hotel IPTV servers and key video channels distribution display pristine playback.', completed: false }
-      ]
-    },
-    {
-      id: 'chk-weekly',
-      type: 'Weekly',
-      departmentId: 'it',
-      title: 'Hospitality Networks & Firewall Review',
-      description: 'Complete auditing scans and optimize critical hotel systems performance metrics.',
-      assignedToId: 'elena', // Elena
-      items: [
-        { id: 'weekly-1', text: 'Complete guest wireless controller bandwidth throttle review and performance analytics audits.', completed: false },
-        { id: 'weekly-2', text: 'Flush cached DHCP leases for guest access points to avoid blockages.', completed: false },
-        { id: 'weekly-3', text: 'Perform security scan checking vulnerabilities across lobby guest business computers.', completed: false },
-        { id: 'weekly-4', text: 'Audit network switches room physical doors locks and verify tamper alarms.', completed: false }
-      ]
-    },
-    {
-      id: 'chk-monthly',
-      type: 'Monthly',
-      departmentId: 'it',
-      title: 'Hotel IT Directory & Disaster Audits',
-      description: 'Mandatory structural privilege sweeps and business contingency hot-testing workflows.',
-      assignedToId: null, // John was assigned but john is on leave; will need automated redistribution
-      items: [
-        { id: 'monthly-1', text: 'Formulate audit matrix of high-privileged system profiles across active PMS directories.', completed: false },
-        { id: 'monthly-2', text: 'Conduct off-site replication restoration testing for central databases.', completed: false },
-        { id: 'monthly-3', text: 'Validate hotel point-of-sale terminal encryption and keys update schedules.', completed: false }
-      ]
-    }
-  ];
-
-  const checklistHistory: ChecklistHistory[] = [
-    {
-      date: new Date(now.getTime() - 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-      type: 'Daily',
-      itemsAttempted: 5,
-      itemsCompleted: 5,
-      completedBy: 'ahmed-assistant',
-      timestamp: yesterday
-    },
-    {
-      date: new Date(now.getTime() - 2 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-      type: 'Daily',
-      itemsAttempted: 5,
-      itemsCompleted: 4, // Missed checklist item alert trace
-      completedBy: 'elena',
-      timestamp: threeDaysAgo
-    }
-  ];
-
-  const projects: Project[] = [
-    {
-      id: 'proj-1',
-      name: 'Upgrade Plaza Hotel Guest Wi-Fi Network',
-      description: 'Upgrading the current Wi-Fi structure across all Guest Rooms, Suites, and Banquets with ultra-high speed Wi-Fi 6 Access Points, integrating standard enterprise hotel authentication routers.',
-      progress: 68,
-      managerId: 'sarah',
-      teamIds: ['ahmed', 'elena'],
-      deadline: deadlineIn2Days,
-      delayStatus: false,
-      milestones: [
-        { id: 'm-1', title: 'Mount Fiber core switch in main server room', deadline: threeDaysAgo, completed: true },
-        { id: 'm-2', title: 'Provision Wi-Fi Access Points across Floor 1-3 Guest Rooms', deadline: yesterday, completed: true },
-        { id: 'm-3', title: 'Activate Guest Captive Web Portal engine integrations', deadline: now.toISOString(), completed: false },
-        { id: 'm-4', title: 'Audit coverage and check Signal indicators post-delivery', deadline: deadlineIn2Days, completed: false }
-      ],
-      documents: [
-        { id: 'doc-1', name: 'Layout_GuestRooms_AP_Mounting_Plan.pdf', category: 'Layout Schematics', uploadedAt: threeDaysAgo, size: '8.4 MB' },
-        { id: 'doc-2', name: 'Enterprise_WiFi_Portal_Integration_Specs.pdf', category: 'Specs & APIs', uploadedAt: yesterday, size: '2.1 MB' }
-      ],
-      notes: [
-        'Access point installations for Floors 1 and 2 completed by Elena. Floor 3 is underway.',
-        'Delayed testing for custom billing interfaces on the Portal side because PMS operator delayed sandbox access keys.'
-      ]
-    },
-    {
-      id: 'proj-2',
-      name: 'Opera PMS Cloud Integration Upgrade',
-      description: 'Relocating the hotel on-prem Property Management System (Opera) to the microservice-driven Opera Cloud Platform. Requires updating card tokenizers, POS integrations, and lock systems.',
-      progress: 35,
-      managerId: 'david',
-      teamIds: ['ahmed', 'john'],
-      deadline: deadlineIn5Days,
-      delayStatus: true, // Delayed because John is on leave and PMS migration items are paused
-      milestones: [
-        { id: 'pm-1', title: 'Perform on-premises database backup validation logs', deadline: threeDaysAgo, completed: true },
-        { id: 'pm-2', title: 'Route card payments transaction keys through secured API proxy proxy', deadline: yesterday, completed: false },
-        { id: 'pm-3', title: 'Synchronize RFID door lock server with Opera Cloud controllers', deadline: deadlineIn2Days, completed: false }
-      ],
-      documents: [
-        { id: 'pdoc-1', name: 'Opera_Cloud_Migration_Runbook_v4.pdf', category: 'Migration Runbooks', uploadedAt: threeDaysAgo, size: '4.5 MB' }
-      ],
-      notes: [
-        'Progress currently restricted. John (who represents database integrations task Lead) is on Leave starting yesterday.',
-        'Sarah has requested Ahmed to evaluate picking up Johnâs assigned synchronization segments to keep milestone schedules.'
-      ]
-    }
-  ];
-
-  const notifications: Notification[] = [
-    {
-      id: 'notif-1',
-      title: 'Task Delay Alert: Banquets Database Backup Failed',
-      message: 'The critical Database backup schedule on POS server is overdue. Assigee Elena has been alerted.',
-      category: 'Alert',
-      createdAt: yesterday,
-      isRead: false,
-      channels: { inApp: true, telegram: true, email: true }
-    },
-    {
-      id: 'notif-2',
-      title: 'Assigned: Review Plaza Wi-Fi Portal Captive Integrations',
-      message: 'IT Director Sarah assigned Wi-Fi Captive Portal captive portal milestone updates to active coordinator Ahmed.',
-      category: 'Project',
-      createdAt: yesterday,
-      isRead: true,
-      channels: { inApp: true, telegram: false, email: true }
-    },
-    {
-      id: 'notif-3',
-      title: 'Checklist Missed Alert',
-      message: 'Weekly network switches door inspections Checklist was missed due to coordinator John switching to On Leave status.',
-      category: 'Alert',
-      createdAt: now.toISOString(),
-      isRead: false,
-      channels: { inApp: true, telegram: true, email: false }
-    }
-  ];
-
-  return {
-    users,
-    tasks,
-    checklists,
-    checklistHistory,
-    projects,
-    notifications,
-    chats: [
-      {
-        id: 'welcome-message',
-        sender: 'assistant',
-        text: 'Hello! I am your AI hospitality operations coordinator. I monitor server room environments, switch metrics, backup completions, SLA deadlines, employee schedules, and recurring task lists. Ask me anything about current delays, compliance scores, project statuses, or who completed critical logs this week!',
-        timestamp: now.toISOString()
-      }
-    ],
-    telegramConfig: {
-      enabled: true,
-      chatId: 'PlazaHotel_ITOps_Channel',
-      botToken: '6892348121:AAF-ExampleToken-ITOps'
-    },
-    departments: [
-      {
-        id: 'it',
-        name: 'IT Department',
-        description: 'Resort Technology Operations',
-        managerIds: ['sarah', 'david'],
-        isActive: true
-      }
-    ],
-    complaints: []
-  };
-}
+// A fresh install starts empty. Bootstrap a GM + departments with
+// `node scripts/reset-db.mjs`, or load the full demo dataset with
+// `node scripts/dev-seed.mjs`.
+const EMPTY_STATE: SystemData = {
+  users: [], departments: [], tasks: [], checklists: [], checklistHistory: [],
+  projects: [], notifications: [], chats: [], complaints: [],
+};
 
 // Read database from file or initialize
 function readState(): SystemData {
@@ -438,15 +139,12 @@ function readState(): SystemData {
       });
       if (credentialChanged) writeState(data);
 
-      // This project ships with temporary August 2026 demo data. If a previous
-      // extracted copy has older demo state (for example the old 5-overdue-task
-      // sample), restore the current seed once, then allow normal live edits to persist.
-      if ((data as any).demoDataVersion !== DEMO_DATA_VERSION && fs.existsSync(DEMO_SEED_FILE)) {
-        const seed = JSON.parse(fs.readFileSync(DEMO_SEED_FILE, 'utf-8')) as SystemData;
-        writeState(seed);
-        return seed;
-      }
-      
+      // NOTE: a demo-data auto-restore used to live here. It fired whenever
+      // data.json lacked the exact DEMO_DATA_VERSION string — but the app strips
+      // that marker every time it mirrors state to data.json, so the restore
+      // would silently re-seed demo accounts/tasks over real data. Demo data is
+      // now opt-in only: `node scripts/dev-seed.mjs`. To wipe: `node scripts/reset-db.mjs`.
+
       // Backward compatibility: older data.json files may not have these fields yet
       let changed = false;
       // Promote the top admin (george.hany / "Sector Director") from the legacy 'Manager'
@@ -503,30 +201,10 @@ function readState(): SystemData {
       return data;
     }
   } catch (error) {
-    console.error('Error reading system state, resetting to default.', error);
+    console.error('Error reading system state — falling back to an empty store.', error);
   }
-  const defaultData = getInitialData();
-  // Ensure default data has versions and timestamps on tasks/checklists/projects
-  if (defaultData.tasks) {
-    defaultData.tasks.forEach(t => {
-      t.version = 1;
-      t.updatedAt = t.createdAt || new Date().toISOString();
-    });
-  }
-  if (defaultData.checklists) {
-    defaultData.checklists.forEach(c => {
-      c.version = 1;
-      c.updatedAt = new Date().toISOString();
-    });
-  }
-  if (defaultData.projects) {
-    defaultData.projects.forEach(p => {
-      p.version = 1;
-      p.updatedAt = new Date().toISOString();
-    });
-  }
-  writeState(defaultData);
-  return defaultData;
+  // No data.json (or it was unreadable): start empty rather than seeding demo data.
+  return { ...EMPTY_STATE };
 }
 
 // Write system database to file and sync to SQLite database via Prisma
@@ -1380,7 +1058,9 @@ app.post('/api/env', requireManagement, (req, res) => {
   // Clone production database to sandbox if test file does not exist yet to give a working baseline
   if (activeEnv === 'test' && !fs.existsSync(TEST_DATA_FILE)) {
     try {
-      const prodContent = fs.existsSync(DATA_FILE) ? fs.readFileSync(DATA_FILE, 'utf-8') : JSON.stringify(getInitialData(), null, 2);
+      const prodContent = fs.existsSync(DATA_FILE)
+        ? fs.readFileSync(DATA_FILE, 'utf-8')
+        : JSON.stringify(EMPTY_STATE, null, 2);
       fs.writeFileSync(TEST_DATA_FILE, prodContent, 'utf-8');
     } catch (e) {
       console.error('Could not clone database to sandboxed test:', e);

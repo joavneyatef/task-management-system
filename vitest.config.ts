@@ -97,9 +97,10 @@ export default defineConfig({
         'server/services/stateMerge.ts': { statements: 99, branches: 84, functions: 100, lines: 99 },
         'server/services/authService.ts': { statements: 95, branches: 80, functions: 100, lines: 95 },
         // Phase 4 + 7 — API + DB integration and the security/resilience sweep.
-        // server.ts still holds ~250 lines of hard-coded demo data (getInitialData)
-        // and the dev Vite bootstrap that integration tests don't reach.
-        'server.ts': { statements: 78, lines: 78, branches: 63, functions: 92 },
+        // The hard-coded demo-data seed was removed (a fresh install now starts
+        // empty); the remaining uncovered lines are the readState() backward-compat
+        // migrations and the dev Vite bootstrap.
+        'server.ts': { statements: 76, lines: 76, branches: 63, functions: 92 },
         'server/services/stateService.ts': { statements: 76, lines: 76, branches: 52, functions: 100 },
         // Phase 3 — component behaviour (aggregate; branch coverage is held down
         // by untested Arabic/RTL `language === 'ar'` ternaries, addressed later).
