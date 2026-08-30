@@ -96,6 +96,52 @@ describe('POST /api/state — mutations', () => {
     expect((await stateOf(asst)).tasks.find((t) => t.id === 't1')!.status).toBe('In Progress');
   });
 
+  it('lets an Assistant progress their task even when the snapshot also carries an untouched task they do not own', async () => {
+    // Regression: getSystemState returns tasks with `lastTransferredById: undefined`;
+    // JSON.stringify drops that key, so an *unmodified* foreign task used to fail
+    // deepEqual and 403 the whole sync in authorizeStateMutation.
+    await seedTask({ id: 't1', assigneeId: 'asst', assigneeIds: JSON.stringify(['asst']) });
+    await seedTask({ id: 't2', assigneeId: 'mgr', assigneeIds: JSON.stringify(['mgr']), creatorId: 'mgr' });
+    const asst = await loginAs('asst');
+
+    let snap = await stateOf(asst);
+    let res = await asst.post('/api/state').send(withTaskEdit(snap, 't1', { status: 'In Progress', startedAt: new Date().toISOString() }));
+    expect(res.status).toBe(200);
+
+    snap = await stateOf(asst);
+    res = await asst.post('/api/state').send(withTaskEdit(snap, 't1', {
+      status: 'Completed', completedAt: new Date().toISOString(), completedById: 'asst', actualDurationSec: 1800,
+    }));
+    expect(res.status).toBe(200);
+
+    // Management sees the completed state + the recorded duration.
+    const asMgr = (await (await loginAs('mgr')).get('/api/state')).body as SystemData;
+    const done = asMgr.tasks.find((t) => t.id === 't1')!;
+    expect(done.status).toBe('Completed');
+    expect(done.actualDurationSec).toBe(1800);
+    // the foreign task was left untouched
+    expect(asMgr.tasks.find((t) => t.id === 't2')!.status).toBe('Open');
+  });
+
+  it('lets a Director create a task for an Assistant when the snapshot also holds drifted tasks', async () => {
+    await seedTask({ id: 'other', assigneeId: 'mgr', assigneeIds: JSON.stringify(['mgr']), creatorId: 'mgr' });
+    const dir = await loginAs('dir');
+    const snap = await stateOf(dir);
+    const now = new Date().toISOString();
+    const created = {
+      id: 'dir-made', title: 'From the director', description: '', priority: 'Medium', status: 'Open',
+      assigneeId: 'asst', assigneeIds: ['asst'], createdBy: 'dir', assignedBy: 'dir', departmentId: 'dept-it',
+      deadline: new Date(Date.now() + DAY).toISOString(), createdAt: now, updatedAt: now,
+      notes: [], attachments: [], version: 1, history: [],
+    };
+    const res = await dir.post('/api/state').send({ ...snap, tasks: [...snap.tasks, created] });
+    expect(res.status).toBe(200);
+
+    // the assistant it was assigned to can see it
+    const asAsst = (await (await loginAs('asst')).get('/api/state')).body as SystemData;
+    expect(asAsst.tasks.some((t) => t.id === 'dir-made')).toBe(true);
+  });
+
   it('round-trips the assigneeIds JSON column as an array', async () => {
     await seedTask({ assigneeIds: JSON.stringify(['asst', 'mgr']), assigneeId: 'asst' });
     const gm = await loginAs('gm');

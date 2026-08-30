@@ -54,10 +54,23 @@ describe('deepEqual', () => {
     expect(deepEqual({ title: 'x', updatedAt: 'a', lockedBy: 'u1' }, { title: 'x' })).toBe(true);
   });
 
-  it('treats a differing key count as not equal (including explicit undefined values)', () => {
+  it('treats a differing count of *meaningful* keys as not equal', () => {
     expect(deepEqual({ a: 1 }, { a: 1, b: 2 })).toBe(false);
-    expect(deepEqual({ a: 1, b: undefined }, { a: 1 })).toBe(false);
     expect(deepEqual([1, 2], [1, 2, 3])).toBe(false);
+  });
+
+  it('treats absent / undefined / null as the same "not set" value', () => {
+    // A task the server returns with `lastTransferredById: undefined` must
+    // round-trip equal after JSON.stringify drops the key — otherwise an
+    // untouched task looks modified and authorizeStateMutation 403s the sync.
+    expect(deepEqual({ a: 1, b: undefined }, { a: 1 })).toBe(true);
+    expect(deepEqual({ a: 1, b: null }, { a: 1 })).toBe(true);
+    expect(deepEqual({ a: 1, b: null }, { a: 1, b: undefined })).toBe(true);
+    expect(deepEqual({ lastTransferredById: null, title: 'x' }, { title: 'x' })).toBe(true);
+    // a real value on one side only is still a difference
+    expect(deepEqual({ a: 1, b: 0 }, { a: 1 })).toBe(false);
+    expect(deepEqual({ a: 1, b: '' }, { a: 1 })).toBe(false);
+    expect(deepEqual({ a: 1, b: false }, { a: 1 })).toBe(false);
   });
 });
 

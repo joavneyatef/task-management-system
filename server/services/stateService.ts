@@ -54,12 +54,18 @@ export async function getSystemState(forPublic: boolean = false): Promise<System
     status: t.status as any,
     deadline: t.deadline.toISOString(),
     isOverdue: t.status !== 'Completed' && t.deadline < now,
-    departmentId: t.departmentId || undefined,
+    departmentId: t.departmentId || null,
     createdBy: t.creatorId || t.assignedBy || 'system',
     assignedBy: t.assignedBy || t.creatorId || 'system',
     assigneeId: t.assigneeId || null,
     assigneeIds: t.assigneeIds ? JSON.parse(t.assigneeIds) : (t.assigneeId ? [t.assigneeId] : []),
-    lastTransferredById: t.lastTransferredById || undefined,
+    lastTransferredById: t.lastTransferredById || null,
+    originalAssigneeId: t.originalAssigneeId || undefined,
+    delegatedFromId: t.delegatedFromId || undefined,
+    completedById: t.completedById || undefined,
+    startedAt: t.startedAt ? t.startedAt.toISOString() : undefined,
+    completedAt: t.completedAt ? t.completedAt.toISOString() : undefined,
+    actualDurationSec: t.actualDurationSec ?? undefined,
     notes: t.notes ? JSON.parse(t.notes) : [],
     attachments: [],
     version: t.version,
@@ -200,6 +206,20 @@ export async function saveSystemState(state: Partial<SystemData>) {
     for (const t of state.tasks) {
       const deadlineDate = t.deadline ? new Date(t.deadline) : new Date(Date.now() + 86400000);
       const createdAtDate = t.createdAt ? new Date(t.createdAt) : new Date();
+      const toDate = (v?: string) => {
+        if (!v) return null;
+        const d = new Date(v);
+        return isNaN(d.getTime()) ? null : d;
+      };
+
+      const lifecycle = {
+        originalAssigneeId: t.originalAssigneeId || null,
+        delegatedFromId: t.delegatedFromId || null,
+        completedById: t.completedById || null,
+        startedAt: toDate(t.startedAt),
+        completedAt: toDate(t.completedAt),
+        actualDurationSec: typeof t.actualDurationSec === 'number' ? t.actualDurationSec : null,
+      };
 
       await prisma.task.upsert({
         where: { id: t.id },
@@ -217,7 +237,8 @@ export async function saveSystemState(state: Partial<SystemData>) {
           assigneeIds: JSON.stringify(t.assigneeIds || (t.assigneeId ? [t.assigneeId] : [])),
           lastTransferredById: t.lastTransferredById || null,
           notes: JSON.stringify(t.notes || []),
-          version: t.version || 1
+          version: t.version || 1,
+          ...lifecycle
         },
         create: {
           id: t.id,
@@ -235,7 +256,8 @@ export async function saveSystemState(state: Partial<SystemData>) {
           lastTransferredById: t.lastTransferredById || null,
           notes: JSON.stringify(t.notes || []),
           version: t.version || 1,
-          createdAt: isNaN(createdAtDate.getTime()) ? new Date() : createdAtDate
+          createdAt: isNaN(createdAtDate.getTime()) ? new Date() : createdAtDate,
+          ...lifecycle
         }
       });
     }

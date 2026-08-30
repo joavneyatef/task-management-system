@@ -60,6 +60,12 @@ model Task {
   assigneeId          String?
   assigneeIds         String?           // JSON string array of user IDs
   lastTransferredById String?
+  originalAssigneeId  String?           // first assignee, preserved across switches
+  delegatedFromId     String?           // manager/director who delegated the current assignee
+  completedById       String?           // who actually resolved it
+  startedAt           DateTime?         // when the timer started
+  completedAt         DateTime?         // when it was completed
+  actualDurationSec   Int?              // total time to completion, seconds
   notes               String?           // JSON string array of notes
   version             Int               @default(1)
   createdAt           DateTime          @default(now())

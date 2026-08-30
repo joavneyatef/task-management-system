@@ -21,15 +21,25 @@ export function sanitizeStateForClient(state: SystemData): SystemData {
   };
 }
 
+// Keys ignored entirely (server-managed), plus a rule that an absent key, an
+// explicit `undefined`, and an explicit `null` are all "not set" and compare
+// equal. Without this a task the server returns with `lastTransferredById:
+// undefined` never round-trips equal to the same task after JSON.stringify (which
+// drops the key) — so an untouched task looks "modified" and blocks the whole
+// state sync in authorizeStateMutation.
+const META_KEYS = new Set(['version', 'updatedAt', 'lockedBy']);
+const meaningfulKeys = (o: Record<string, any>): string[] =>
+  Object.keys(o).filter(k => !META_KEYS.has(k) && o[k] !== undefined && o[k] !== null);
+
 export function deepEqual(obj1: any, obj2: any): boolean {
   if (obj1 === obj2) return true;
+  if (obj1 == null && obj2 == null) return true;
   if (typeof obj1 !== 'object' || obj1 === null || typeof obj2 !== 'object' || obj2 === null) return false;
-  
-  const keys1 = Object.keys(obj1).filter(k => k !== 'version' && k !== 'updatedAt' && k !== 'lockedBy');
-  const keys2 = Object.keys(obj2).filter(k => k !== 'version' && k !== 'updatedAt' && k !== 'lockedBy');
-  
+
+  const keys1 = meaningfulKeys(obj1);
+  const keys2 = meaningfulKeys(obj2);
   if (keys1.length !== keys2.length) return false;
-  
+
   for (const key of keys1) {
     if (!keys2.includes(key)) return false;
     if (!deepEqual(obj1[key], obj2[key])) return false;
@@ -391,6 +401,11 @@ export function authorizeStateMutation(incomingState: SystemData, currentDb: Sys
   if (incomingState.tasks) {
     for (const clientTask of incomingState.tasks) {
       const serverTask = currentDb.tasks.find(t => t.id === clientTask.id);
+      // A stale client copy is discarded by mergeStateWithServer regardless, so
+      // it needs no authorization — don't 403 the whole sync because some
+      // unrelated task drifted between the client's GET and POST.
+      if (serverTask && clientTask.version != null && serverTask.version != null
+          && clientTask.version < serverTask.version) continue;
       const changed = !serverTask || !deepEqual(clientTask, serverTask);
       if (!changed) continue;
       if (isGeneralManager(actingUser)) continue;

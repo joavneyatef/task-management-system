@@ -27,3 +27,6 @@ e2e/.tmp/
 *.log
 cookies*.txt
 .system_generated/
+
+# local run: isolated seeded DB with known logins
+.local-run/

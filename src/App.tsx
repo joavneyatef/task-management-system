@@ -603,6 +603,19 @@ export default function App() {
           const matched = returnedState.users.find(u => u.id === currentActiveUser.id);
           if (matched) setCurrentUser(matched);
         }
+      } else {
+        // A rejected save must never be swallowed silently — otherwise the local
+        // edit lingers on screen until the next poll quietly wipes it.
+        const detail = await response.text().catch(() => '');
+        console.error('State sync rejected:', response.status, detail);
+        if (response.status === 401) {
+          // Session ended mid-edit: send the user back to sign in rather than
+          // pretending the save succeeded. The task journal keeps their last edit.
+          setIsLoggedIn(false);
+          setCurrentUser(null);
+          localStorage.removeItem('is_logged_in');
+          localStorage.removeItem('logged_in_user_id');
+        }
       }
     } catch (error) {
       console.error('State save sync failed:', error);
@@ -780,6 +793,13 @@ export default function App() {
   };
 
   const handleLogout = async () => {
+    // Let any in-flight state save land first — logout invalidates the session
+    // server-side, so a save that arrives after it would be rejected and the
+    // user's last edit lost.
+    const deadline = Date.now() + 3000;
+    while (inFlightSyncRequests.current > 0 && Date.now() < deadline) {
+      await new Promise(resolve => setTimeout(resolve, 50));
+    }
     try { await fetch('/api/auth/logout', { method: 'POST' }); } catch {}
     setCurrentUser(null);
     setIsLoggedIn(false);
