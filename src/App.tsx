@@ -1008,7 +1008,7 @@ export default function App() {
                       : 'hover:bg-white/5 text-indigo-300 hover:text-indigo-200 border-transparent'
                   }`}
                 >
-                  <span className="flex items-center gap-3"><Shield className="h-4 w-4" /> {language === 'ar' ? 'إدارة الطاقم والرموز' : 'Control Crew & PINs'}</span>
+                  <span className="flex items-center gap-3"><Shield className="h-4 w-4" /> {language === 'ar' ? 'الأقسام والنسخ الاحتياطي' : 'Departments & Backups'}</span>
                   <span className="text-[8px] bg-indigo-550 border border-indigo-500/25 px-1.5 py-0.5 rounded text-indigo-300 font-mono font-bold tracking-tight">MGR</span>
                 </button>
               </>

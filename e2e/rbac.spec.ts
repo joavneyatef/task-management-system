@@ -5,12 +5,12 @@ import { expectHash, signIn } from './helpers';
  * Sidebar visibility, as wired in App.tsx (after the Phase 9 `hasManagerAccess`
  * fix — it now means "Manager-level access or above"):
  *   Command Center — GM, Director, Manager
- *   Control Crew & PINs (Admin) — GM, Director, Manager
+ *   Departments & Backups (Admin) — GM, Director, Manager
  *   Audit Log      — GM, Director, Manager
  *   Crew Roster    — GM only
  */
 const COMMAND_CENTER = 'Command Center';
-const ADMIN = /Control Crew & PINs/;
+const ADMIN = /Departments & Backups/;
 const ROSTER = 'Crew Roster & Leaves';
 const AUDIT_LOG = /^Audit Log/;
 

@@ -41,6 +41,34 @@ function setup(overrides: Partial<React.ComponentProps<typeof Checklists>> = {})
 const alertSpy = vi.spyOn(window, 'alert').mockImplementation(() => {});
 afterEach(() => alertSpy.mockClear());
 
+describe('Checklists — department progress', () => {
+  it('shows each department X/Y and % for the active checklist type', () => {
+    const deps = [
+      makeDepartment({ id: 'dept-it', name: 'IT Department' }),
+      makeDepartment({ id: 'dept-fnb', name: 'F&B' }),
+    ];
+    const checklists = [
+      makeChecklist({
+        id: 'it-daily', type: 'Daily', departmentId: 'dept-it',
+        items: [
+          makeChecklistItem({ completed: true }), makeChecklistItem({ completed: true }),
+          makeChecklistItem({ completed: false }), makeChecklistItem({ completed: false }),
+          makeChecklistItem({ completed: false }),
+        ],
+      }),
+      makeChecklist({ id: 'fnb-daily', type: 'Daily', departmentId: 'dept-fnb', items: [makeChecklistItem({ completed: false })] }),
+    ];
+    const gm = makeUser({ id: 'gm', role: 'GeneralManager', departmentId: 'dept-it', name: 'Gina' });
+    setup({ currentUser: gm, users: [gm], departments: deps, checklists });
+
+    const panel = screen.getByTestId('department-progress');
+    expect(within(panel).getByText('2/5')).toBeInTheDocument();
+    expect(within(panel).getByText('40%')).toBeInTheDocument();
+    expect(within(panel).getByText('0/1')).toBeInTheDocument();
+    expect(within(panel).getByRole('button', { name: /IT Department: 2 of 5 done, 40%/ })).toBeInTheDocument();
+  });
+});
+
 describe('Checklists — signing items', () => {
   it('does not auto-create checklists when all three schedules already exist', () => {
     const { onUpdateChecklists } = setup();

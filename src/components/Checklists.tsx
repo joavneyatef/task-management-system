@@ -344,6 +344,25 @@ export default function Checklists({
     : (activeChecklist?.items.length || 0);
   const completionRatio = totalCount > 0 ? (completedCount / totalCount) * 100 : 0;
 
+  // Per-department progress on the currently selected checklist type (Daily /
+  // Weekly / Monthly). Computed live from the checklist items — e.g. IT 2/5.
+  const departmentProgress = React.useMemo(() => {
+    return departments.map(dept => {
+      const items = checklists
+        .filter(c => c.departmentId === dept.id && c.type === activeTab)
+        .flatMap(c => c.items || []);
+      const total = items.length;
+      const done = items.filter(i => i.completed).length;
+      return {
+        id: dept.id,
+        name: dept.name,
+        done,
+        total,
+        pct: total > 0 ? Math.round((done / total) * 100) : 0,
+      };
+    });
+  }, [departments, checklists, activeTab]);
+
   const availableCoordinators = users.filter(
     u => u.role === 'Coordinator' && u.status === 'Active' && (!viewDeptId || u.departmentId === viewDeptId)
   );
@@ -396,6 +415,51 @@ export default function Checklists({
           </div>
         </div>
       </div>
+
+      {/* Department progress on the active checklist type (X/Y and %) */}
+      {departmentProgress.length > 0 && (
+        <div className="border border-white/5 rounded-xl bg-white/2 px-4 py-3 glass" data-testid="department-progress">
+          <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-500 mb-2">
+            {language === 'ar'
+              ? `تقدم الأقسام — فحص ${activeTab === 'Daily' ? 'يومي' : activeTab === 'Weekly' ? 'أسبوعي' : 'شهري'}`
+              : `Department Progress — ${activeTab} Checklist`}
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
+            {departmentProgress.map(dp => {
+              const active = dp.id === viewDeptId;
+              const tone = dp.total === 0 ? 'text-zinc-500' : dp.pct === 100 ? 'text-emerald-400' : dp.pct >= 50 ? 'text-sky-400' : 'text-amber-400';
+              return (
+                <button
+                  key={dp.id}
+                  type="button"
+                  onClick={() => { if (isTopAdmin) setSelectedDeptId(dp.id); }}
+                  disabled={!isTopAdmin}
+                  aria-label={`${dp.name}: ${dp.done} of ${dp.total} done, ${dp.pct}%`}
+                  className={`text-left rounded-lg border px-3 py-2 transition-colors ${
+                    active ? 'border-indigo-500/40 bg-indigo-500/10' : 'border-white/5 bg-black/20'
+                  } ${isTopAdmin ? 'hover:bg-white/5 cursor-pointer' : 'cursor-default'}`}
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-[11px] font-semibold text-zinc-200 truncate">{dp.name}</span>
+                    <span className={`text-[11px] font-mono font-bold tabular-nums ${tone}`}>
+                      {dp.done}/{dp.total}
+                    </span>
+                  </div>
+                  <div className="mt-1.5 h-1.5 rounded-full bg-white/5 overflow-hidden">
+                    <div
+                      className={`h-full rounded-full transition-all duration-300 ${
+                        dp.pct === 100 ? 'bg-emerald-400' : dp.pct >= 50 ? 'bg-sky-400' : 'bg-amber-400'
+                      }`}
+                      style={{ width: `${dp.pct}%` }}
+                    />
+                  </div>
+                  <div className="mt-1 text-[10px] font-mono text-zinc-500 tabular-nums">{dp.pct}%</div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {!viewDepartment && (
         <div className="p-6 text-center text-xs text-zinc-500 border border-dashed border-white/10 rounded-2xl bg-black/10">
