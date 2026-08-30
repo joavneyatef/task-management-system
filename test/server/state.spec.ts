@@ -149,6 +149,25 @@ describe('POST /api/state — mutations', () => {
     expect(Array.isArray(t.assigneeIds)).toBe(true);
     expect(t.assigneeIds).toEqual(['asst', 'mgr']);
   });
+
+  it('accepts repeated checklist-history sync without a duplicate-id crash', async () => {
+    await prisma.checklist.create({
+      data: { id: 'chk-1', type: 'Daily', title: 'Daily', items: JSON.stringify([]), version: 1 },
+    });
+    const gm = await loginAs('gm');
+    const snap = await stateOf(gm);
+    const entry = {
+      date: '2026-08-30', type: 'Daily' as const, itemsAttempted: 5, itemsCompleted: 5,
+      completedBy: 'asst', timestamp: new Date().toISOString(), items: [],
+    };
+    // same entry twice, plus a second entry with the same date+completer
+    const body = { ...snap, checklistHistory: [entry, { ...entry, date: '2026-08-29' }] };
+    expect((await gm.post('/api/state').send(body)).status).toBe(200);
+    expect((await gm.post('/api/state').send(body)).status).toBe(200);
+
+    const rows = await prisma.checklistHistory.count();
+    expect(rows).toBe(2); // idempotent — not 4
+  });
 });
 
 describe('POST /api/state — optimistic concurrency (current behaviour)', () => {

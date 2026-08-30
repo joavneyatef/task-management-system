@@ -299,19 +299,24 @@ export async function saveSystemState(state: Partial<SystemData>) {
       (await prisma.checklist.findFirst());
     if (parentChecklist) {
       for (const h of state.checklistHistory) {
-        const historyId = `chkhist-${h.date}-${h.completedBy}-${Date.now()}`;
-        await prisma.checklistHistory.create({
-          data: {
-            id: historyId,
-            checklistId: parentChecklist.id,
-            date: h.date,
-            type: h.type,
-            itemsAttempted: h.itemsAttempted,
-            itemsCompleted: h.itemsCompleted,
-            completedBy: h.completedBy,
-            timestamp: h.timestamp ? new Date(h.timestamp) : new Date(),
-            items: JSON.stringify(h.items || [])
-          }
+        // Deterministic id from the entry's identity (one record per
+        // date + type + completer) so re-syncing the same state is idempotent
+        // and can never collide on `Date.now()`.
+        const historyId = `chkhist-${h.date}-${h.type || 'Daily'}-${h.completedBy}`;
+        const payload = {
+          checklistId: parentChecklist.id,
+          date: h.date,
+          type: h.type,
+          itemsAttempted: h.itemsAttempted,
+          itemsCompleted: h.itemsCompleted,
+          completedBy: h.completedBy,
+          timestamp: h.timestamp ? new Date(h.timestamp) : new Date(),
+          items: JSON.stringify(h.items || [])
+        };
+        await prisma.checklistHistory.upsert({
+          where: { id: historyId },
+          update: payload,
+          create: { id: historyId, ...payload }
         });
       }
     }

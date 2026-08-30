@@ -38,6 +38,15 @@ if (!fs.existsSync(BACKUPS_DIR)) {
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
+// Last-resort safety net: one bad request (e.g. a Prisma error escaping an
+// async route handler) must not take the whole server down.
+process.on('unhandledRejection', (reason) => {
+  console.error('Unhandled promise rejection (kept alive):', reason);
+});
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught exception (kept alive):', err);
+});
+
 
 // =========================================================
 // SECURE SESSION AUTHENTICATION
@@ -772,7 +781,7 @@ app.post('/api/state', async (req, res) => {
   
   // Call state merger
   const { mergedState, conflicts } = mergeStateWithServer(updatedState, currentDb, actingUser.id);
-  
+
   if (conflicts.length > 0) {
     return res.status(409).json({
       error: 'CONFLICT',
@@ -783,24 +792,31 @@ app.post('/api/state', async (req, res) => {
       dbState: sanitizeStateForClient(mergedState) // Return server DB state
     });
   }
-  
-  await saveSystemState(mergedState);
-  await runPrismaAutoRedistribution();
-  const freshState = await getSystemState(true);
-  
-  // Sync to data.json as a backup mirror
-  try {
-    fs.writeFileSync(getDataFilePath(), JSON.stringify(freshState, null, 2), 'utf-8');
-  } catch {}
 
-  // Broadcast updated state to all connected socket clients in real-time!
-  broadcast({
-    type: 'state_updated',
-    state: sanitizeStateForClient(freshState),
-    updatedBy: actingUser.id
-  });
-  
-  res.json(sanitizeStateForClient(freshState));
+  // A failure while persisting must return 5xx to the caller, never bubble out
+  // as an unhandled rejection and kill the process.
+  try {
+    await saveSystemState(mergedState);
+    await runPrismaAutoRedistribution();
+    const freshState = await getSystemState(true);
+
+    // Sync to data.json as a backup mirror
+    try {
+      fs.writeFileSync(getDataFilePath(), JSON.stringify(freshState, null, 2), 'utf-8');
+    } catch {}
+
+    // Broadcast updated state to all connected socket clients in real-time!
+    broadcast({
+      type: 'state_updated',
+      state: sanitizeStateForClient(freshState),
+      updatedBy: actingUser.id
+    });
+
+    res.json(sanitizeStateForClient(freshState));
+  } catch (err: any) {
+    console.error('POST /api/state failed while saving:', err?.message || err);
+    res.status(500).json({ error: 'SAVE_FAILED', message: 'Could not persist the update. Please retry.' });
+  }
 });
 
 
