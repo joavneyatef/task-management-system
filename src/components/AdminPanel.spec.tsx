@@ -25,20 +25,20 @@ function setup(overrides: Partial<React.ComponentProps<typeof AdminPanel>> = {})
 }
 
 describe('AdminPanel', () => {
-  it('opens on the Departments sub-tab and has no crew / PIN management', () => {
+  it('is a single Departments view with no crew / PIN management', () => {
     setup();
     // The "Control Crew & PINs" roster tab was removed.
     expect(screen.queryByRole('button', { name: /crew identity & keys/i })).not.toBeInTheDocument();
     expect(screen.queryByRole('button', { name: /register new user/i })).not.toBeInTheDocument();
-    // Departments is the landing sub-tab.
+    // Departments editor is shown directly.
     expect(screen.getByRole('button', { name: /add department/i })).toBeInTheDocument();
     expect(screen.getByText('IT Department')).toBeInTheDocument();
   });
 
-  it('still exposes the Backup & Restore and Branding sub-tabs', () => {
+  it('no longer exposes the Backup & Restore or Brand Identity sub-tabs', () => {
     setup();
-    expect(screen.getByRole('button', { name: /backup & restore/i })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /brand identity & logo/i })).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /backup & restore/i })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /brand identity & logo/i })).not.toBeInTheDocument();
   });
 
   it('creates a department from the Departments sub-tab', async () => {
