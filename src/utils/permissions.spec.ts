@@ -60,9 +60,19 @@ describe('role predicates', () => {
     ['Manager', true],
     ['Assistant', false],
     ['Coordinator', false],
-  ] as const)('canAccessAuditLog / canSendTasks for %s === %s', (role, expected) => {
-    expect(canAccessAuditLog(makeUser({ role }))).toBe(expected);
+  ] as const)('canSendTasks for %s === %s', (role, expected) => {
     expect(canSendTasks(makeUser({ role }))).toBe(expected);
+  });
+
+  it.each([
+    ['GM', true],
+    ['GeneralManager', true],
+    ['Director', false],
+    ['Manager', false],
+    ['Assistant', false],
+    ['Coordinator', false],
+  ] as const)('canAccessAuditLog for %s === %s (GM only)', (role, expected) => {
+    expect(canAccessAuditLog(makeUser({ role }))).toBe(expected);
   });
 });
 

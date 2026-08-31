@@ -15,7 +15,7 @@ const GUARDED: { name: string; method: 'get' | 'delete'; path: string; allow: Ro
   { name: 'DELETE /api/users/:id', method: 'delete', path: '/api/users/nope', allow: ['gm'] },
   { name: 'GET /api/reports/completed-tasks', method: 'get', path: '/api/reports/completed-tasks', allow: ['gm'] },
   { name: 'GET /api/reports/performance', method: 'get', path: '/api/reports/performance', allow: ['gm'] },
-  { name: 'GET /api/audit-log', method: 'get', path: '/api/audit-log', allow: ['gm', 'dir', 'mgr'] },
+  { name: 'GET /api/audit-log', method: 'get', path: '/api/audit-log', allow: ['gm'] },
 ];
 
 beforeEach(seedOrg);

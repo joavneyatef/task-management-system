@@ -951,7 +951,7 @@ app.get('/api/reports/performance', requireRole('GeneralManager'), (req, res) =>
    Query params: startDate, endDate, departmentId, userId,
    entityType (Task|Complaint|Checklist), format (json|csv)
 ========================================================= */
-app.get('/api/audit-log', requireRole('GeneralManager', 'Director', 'Manager'), (req, res) => {
+app.get('/api/audit-log', requireRole('GeneralManager'), (req, res) => {
   const state = readState();
   const actingUser = (req as any).actingUser as User;
   const { startDate, endDate, departmentId, userId, userIds, entityType, format = 'json' } = req.query as Record<string, string>;

@@ -419,8 +419,12 @@ export default function App() {
         const deepTab = HASH_TO_TAB[window.location.hash.replace(/^#/, '').toLowerCase()];
         const home = resolveLandingTab(matched);
         const universal = deepTab === 'Tasks' || deepTab === 'Checklists' || deepTab === 'Complaints';
-        const privileged = home === 'Dashboard'; // GM / Director / Manager can reach every tab
-        setActiveTab(deepTab && (universal || privileged) ? deepTab : home);
+        // Roster, the Admin panel and the Audit Log are GM-only — a Director or
+        // Manager deep-linking to #admin / #auditlog / #roster is bounced home.
+        const gmOnly = deepTab === 'Admin' || deepTab === 'AuditLog' || deepTab === 'Roster';
+        const privileged = home === 'Dashboard'; // GM / Director / Manager reach Dashboard
+        const canReachDeep = universal || (gmOnly ? isGeneralManager(matched) : privileged);
+        setActiveTab(deepTab && canReachDeep ? deepTab : home);
       } else { setIsLoggedIn(false); setCurrentUser(null); }
     } catch (error) { console.error('Failed to load operations state from server:', error); }
     finally { setLoading(false); }
@@ -995,7 +999,7 @@ export default function App() {
               </button>
             )}
 
-            {hasManagerAccess(currentUser) && (
+            {isGeneralManager(currentUser) && (
               <>
                 <span className="block px-3 py-1.5 text-[10px] text-zinc-500 font-bold uppercase tracking-widest font-mono mt-3">
                   {language === 'ar' ? 'أدوات الإدارة' : 'Admin Controls'}
@@ -1009,7 +1013,7 @@ export default function App() {
                   }`}
                 >
                   <span className="flex items-center gap-3"><Shield className="h-4 w-4" /> {language === 'ar' ? 'الأقسام والنسخ الاحتياطي' : 'Departments & Backups'}</span>
-                  <span className="text-[8px] bg-indigo-550 border border-indigo-500/25 px-1.5 py-0.5 rounded text-indigo-300 font-mono font-bold tracking-tight">MGR</span>
+                  <span className="text-[8px] bg-indigo-550 border border-indigo-500/25 px-1.5 py-0.5 rounded text-indigo-300 font-mono font-bold tracking-tight">GM</span>
                 </button>
               </>
             )}
@@ -1025,7 +1029,7 @@ export default function App() {
               >
                 <span className="flex items-center gap-3"><ShieldCheck className="h-4 w-4" /> {language === 'ar' ? 'سجل التدقيق' : 'Audit Log'}</span>
                 <span className="text-[8px] bg-amber-500/15 border border-amber-500/25 px-1.5 py-0.5 rounded text-amber-300 font-mono font-bold tracking-tight">
-                  {isGeneralManager(currentUser) ? 'GM' : isDirector(currentUser) ? 'DIR' : 'MGR'}
+                  GM
                 </span>
               </button>
             )}
@@ -1231,7 +1235,7 @@ export default function App() {
             </div>
           )}
 
-          {activeTab === 'Admin' && hasManagerAccess(currentUser) && (
+          {activeTab === 'Admin' && isGeneralManager(currentUser) && (
             <div className="space-y-6 animate-in fade-in duration-200 flex-1 flex flex-col min-h-0 h-full overflow-y-auto pr-1">
               <AdminPanel
                 users={users}

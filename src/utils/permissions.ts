@@ -12,11 +12,12 @@ export function isManager(user: User | null | undefined): boolean { return !!use
 export function hasManagerAccess(user: User | null | undefined): boolean {
   return isGeneralManager(user) || isDirector(user) || isManager(user);
 }
-// Audit Log is a sensitive accountability trail: only the GM and the two
-// management tiers below (Director, Manager) can open it — Assistants/
-// Coordinators never can, regardless of department.
+// Audit Log is the org-wide accountability trail ("who completed what"
+// across every department). Only the General Manager can open it — a
+// Director or Manager runs a single department and has no cross-department
+// oversight role.
 export function canAccessAuditLog(user: User | null | undefined): boolean {
-  return isGeneralManager(user) || isDirector(user) || isManager(user);
+  return isGeneralManager(user);
 }
 export function isAssistant(user: User | null | undefined): boolean { return !!user && (user.role === 'Assistant' || user.role === 'Coordinator'); }
 // Every management level can assign work only to its direct team.

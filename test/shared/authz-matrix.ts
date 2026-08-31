@@ -59,6 +59,6 @@ export const AUTHZ_MATRIX: readonly Capability[] = [
     cap: 'audit-log',
     describe: 'Open the audit log',
     route: ['get', '/api/audit-log'],
-    allow: ['gm', 'dir', 'mgr'],
+    allow: ['gm'],
   },
 ] as const;

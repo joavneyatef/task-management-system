@@ -2,11 +2,10 @@ import { expect, test } from '@playwright/test';
 import { expectHash, signIn } from './helpers';
 
 /**
- * Sidebar visibility, as wired in App.tsx (after the Phase 9 `hasManagerAccess`
- * fix — it now means "Manager-level access or above"):
+ * Sidebar visibility, as wired in App.tsx:
  *   Command Center — GM, Director, Manager
- *   Departments & Backups (Admin) — GM, Director, Manager
- *   Audit Log      — GM, Director, Manager
+ *   Departments & Backups (Admin) — GM only
+ *   Audit Log      — GM only
  *   Crew Roster    — GM only
  */
 const COMMAND_CENTER = 'Command Center';
@@ -26,21 +25,21 @@ test.describe('role-gated navigation', () => {
     await expect(page.getByRole('button', { name: /Operations Board/ })).toBeVisible();
   });
 
-  test('a manager gets command centre, admin, and audit log — but not the roster', async ({ page }) => {
+  test('a manager gets the command centre only — no admin, audit log, or roster', async ({ page }) => {
     await signIn(page, 'manager');
 
     await expect(page.getByRole('button', { name: COMMAND_CENTER })).toBeVisible();
-    await expect(page.getByRole('button', { name: ADMIN })).toBeVisible();
-    await expect(page.getByRole('button', { name: AUDIT_LOG })).toBeVisible();
+    await expect(page.getByRole('button', { name: ADMIN })).toHaveCount(0);
+    await expect(page.getByRole('button', { name: AUDIT_LOG })).toHaveCount(0);
     await expect(page.getByRole('button', { name: ROSTER })).toHaveCount(0);
   });
 
-  test('a director gets command centre, admin, and audit log — but not the roster', async ({ page }) => {
+  test('a director gets the command centre only — no admin, audit log, or roster', async ({ page }) => {
     await signIn(page, 'director');
 
     await expect(page.getByRole('button', { name: COMMAND_CENTER })).toBeVisible();
-    await expect(page.getByRole('button', { name: ADMIN })).toBeVisible();
-    await expect(page.getByRole('button', { name: AUDIT_LOG })).toBeVisible();
+    await expect(page.getByRole('button', { name: ADMIN })).toHaveCount(0);
+    await expect(page.getByRole('button', { name: AUDIT_LOG })).toHaveCount(0);
     await expect(page.getByRole('button', { name: ROSTER })).toHaveCount(0);
   });
 
@@ -57,6 +56,20 @@ test.describe('role-gated navigation', () => {
     await signIn(page, 'assistant');
     const res = await page.request.get('/api/reports/performance');
     expect(res.status()).toBe(403);
+  });
+
+  test('the audit-log API is refused for a director', async ({ page }) => {
+    await signIn(page, 'director');
+    const res = await page.request.get('/api/audit-log');
+    expect(res.status()).toBe(403);
+  });
+
+  test('a director deep-linking to #auditlog is bounced to their home tab', async ({ page }) => {
+    await signIn(page, 'director');
+    await page.evaluate(() => { window.location.hash = 'auditlog'; });
+    await page.reload();
+    await expectHash(page, '#dashboard');
+    await expect(page.getByRole('button', { name: AUDIT_LOG })).toHaveCount(0);
   });
 
   test('an assistant reloading on a forbidden tab is dropped on their home tab', async ({ page }) => {
