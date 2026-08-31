@@ -1,7 +1,18 @@
 import { beforeEach, describe, expect, it } from 'vitest';
-import { api, jsonOrg, loginAs, seedOrg, writeJsonState } from './support';
+import { api, jsonOrg, loginAs, prisma, seedOrg, writeJsonState } from './support';
 
 const DAY = 86_400_000;
+
+/** Create a task row in the Prisma store (the DELETE handler's source of truth). */
+const seedDbTask = (id: string, over: Record<string, unknown> = {}) =>
+  prisma.task.create({
+    data: {
+      id, title: `task ${id}`, description: '', priority: 'Medium', status: 'Open',
+      deadline: new Date(Date.now() + DAY), creatorId: 'mgr', assignedBy: 'mgr',
+      assigneeId: 'asst', assigneeIds: JSON.stringify(['asst']), departmentId: 'dept-it',
+      version: 1, notes: JSON.stringify([]), ...over,
+    },
+  });
 const task = (over: Record<string, unknown> = {}) => ({
   id: 't1',
   title: 'Rack audit',
@@ -91,17 +102,48 @@ describe('POST /api/notifications/:id/acknowledge', () => {
 
 describe('DELETE /api/tasks/:id (happy path + 404)', () => {
   it('404s for a task that is not in the store', async () => {
-    writeJsonState({ users: jsonOrg(), tasks: [] });
     const gm = await loginAs('gm');
     expect((await gm.delete('/api/tasks/ghost')).status).toBe(404);
   });
 
   it('removes the task and returns the trimmed state', async () => {
-    writeJsonState({ users: jsonOrg(), tasks: [task({ id: 'keep' }), task({ id: 'gone' })] });
+    await seedDbTask('keep');
+    await seedDbTask('gone');
     const mgr = await loginAs('mgr');
     const res = await mgr.delete('/api/tasks/gone');
     expect(res.status).toBe(200);
     expect(res.body.state.tasks.map((t: { id: string }) => t.id)).toEqual(['keep']);
+  });
+
+  it('the deleted task stays gone even when the client keeps echoing a stale snapshot', async () => {
+    // Regression: DELETE only filtered the JSON mirror, leaving the row in
+    // Prisma, so GET /api/state returned it. And even after the Prisma fix, the
+    // live client re-POSTs its whole task list from refs on many triggers; a
+    // snapshot captured just before the delete still carries the row and
+    // mergeStateWithServer re-creates it as "new" (version 1). The task flashed
+    // away and came back. A short server-side tombstone closes the race.
+    await seedDbTask('keep');
+    await seedDbTask('gone');
+    const gm = await loginAs('gm');
+
+    // Grab the FULL snapshot *before* deleting — this is what a racing sync holds.
+    const staleSnapshot = (await gm.get('/api/state')).body;
+    expect(staleSnapshot.tasks.map((t: { id: string }) => t.id).sort()).toEqual(['gone', 'keep']);
+
+    expect((await gm.delete('/api/tasks/gone')).status).toBe(200);
+    expect((await gm.get('/api/state')).body.tasks.map((t: { id: string }) => t.id)).toEqual(['keep']);
+
+    // The stale client now POSTs its pre-delete snapshot (still contains 'gone').
+    const res = await gm.post('/api/state').send(staleSnapshot);
+    expect(res.status).toBe(200);
+    expect(res.body.tasks.map((t: { id: string }) => t.id)).toEqual(['keep']);
+
+    // ...and again, a few times, like the real burst.
+    await gm.post('/api/state').send(staleSnapshot);
+    await gm.post('/api/state').send(staleSnapshot);
+
+    expect((await gm.get('/api/state')).body.tasks.map((t: { id: string }) => t.id)).toEqual(['keep']);
+    expect(await prisma.task.count()).toBe(1);
   });
 });
 

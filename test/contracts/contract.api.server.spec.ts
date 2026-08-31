@@ -7,7 +7,7 @@
  * bargain; contract.msw.web.spec.ts proves the mocks keep the other half.
  */
 import { beforeEach, describe, expect, it } from 'vitest';
-import { api, jsonOrg, loginAs, seedOrg, writeJsonState } from '../server/support';
+import { api, jsonOrg, loginAs, prisma, seedOrg, writeJsonState } from '../server/support';
 import {
   AcknowledgeSchema,
   AuditLogResponseSchema,
@@ -134,7 +134,13 @@ describe('@contract task + notification mutations', () => {
   });
 
   it('DELETE /api/tasks/:id → { success, state }', async () => {
-    writeJsonState({ users: jsonOrg(), tasks: [task()] });
+    await prisma.task.create({
+      data: {
+        id: 't1', title: 'Rack audit', description: '', priority: 'Medium', status: 'Open',
+        deadline: new Date(Date.now() + DAY), creatorId: 'mgr', assignedBy: 'mgr', assigneeId: 'asst',
+        assigneeIds: JSON.stringify(['asst']), departmentId: 'dept-it', version: 1, notes: JSON.stringify([]),
+      },
+    });
     const gm = await loginAs('gm');
     const res = await gm.delete('/api/tasks/t1');
     expect(res.status).toBe(200);

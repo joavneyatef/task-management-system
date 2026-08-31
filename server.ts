@@ -432,6 +432,27 @@ const userPresences = new Map<string, Presence>();
 const activeLocks = new Map<string, { userId: string; userName: string; lockedAt: string }>();
 const socketClients = new Set<WebSocket>();
 
+// Tombstones for tasks deleted via DELETE /api/tasks/:id. The live client keeps
+// re-POSTing its whole task list from refs on a dozen triggers; a snapshot
+// captured just before the delete still carries the row, and mergeStateWithServer
+// would treat it as brand-new ("no serverTask" -> version 1) and resurrect it.
+// Ignoring the id in POST /api/state for a short window closes that race. Entries
+// self-expire so an id can always be reused later.
+const recentlyDeletedTaskIds = new Map<string, number>();
+const DELETED_TASK_TOMBSTONE_MS = 120_000;
+function tombstoneTask(id: string) {
+  recentlyDeletedTaskIds.set(id, Date.now());
+}
+function isTombstonedTask(id: string): boolean {
+  const at = recentlyDeletedTaskIds.get(id);
+  if (at === undefined) return false;
+  if (Date.now() - at > DELETED_TASK_TOMBSTONE_MS) {
+    recentlyDeletedTaskIds.delete(id);
+    return false;
+  }
+  return true;
+}
+
 function broadcast(data: any, skipClient?: WebSocket) {
   const payload = JSON.stringify(data);
   for (const ws of socketClients) {
@@ -452,7 +473,13 @@ app.post('/api/state', async (req, res) => {
   
   const actingUser = ((req as any).actingUser as User) || (await authUserFromRequest(req));
   if (!actingUser) return res.status(401).json({ error: 'UNAUTHENTICATED' });
-  
+
+  // Drop any task the client is still echoing after it was hard-deleted moments
+  // ago — otherwise the merge re-creates it and it "comes back" on screen.
+  if (Array.isArray(updatedState.tasks)) {
+    updatedState.tasks = updatedState.tasks.filter((t: any) => !t || !isTombstonedTask(t.id));
+  }
+
   const currentDb = await getSystemState(true);
   const authError = authorizeStateMutation(updatedState, currentDb, actingUser);
   if (authError) return res.status(403).json({ error: 'FORBIDDEN', message: authError });
@@ -583,28 +610,43 @@ app.post('/api/notifications/:id/acknowledge', (req, res) => {
 });
 
 // API: Explicit task deletion handling
-app.delete('/api/tasks/:id', requireRole('GeneralManager', 'Director', 'Manager'), (req, res) => {
+app.delete('/api/tasks/:id', requireRole('GeneralManager', 'Director', 'Manager'), async (req, res) => {
   const { id } = req.params;
   const currentUserId = (getRequestUser(req)?.id || 'Operator');
-  const currentDb = readState();
-  
-  const taskExists = currentDb.tasks.some(t => t.id === id);
-  if (!taskExists) {
-    return res.status(404).json({ error: 'Task not found' });
+
+  try {
+    const existing = await prisma.task.findUnique({ where: { id } });
+    if (!existing) {
+      return res.status(404).json({ error: 'Task not found' });
+    }
+
+    // Delete from the Prisma source of truth (taskHistory rows cascade). The old
+    // handler only filtered the JSON mirror, so getSystemState() kept returning
+    // the row and the very next POST /api/state merge resurrected it everywhere
+    // via the "always preserve missing server tasks" rule — the task vanished
+    // for a moment, then reappeared.
+    await prisma.task.delete({ where: { id } });
+    tombstoneTask(id);
+    await runPrismaAutoRedistribution();
+
+    const freshState = await getSystemState(true);
+    try {
+      fs.writeFileSync(getDataFilePath(), JSON.stringify(freshState, null, 2), 'utf-8');
+    } catch (mirrorErr) {
+      console.error('Task delete: could not mirror state to data.json:', mirrorErr);
+    }
+
+    broadcast({
+      type: 'state_updated',
+      state: sanitizeStateForClient(freshState),
+      updatedBy: currentUserId
+    });
+
+    res.json({ success: true, message: 'Task deleted successfully', state: sanitizeStateForClient(freshState) });
+  } catch (err: any) {
+    console.error('DELETE /api/tasks failed:', err?.message || err);
+    res.status(500).json({ error: 'DELETE_FAILED', message: 'Could not delete the task. Please retry.' });
   }
-  
-  currentDb.tasks = currentDb.tasks.filter(t => t.id !== id);
-  const stateWithCleanups = runAutoRedistribution(currentDb);
-  writeState(stateWithCleanups);
-  
-  // Broadcast updated state to all connected socket clients in real-time!
-  broadcast({
-    type: 'state_updated',
-    state: sanitizeStateForClient(stateWithCleanups),
-    updatedBy: currentUserId
-  });
-  
-  res.json({ success: true, message: 'Task deleted successfully', state: sanitizeStateForClient(stateWithCleanups) });
 });
 
 // API: Explicit complaint deletion handling
