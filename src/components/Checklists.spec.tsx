@@ -185,16 +185,17 @@ describe('Checklists — progress and live updates', () => {
   });
 });
 
-describe('Checklists — manager-only editing', () => {
+describe('Checklists — authoring (GM / Director only)', () => {
+  const director = makeUser({ id: 'dir', role: 'Director', departmentId: 'dept-it', name: 'Dana Director' });
   const manager = makeUser({ id: 'mgr', role: 'Manager', departmentId: 'dept-it', name: 'Mia Manager' });
 
-  it('hides the add-item form from non-managers', () => {
+  it('hides the add-item form from a technician', () => {
     setup();
     expect(screen.queryByPlaceholderText(/add new daily checklist item/i)).not.toBeInTheDocument();
   });
 
-  it('lets a manager append a new item', async () => {
-    const { onUpdateChecklists, onAddNotification, user } = setup({ currentUser: manager, users: [manager] });
+  it('lets a Director append a new item', async () => {
+    const { onUpdateChecklists, onAddNotification, user } = setup({ currentUser: director, users: [director] });
 
     await user.type(screen.getByPlaceholderText(/add new daily checklist item/i), 'Check the UPS');
     await user.click(screen.getByRole('button', { name: /add item/i }));
@@ -205,18 +206,38 @@ describe('Checklists — manager-only editing', () => {
       expect.stringMatching(/added/i),
       expect.stringContaining('Check the UPS'),
       'Checklist',
-      undefined, // actor is already a Manager -> no manager escalation
+      'Manager',
     );
   });
 
-  it('lets a manager delete an item', async () => {
-    const { onUpdateChecklists, user } = setup({ currentUser: manager, users: [manager] });
+  it('lets a Director delete an item', async () => {
+    const { onUpdateChecklists, user } = setup({ currentUser: director, users: [director] });
 
     const itemRow = screen.getByText('Item two').closest('div')!.parentElement!.parentElement!;
     await user.click(within(itemRow).getByRole('button', { name: /delete/i }));
 
     const daily = onUpdateChecklists.mock.calls.at(-1)![0].find((c: { id: string }) => c.id === 'cl-Daily');
     expect(daily.items.map((it: { id: string }) => it.id)).toEqual(['i1']);
+  });
+
+  it('gives a Manager a read-only inspection view — no add, delete, sign, or file', async () => {
+    const { onUpdateChecklists, user } = setup({ currentUser: manager, users: [manager] });
+
+    // still sees the list + progress
+    expect(screen.getByText('Item one')).toBeInTheDocument();
+    expect(screen.getByText(/0 of 2 signed/i)).toBeInTheDocument();
+    expect(screen.getByText(/inspection only/i)).toBeInTheDocument();
+
+    // no authoring controls
+    expect(screen.queryByPlaceholderText(/add new daily checklist item/i)).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /delete/i })).not.toBeInTheDocument();
+    expect(screen.queryByPlaceholderText(/optional tech note/i)).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: /file & archive/i })).not.toBeInTheDocument();
+    expect(screen.getByText(/read-only/i)).toBeInTheDocument();
+
+    // clicking an item is inert — it does not sign anything
+    await user.click(screen.getByText('Item one'));
+    expect(onUpdateChecklists).not.toHaveBeenCalled();
   });
 });
 

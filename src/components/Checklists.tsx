@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Checklist, User, ChecklistItem, ChecklistHistory, Department } from '../types';
 import { CheckSquare, Square, AlertTriangle, ShieldCheck, UserCheck, CalendarDays, RefreshCw, Layers, Trash2, Building2 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import { hasManagerAccess, isGeneralManager } from '../utils/permissions';
+import { isGeneralManager, isManager, canAuthorChecklist, canSignChecklistItems } from '../utils/permissions';
 
 interface ChecklistsProps {
   checklists: Checklist[];
@@ -44,7 +44,11 @@ export default function Checklists({
   // a tight loop if a save round-trips without the new rows for any reason.
   const provisionedDeptsRef = React.useRef<Set<string>>(new Set());
 
-  const canManageChecklist = hasManagerAccess(currentUser);
+  // GM / Director own the checklist (add & remove items, file the log).
+  const canManageChecklist = canAuthorChecklist(currentUser);
+  // Everyone but a plain Manager can sign items; a Manager's view is read-only.
+  const canSignItems = canSignChecklistItems(currentUser);
+  const isInspectorOnly = isManager(currentUser);
 
   // The General Manager (role: 'GeneralManager', e.g. Mr. Hany) can browse the
   // fixed checklist of every department.
@@ -72,6 +76,9 @@ export default function Checklists({
 
   React.useEffect(() => {
     if (!viewDeptId) return;
+    // A Manager only inspects — they never write checklists, so they never
+    // bootstrap the skeleton either (the server would freeze that sync anyway).
+    if (!canSignItems) return;
     if (provisionedDeptsRef.current.has(viewDeptId)) return;
     const existingTypes = new Set(checklists.filter(c => c.departmentId === viewDeptId).map(c => c.type));
     const missingTypes = (['Daily', 'Weekly', 'Monthly'] as const).filter(t => !existingTypes.has(t));
@@ -97,6 +104,7 @@ export default function Checklists({
   // Add checklist item handler
   const handleAddItem = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!canManageChecklist) return;
     if (!newItemText.trim() || !activeChecklist) return;
 
     const newItem: ChecklistItem = {
@@ -129,6 +137,7 @@ export default function Checklists({
 
   // Delete checklist item handler
   const handleDeleteItem = (itemId: string) => {
+    if (!canManageChecklist) return;
     if (!activeChecklist) return;
 
     const updatedItems = activeChecklist.items.filter(item => item.id !== itemId);
@@ -199,6 +208,15 @@ export default function Checklists({
   const handleToggleItem = (itemId: string, noteText?: string) => {
     if (!activeChecklist) return;
 
+    // A Manager only inspects the checklist — signing is done by the department
+    // technicians (or the Director / GM).
+    if (!canSignItems) {
+      alert(language === 'ar'
+        ? 'وضع الفحص للقراءة فقط. توقيع بنود الفحص يقوم به فنيو القسم.'
+        : 'Inspection view is read-only — checklist items are signed off by the department technicians.');
+      return;
+    }
+
     // Check if the current user is permitted (Staff must not be on leave)
     const activeUserRecord = users.find(u => u.id === currentUser.id);
     if (activeUserRecord && activeUserRecord.status === 'On Leave') {
@@ -257,6 +275,7 @@ export default function Checklists({
 
   // Log complete checklist cycle
   const handleCommitChecklist = () => {
+    if (!canSignItems) return; // a Manager only inspects — never files the log
     if (!activeChecklist) return;
 
     const total = activeChecklist.items.length;
@@ -385,6 +404,11 @@ export default function Checklists({
               <span className="text-[10px] font-mono font-bold uppercase tracking-wider bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded-full flex items-center gap-1">
                 <Building2 className="h-3 w-3" />
                 {viewDepartment.name}
+              </span>
+            )}
+            {isInspectorOnly && (
+              <span className="text-[10px] font-mono font-bold uppercase tracking-wider bg-amber-500/10 border border-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full">
+                {language === 'ar' ? 'عرض للفحص فقط' : 'Inspection only'}
               </span>
             )}
           </h3>
@@ -619,7 +643,7 @@ export default function Checklists({
                   <div
                     key={item.id}
                     onClick={() => {
-                      if (selectedDate) return;
+                      if (selectedDate || !canSignItems) return;
                       if (!item.completed) {
                         handleToggleItem(item.id, itemNotes[item.id]);
                       } else {
@@ -631,7 +655,7 @@ export default function Checklists({
                         ? 'bg-emerald-500/5 border-emerald-500/20 text-zinc-350 cursor-default'
                         : selectedDate
                         ? 'bg-[#111116]/30 border-white/5 text-zinc-600 opacity-60 cursor-default'
-                        : 'bg-[#111116]/50 border-white/5 hover:border-white/10 text-zinc-200 cursor-pointer'
+                        : `bg-[#111116]/50 border-white/5 text-zinc-200 ${canSignItems ? 'hover:border-white/10 cursor-pointer' : 'cursor-default'}`
                     }`}
                   >
                     <div className="flex items-start justify-between gap-3.5 w-full">
@@ -640,7 +664,7 @@ export default function Checklists({
                           {item.completed ? (
                             <CheckSquare className="h-4.5 w-4.5 text-emerald-400" />
                           ) : (
-                            <Square className={`h-4.5 w-4.5 ${selectedDate ? 'text-zinc-700' : 'text-zinc-500 hover:text-indigo-400 transition-colors'}`} />
+                            <Square className={`h-4.5 w-4.5 ${selectedDate || !canSignItems ? 'text-zinc-700' : 'text-zinc-500 hover:text-indigo-400 transition-colors'}`} />
                           )}
                         </div>
 
@@ -680,7 +704,7 @@ export default function Checklists({
                       )}
                     </div>
 
-                    {!item.completed && !selectedDate && (
+                    {!item.completed && !selectedDate && canSignItems && (
                       <div className="mt-1 flex items-center gap-2 w-full" onClick={(e) => e.stopPropagation()}>
                         <input
                           type="text"
@@ -794,13 +818,19 @@ export default function Checklists({
             {/* Commit actions */}
             <div className="space-y-2 pt-4 border-t border-white/5 mt-4">
               {!selectedDate ? (
-                <button
-                  onClick={handleCommitChecklist}
-                  className="w-full bg-emerald-500 hover:bg-emerald-600 font-bold p-2.5 text-slate-950 text-xs rounded-xl transition-all font-display cursor-pointer shadow-lg shadow-emerald-500/10 flex items-center justify-center gap-1.5"
-                >
-                  <span>📥</span>
-                  <span>{language === 'ar' ? `حفظ وأرشفة فحص الـ ${activeTab === 'Daily' ? 'اليومي' : activeTab === 'Weekly' ? 'الأسبوعي' : 'الشهري'}` : `File & Archive ${activeTab} Log`}</span>
-                </button>
+                canSignItems ? (
+                  <button
+                    onClick={handleCommitChecklist}
+                    className="w-full bg-emerald-500 hover:bg-emerald-600 font-bold p-2.5 text-slate-950 text-xs rounded-xl transition-all font-display cursor-pointer shadow-lg shadow-emerald-500/10 flex items-center justify-center gap-1.5"
+                  >
+                    <span>📥</span>
+                    <span>{language === 'ar' ? `حفظ وأرشفة فحص الـ ${activeTab === 'Daily' ? 'اليومي' : activeTab === 'Weekly' ? 'الأسبوعي' : 'الشهري'}` : `File & Archive ${activeTab} Log`}</span>
+                  </button>
+                ) : (
+                  <p className="w-full text-center text-[11px] text-zinc-500 font-mono py-2">
+                    {language === 'ar' ? 'وضع الفحص — للقراءة فقط' : 'Inspection view — read-only'}
+                  </p>
+                )
               ) : (
                 <button
                   onClick={() => setSelectedDate('')}

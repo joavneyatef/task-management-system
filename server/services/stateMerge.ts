@@ -425,6 +425,13 @@ export function authorizeStateMutation(incomingState: SystemData, currentDb: Sys
     incomingState.projects = currentDb.projects;
   }
 
+  // A Manager only inspects the Inspection Checklist — authoring items is the
+  // Director's job and signing is the technicians'. Freeze checklists to the DB
+  // copy so a stray Manager sync can't add, delete, or tick anything.
+  if (actingUser.role === 'Manager') {
+    incomingState.checklists = currentDb.checklists;
+  }
+
   if (incomingState.tasks) {
     for (const clientTask of incomingState.tasks) {
       const serverTask = currentDb.tasks.find(t => t.id === clientTask.id);

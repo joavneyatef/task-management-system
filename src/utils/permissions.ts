@@ -6,11 +6,24 @@ export function isGeneralManager(user: User | null | undefined): boolean {
 export function isDirector(user: User | null | undefined): boolean { return !!user && user.role === 'Director'; }
 export function isManager(user: User | null | undefined): boolean { return !!user && user.role === 'Manager'; }
 // "Manager-level access or above" — the GM and Directors outrank a Manager, so
-// anything a Manager can reach (admin panel, backup/restore, checklist
-// authoring) they can reach too. Mirrors canAccessAuditLog / canSendTasks and
-// the server-side requireRole('GeneralManager','Director','Manager') guard.
+// anything a Manager can reach they can reach too. Mirrors canSendTasks and the
+// server-side requireRole('GeneralManager','Director','Manager') guard.
 export function hasManagerAccess(user: User | null | undefined): boolean {
   return isGeneralManager(user) || isDirector(user) || isManager(user);
+}
+// Who OWNS a department's fixed Inspection Checklist — adds / removes items and
+// files the archived log. The GM and the department Director. A Manager only
+// inspects the checklist (see canSignChecklistItems); they never edit it, and
+// they add real work on the Operations Board instead.
+export function canAuthorChecklist(user: User | null | undefined): boolean {
+  return isGeneralManager(user) || isDirector(user);
+}
+// Who can sign off (tick) a checklist item: everyone with checklist access
+// except a plain Manager, whose view is inspection-only. In practice the
+// department technicians (Assistants / Coordinators) do the signing, and the
+// Director or GM can too.
+export function canSignChecklistItems(user: User | null | undefined): boolean {
+  return !!user && !isManager(user);
 }
 // Audit Log is the org-wide accountability trail ("who completed what"
 // across every department). Only the General Manager can open it — a

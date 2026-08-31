@@ -3,7 +3,9 @@ import { makeOrg, makeUser } from '../../test/factories';
 import type { Task, User } from '../types';
 import {
   canAccessAuditLog,
+  canAuthorChecklist,
   canSendTasks,
+  canSignChecklistItems,
   canViewComplaint,
   canViewTask,
   getAssignableUsers,
@@ -73,6 +75,31 @@ describe('role predicates', () => {
     ['Coordinator', false],
   ] as const)('canAccessAuditLog for %s === %s (GM only)', (role, expected) => {
     expect(canAccessAuditLog(makeUser({ role }))).toBe(expected);
+  });
+
+  it.each([
+    ['GM', true],
+    ['Director', true],
+    ['Manager', false],
+    ['Assistant', false],
+    ['Coordinator', false],
+  ] as const)('canAuthorChecklist for %s === %s (GM + Director own it)', (role, expected) => {
+    expect(canAuthorChecklist(makeUser({ role }))).toBe(expected);
+  });
+
+  it.each([
+    ['GM', true],
+    ['Director', true],
+    ['Manager', false],
+    ['Assistant', true],
+    ['Coordinator', true],
+  ] as const)('canSignChecklistItems for %s === %s (everyone but a Manager)', (role, expected) => {
+    expect(canSignChecklistItems(makeUser({ role }))).toBe(expected);
+  });
+
+  it('canAuthorChecklist / canSignChecklistItems treat null as false', () => {
+    expect(canAuthorChecklist(null)).toBe(false);
+    expect(canSignChecklistItems(undefined)).toBe(false);
   });
 });
 

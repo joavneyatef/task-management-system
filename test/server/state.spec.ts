@@ -154,10 +154,11 @@ describe('POST /api/state — mutations', () => {
     // Regression: mergeStateWithServer mapped only over the DB rows, so a
     // department's freshly auto-provisioned Daily/Weekly/Monthly skeleton was
     // silently dropped. The client re-added it every render → the Checklists
-    // screen flashed. A Manager opening their department's checklist tab is the
-    // real trigger, so exercise it as the Manager.
-    const mgr = await loginAs('mgr');
-    const snap = await stateOf(mgr);
+    // screen flashed. A technician opening their department's checklist tab is a
+    // real trigger, so exercise it as the Assistant. (A Manager never
+    // provisions — their view is inspection-only; see the Manager test below.)
+    const asst = await loginAs('asst');
+    const snap = await stateOf(asst);
     expect(snap.checklists).toHaveLength(0);
 
     const skeleton = ['Daily', 'Weekly', 'Monthly'].map((type) => ({
@@ -172,17 +173,50 @@ describe('POST /api/state — mutations', () => {
       updatedAt: new Date().toISOString(),
     }));
 
-    const first = await mgr.post('/api/state').send({ ...snap, checklists: skeleton });
+    const first = await asst.post('/api/state').send({ ...snap, checklists: skeleton });
     expect(first.status).toBe(200);
     expect((first.body.checklists as unknown[]).map((c: any) => c.id).sort())
       .toEqual(['chk-daily-dept-it', 'chk-monthly-dept-it', 'chk-weekly-dept-it']);
 
     // The client would now POST the same snapshot again on its next render —
     // that must be a stable no-op, not another growth/loop.
-    const echo = await stateOf(mgr);
-    const second = await mgr.post('/api/state').send({ ...echo, checklists: echo.checklists });
+    const echo = await stateOf(asst);
+    const second = await asst.post('/api/state').send({ ...echo, checklists: echo.checklists });
     expect(second.status).toBe(200);
     expect(await prisma.checklist.count()).toBe(3);
+  });
+
+  it('ignores a Manager trying to add or sign a checklist item (inspection-only)', async () => {
+    await prisma.checklist.create({
+      data: {
+        id: 'chk-daily-dept-it', type: 'Daily', title: 'Daily Inspection - IT Department',
+        departmentId: 'dept-it', items: JSON.stringify([{ id: 'i1', text: 'Check UPS', completed: false }]), version: 1,
+      },
+    });
+    const mgr = await loginAs('mgr');
+    const snap = await stateOf(mgr);
+    expect(snap.checklists).toHaveLength(1);
+
+    // Manager tries to sign item i1 AND append a brand-new item.
+    const tampered = snap.checklists.map((c) =>
+      c.id === 'chk-daily-dept-it'
+        ? {
+            ...c,
+            items: [
+              { ...(c.items as any[])[0], completed: true, completedBy: 'mgr' },
+              { id: 'i2', text: 'Manager-added item', completed: false },
+            ],
+          }
+        : c,
+    );
+
+    const res = await mgr.post('/api/state').send({ ...snap, checklists: tampered });
+    expect(res.status).toBe(200);
+
+    const after = await stateOf(mgr);
+    const chk = after.checklists.find((c) => c.id === 'chk-daily-dept-it')!;
+    expect(chk.items).toHaveLength(1); // no new item
+    expect((chk.items as any[])[0].completed).toBe(false); // not signed
   });
 
   it('accepts repeated checklist-history sync without a duplicate-id crash', async () => {

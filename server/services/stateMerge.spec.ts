@@ -462,6 +462,29 @@ describe('authorizeStateMutation', () => {
     expect(incoming.users.find((u) => u.id === 'asst')!.role).toBe('Assistant'); // client's escalation dropped
   });
 
+  it('freezes checklists to the server copy when a Manager syncs (inspection-only)', () => {
+    const { mgr, all } = makeOrg();
+    const serverChk = makeChecklist({ id: 'c1', title: 'server', items: [{ id: 'i1', text: 'x', completed: false }] as any });
+    const server = makeState({ users: all, checklists: [serverChk] });
+    const incoming = makeState({
+      users: all,
+      checklists: [makeChecklist({ id: 'c1', title: 'manager tampered', items: [{ id: 'i1', text: 'x', completed: true }] as any })],
+    });
+
+    expect(authorizeStateMutation(incoming, server, mgr)).toBeNull();
+    expect(incoming.checklists).toBe(server.checklists);
+  });
+
+  it('leaves checklists untouched for a Director sync (they own the checklist)', () => {
+    const { dir, all } = makeOrg();
+    const server = makeState({ users: all, checklists: [makeChecklist({ id: 'c1', title: 'server' })] });
+    const incoming = makeState({ users: all, checklists: [makeChecklist({ id: 'c1', title: 'director edit' })] });
+
+    authorizeStateMutation(incoming, server, dir);
+    expect(incoming.checklists).not.toBe(server.checklists);
+    expect(incoming.checklists[0].title).toBe('director edit');
+  });
+
   it('blocks an Assistant from editing a task that is not theirs', () => {
     const { asst, all } = makeOrg();
     const server = makeState({ users: all, tasks: [makeTask({ id: 't1', createdBy: 'mgr', assigneeIds: ['other'] })] });

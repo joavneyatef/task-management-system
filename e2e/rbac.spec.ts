@@ -87,4 +87,17 @@ test.describe('role-gated navigation', () => {
     await expectHash(page, '#admin');
     await expect(page.getByRole('button', { name: ADMIN })).toBeVisible();
   });
+
+  test('a manager inspects the checklist read-only — no add, delete, sign, or file controls', async ({ page }) => {
+    await signIn(page, 'manager');
+    await page.getByRole('button', { name: 'Inspection Checklists' }).click();
+    await expectHash(page, '#checklists');
+
+    await expect(page.getByText(/inspection only/i)).toBeVisible();
+    await expect(page.getByText(/inspection view — read-only/i)).toBeVisible();
+    await expect(page.getByPlaceholder(/add new daily checklist item/i)).toHaveCount(0);
+    await expect(page.getByRole('button', { name: /file & archive/i })).toHaveCount(0);
+    await expect(page.getByRole('button', { name: /^delete$/i })).toHaveCount(0);
+    await expect(page.getByPlaceholder(/optional tech note/i)).toHaveCount(0);
+  });
 });
