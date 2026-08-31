@@ -25,5 +25,14 @@ export const REAL_SEED_FILE = dir('../data-seed.json');
 
 /** Credentials every seeded user shares in the E2E database. */
 export const E2E_PASSWORD = 'LongBeach!1';
-export const E2E_PORT = 3000;
+
+/**
+ * Deliberately NOT the dev-server port (3000). If they match, a dev server left
+ * running on 3000 makes Playwright's `reuseExistingServer` hijack it and run the
+ * suite against prisma/dev.db + ./data.json. Worse, a browser tab still open at
+ * :3000 survives the server swap and later syncs the e2e seed (task-aug-*, the
+ * demo checklists) straight into the real dev database. A separate port keeps
+ * the two worlds fully apart.
+ */
+export const E2E_PORT = 3100;
 export const E2E_BASE_URL = `http://localhost:${E2E_PORT}`;

@@ -12,8 +12,10 @@ import {
  *
  * global-setup.ts builds a fully disposable backend (isolated sqlite + JSON
  * store, seeded with a known password on every account). The webServer below
- * boots `node dist/server.cjs` pointed at those disposable paths, so a test run
- * never reads or writes prisma/dev.db, ./data.json, or ./backups.
+ * boots `node dist/server.cjs` pointed at those disposable paths, on a
+ * dedicated port (E2E_PORT, not the 3000 the dev server uses), so a test run
+ * never reads or writes prisma/dev.db, ./data.json, or ./backups — and a dev
+ * server or browser tab left open on 3000 can't cross-contaminate it.
  *
  * Requires the Chromium binary: `npx playwright install chromium`.
  */

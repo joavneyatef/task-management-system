@@ -14,7 +14,9 @@ import { runAutoRedistribution as runPrismaAutoRedistribution } from './server/s
 import { authorizeStateMutation, deepEqual, didItemChange, mergeStateWithServer, publicUser, sanitizeStateForClient } from './server/services/stateMerge';
 
 const app = express();
-const PORT = 3000;
+// Honour PORT when set (the E2E runner boots dist/server.cjs on a dedicated port
+// so it never collides with a dev server on 3000). Defaults to 3000 otherwise.
+const PORT = Number(process.env.PORT) || 3000;
 
 let activeEnv: 'production' | 'test' = 'production';
 // DATA_DIR / BACKUPS_DIR let the test runner redirect the JSON state store and
