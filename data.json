@@ -1,12 +1,1096 @@
 {
-  "users": [],
-  "departments": [],
-  "tasks": [],
-  "checklists": [],
+  "departments": [
+    {
+      "id": "fnb",
+      "name": "Food & Beverage",
+      "description": "Food and beverage service",
+      "directorId": "ibrahim-director",
+      "managerIds": [],
+      "complaintReasons": [
+        "Food & Beverage Problems",
+        "Food Problems",
+        "Beverage Problems",
+        "Restaurant Problems"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "it",
+      "name": "IT Department",
+      "description": "Wi-Fi, network and technology",
+      "directorId": "george-director",
+      "managerIds": [
+        "user-maya-manager"
+      ],
+      "complaintReasons": [
+        "Wi-Fi Problems",
+        "Internet Problems",
+        "Network Problems",
+        "IT Problems"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "operations",
+      "name": "Operations",
+      "description": "Hotel operations",
+      "directorId": "abdallah-director",
+      "managerIds": [],
+      "complaintReasons": [
+        "Operations Problems",
+        "General Operations Problems"
+      ],
+      "isActive": true
+    },
+    {
+      "id": "rooms",
+      "name": "Rooms Division",
+      "description": "Rooms and guest accommodation",
+      "directorId": "mina-director",
+      "managerIds": [],
+      "complaintReasons": [
+        "Room Problems",
+        "Housekeeping Problems"
+      ],
+      "isActive": true
+    }
+  ],
+  "users": [
+    {
+      "id": "user-maya-manager",
+      "username": "maya",
+      "name": "Maya Manager",
+      "role": "Manager",
+      "title": "IT Manager",
+      "email": "maya@local",
+      "phone": "",
+      "avatar": "",
+      "status": "Active",
+      "skills": [],
+      "departmentId": "it",
+      "parentId": "user-1788097963174-3osfg",
+      "updatedAt": "2026-08-31T13:03:49.141Z"
+    },
+    {
+      "id": "gm-admin",
+      "username": "admin",
+      "name": "System Administrator",
+      "role": "GeneralManager",
+      "title": "General Manager",
+      "email": "admin@local",
+      "phone": "",
+      "avatar": "",
+      "status": "Active",
+      "skills": [],
+      "departmentId": "operations",
+      "positionCode": "GeneralManager",
+      "updatedAt": "2026-08-31T13:03:49.149Z"
+    },
+    {
+      "id": "user-1788097963174-3osfg",
+      "username": "george",
+      "name": "george",
+      "role": "Director",
+      "title": "Director IT",
+      "email": "george@gmail.com",
+      "phone": "",
+      "avatar": "",
+      "status": "Active",
+      "skills": [],
+      "departmentId": "it",
+      "parentId": "gm-admin",
+      "managerId": "gm-admin",
+      "positionCode": "Director",
+      "updatedAt": "2026-08-31T13:03:49.156Z"
+    },
+    {
+      "id": "user-1788097980330-o7aei",
+      "username": "jovaneyatef",
+      "name": "joe",
+      "role": "Assistant",
+      "title": "IT Assistant",
+      "email": "jovaneyatef@gmail.com",
+      "phone": "",
+      "avatar": "",
+      "status": "Active",
+      "skills": [],
+      "departmentId": "it",
+      "parentId": "user-1788097963174-3osfg",
+      "managerId": "user-1788097963174-3osfg",
+      "positionCode": "Assistant",
+      "updatedAt": "2026-08-31T13:03:49.166Z"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task-1788166546183-0-flh8p",
+      "title": "test 2",
+      "description": "test 2",
+      "priority": "Critical",
+      "status": "Completed",
+      "deadline": "2026-08-31T17:00:00.000Z",
+      "isOverdue": false,
+      "departmentId": "it",
+      "createdBy": "user-1788097963174-3osfg",
+      "assignedBy": "user-1788097963174-3osfg",
+      "assigneeId": "user-1788097980330-o7aei",
+      "assigneeIds": [
+        "user-1788097980330-o7aei"
+      ],
+      "lastTransferredById": null,
+      "originalAssigneeId": "user-1788097980330-o7aei",
+      "completedById": "user-1788097980330-o7aei",
+      "startedAt": "2026-08-31T08:56:14.285Z",
+      "completedAt": "2026-08-31T08:56:15.525Z",
+      "actualDurationSec": 1,
+      "notes": [],
+      "attachments": [],
+      "version": 3,
+      "createdAt": "2026-08-31T08:55:46.182Z",
+      "updatedAt": "2026-08-31T13:03:49.174Z",
+      "history": []
+    },
+    {
+      "id": "task-1788097997745-0-opy00",
+      "title": "test",
+      "description": "test",
+      "priority": "Medium",
+      "status": "Archived",
+      "deadline": "2026-09-02T13:53:00.000Z",
+      "isOverdue": false,
+      "departmentId": "it",
+      "createdBy": "user-1788097963174-3osfg",
+      "assignedBy": "user-1788097963174-3osfg",
+      "assigneeId": "user-1788097980330-o7aei",
+      "assigneeIds": [
+        "user-1788097980330-o7aei"
+      ],
+      "lastTransferredById": null,
+      "originalAssigneeId": "user-1788097980330-o7aei",
+      "completedById": "user-1788097980330-o7aei",
+      "startedAt": "2026-08-30T13:53:26.958Z",
+      "completedAt": "2026-08-30T13:53:40.085Z",
+      "actualDurationSec": 13,
+      "notes": [
+        "joe: i have done the task"
+      ],
+      "attachments": [],
+      "version": 5,
+      "createdAt": "2026-08-30T13:53:17.745Z",
+      "updatedAt": "2026-08-31T13:03:49.185Z",
+      "history": []
+    }
+  ],
+  "checklists": [
+    {
+      "id": "chk-daily-it",
+      "type": "Daily",
+      "title": "Daily Inspection - IT Department",
+      "description": "Fixed daily checklist for IT Department.",
+      "departmentId": "it",
+      "assignedToId": null,
+      "items": [
+        {
+          "id": "chk-item-1788166686874-0.6096768736204109",
+          "text": "test task 1",
+          "completed": false
+        },
+        {
+          "id": "chk-item-1788166692933-0.26896909162037086",
+          "text": "test task 2",
+          "completed": false
+        },
+        {
+          "id": "chk-item-1788166699285-0.20424311424646624",
+          "text": "test task 3",
+          "completed": false
+        }
+      ],
+      "version": 303,
+      "updatedAt": "2026-08-31T13:03:49.196Z"
+    },
+    {
+      "id": "chk-daily-operations",
+      "type": "Daily",
+      "title": "Daily Inspection - Operations",
+      "description": "Fixed daily checklist for Operations.",
+      "departmentId": "operations",
+      "assignedToId": null,
+      "items": [
+        {
+          "id": "chk-item-1788168324277-0.903601275056841",
+          "text": "hh",
+          "completed": true,
+          "completedAt": "2026-08-31T12:31:45.480Z",
+          "completedBy": "gm-admin"
+        }
+      ],
+      "version": 306,
+      "updatedAt": "2026-08-31T13:03:49.205Z"
+    },
+    {
+      "id": "chk-monthly-operations",
+      "type": "Monthly",
+      "title": "Monthly Inspection - Operations",
+      "description": "Fixed monthly checklist for Operations.",
+      "departmentId": "operations",
+      "assignedToId": null,
+      "items": [],
+      "version": 1,
+      "updatedAt": "2026-08-31T13:03:49.218Z"
+    },
+    {
+      "id": "chk-weekly-operations",
+      "type": "Weekly",
+      "title": "Weekly Inspection - Operations",
+      "description": "Fixed weekly checklist for Operations.",
+      "departmentId": "operations",
+      "assignedToId": null,
+      "items": [],
+      "version": 1,
+      "updatedAt": "2026-08-31T13:03:49.231Z"
+    }
+  ],
   "checklistHistory": [],
   "projects": [],
-  "notifications": [],
-  "chats": [],
+  "notifications": [
+    {
+      "id": "notif-1788179654538-0.7294966280674278",
+      "recipientUserId": "user-maya-manager",
+      "title": "Overdue Reminder: Update guest network documentation",
+      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
+      "category": "Alert",
+      "createdAt": "2026-08-31T12:34:14.902Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-08-31T12:36:31.697Z",
+      "eventKey": "task:task-aug-06:overdue:user-maya-manager",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788179102655-0.29189839338253654",
+      "recipientUserId": "gm-admin",
+      "title": "Overdue Reminder: Update guest network documentation",
+      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
+      "category": "Alert",
+      "createdAt": "2026-08-31T12:25:04.282Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-08-31T12:31:33.962Z",
+      "eventKey": "task:task-aug-06:overdue:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788179102645-0.8560199894256979",
+      "recipientUserId": "gm-admin",
+      "title": "Overdue Reminder: Update guest network documentation",
+      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
+      "category": "Alert",
+      "createdAt": "2026-08-31T12:25:04.077Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-08-31T12:31:33.590Z",
+      "eventKey": "task:task-aug-06:overdue:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788179096804-0.13437313736521628",
+      "recipientUserId": "gm-admin",
+      "title": "Overdue Reminder: Update guest network documentation",
+      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
+      "category": "Alert",
+      "createdAt": "2026-08-31T12:25:03.274Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-08-31T12:31:21.776Z",
+      "eventKey": "task:task-aug-06:overdue:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788179096798-0.31186289605410766",
+      "recipientUserId": "gm-admin",
+      "title": "Overdue Reminder: Update guest network documentation",
+      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
+      "category": "Alert",
+      "createdAt": "2026-08-31T12:25:02.766Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-08-31T12:31:21.477Z",
+      "eventKey": "task:task-aug-06:overdue:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788179096795-0.25021035473707787",
+      "recipientUserId": "gm-admin",
+      "title": "Overdue Reminder: Review firewall alert queue",
+      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
+      "category": "Alert",
+      "createdAt": "2026-08-31T12:25:02.008Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-08-31T12:31:20.795Z",
+      "eventKey": "task:task-aug-04:overdue:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788179096802-0.6651355310643721",
+      "recipientUserId": "gm-admin",
+      "title": "Overdue Reminder: Review firewall alert queue",
+      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
+      "category": "Alert",
+      "createdAt": "2026-08-31T12:25:01.920Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-08-31T12:31:20.565Z",
+      "eventKey": "task:task-aug-04:overdue:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788179096792-0.6363389255430313",
+      "recipientUserId": "gm-admin",
+      "title": "Overdue Reminder: Replace failed switch power module",
+      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
+      "category": "Alert",
+      "createdAt": "2026-08-31T12:25:01.727Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-08-31T12:31:20.239Z",
+      "eventKey": "task:task-aug-03:overdue:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788179096790-0.18778834338842432",
+      "recipientUserId": "gm-admin",
+      "title": "Overdue Reminder: Investigate guest Wi-Fi intermittent drops",
+      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
+      "category": "Alert",
+      "createdAt": "2026-08-31T12:25:01.395Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-08-31T12:31:19.775Z",
+      "eventKey": "task:task-aug-01:overdue:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788179096800-0.13732026889739912",
+      "recipientUserId": "gm-admin",
+      "title": "Overdue Reminder: Replace failed switch power module",
+      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
+      "category": "Alert",
+      "createdAt": "2026-08-31T12:25:00.802Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-08-31T12:31:18.952Z",
+      "eventKey": "task:task-aug-03:overdue:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788179096797-0.2332668639994624",
+      "recipientUserId": "gm-admin",
+      "title": "Overdue Reminder: Investigate guest Wi-Fi intermittent drops",
+      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
+      "category": "Alert",
+      "createdAt": "2026-08-31T12:24:57.687Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-08-31T12:31:17.544Z",
+      "eventKey": "task:task-aug-01:overdue:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788179056403-0.40165137272814966",
+      "recipientUserId": "ahmed-assistant",
+      "title": "Overdue Reminder: Investigate guest Wi-Fi intermittent drops",
+      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
+      "category": "Alert",
+      "createdAt": "2026-08-31T12:24:56.670Z",
+      "isRead": false,
+      "eventKey": "task:task-aug-01:overdue:ahmed-assistant",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788179056968-0.5411023785969377",
+      "recipientUserId": "matar-manager",
+      "title": "Overdue Reminder: Investigate guest Wi-Fi intermittent drops",
+      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
+      "category": "Alert",
+      "createdAt": "2026-08-31T12:24:56.658Z",
+      "isRead": false,
+      "eventKey": "task:task-aug-01:overdue:matar-manager",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788179056970-0.07478054893274144",
+      "recipientUserId": "hany-gm",
+      "title": "Overdue Reminder: Investigate guest Wi-Fi intermittent drops",
+      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
+      "category": "Alert",
+      "createdAt": "2026-08-31T12:24:56.648Z",
+      "isRead": false,
+      "eventKey": "task:task-aug-01:overdue:hany-gm",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788179056971-0.5607118647546985",
+      "recipientUserId": "mohamed-assistant",
+      "title": "Overdue Reminder: Replace failed switch power module",
+      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
+      "category": "Alert",
+      "createdAt": "2026-08-31T12:24:56.637Z",
+      "isRead": false,
+      "eventKey": "task:task-aug-03:overdue:mohamed-assistant",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788179056972-0.9211046023279269",
+      "recipientUserId": "youssef-manager",
+      "title": "Overdue Reminder: Replace failed switch power module",
+      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
+      "category": "Alert",
+      "createdAt": "2026-08-31T12:24:56.624Z",
+      "isRead": false,
+      "eventKey": "task:task-aug-03:overdue:youssef-manager",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788179056973-0.6740735389024372",
+      "recipientUserId": "hany-gm",
+      "title": "Overdue Reminder: Replace failed switch power module",
+      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
+      "category": "Alert",
+      "createdAt": "2026-08-31T12:24:56.611Z",
+      "isRead": false,
+      "eventKey": "task:task-aug-03:overdue:hany-gm",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788179056976-0.5535285217017043",
+      "recipientUserId": "emad-assistant",
+      "title": "Overdue Reminder: Review firewall alert queue",
+      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
+      "category": "Alert",
+      "createdAt": "2026-08-31T12:24:56.596Z",
+      "isRead": false,
+      "eventKey": "task:task-aug-04:overdue:emad-assistant",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788179056978-0.8027943575863757",
+      "recipientUserId": "youssef-manager",
+      "title": "Overdue Reminder: Review firewall alert queue",
+      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
+      "category": "Alert",
+      "createdAt": "2026-08-31T12:24:56.584Z",
+      "isRead": false,
+      "eventKey": "task:task-aug-04:overdue:youssef-manager",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788179056980-0.6538329909348484",
+      "recipientUserId": "hany-gm",
+      "title": "Overdue Reminder: Review firewall alert queue",
+      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
+      "category": "Alert",
+      "createdAt": "2026-08-31T12:24:56.569Z",
+      "isRead": false,
+      "eventKey": "task:task-aug-04:overdue:hany-gm",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788179056983-0.8606728308503734",
+      "recipientUserId": "george-director",
+      "title": "Overdue Reminder: Update guest network documentation",
+      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
+      "category": "Alert",
+      "createdAt": "2026-08-31T12:24:56.558Z",
+      "isRead": false,
+      "eventKey": "task:task-aug-06:overdue:george-director",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788179056984-0.23788749799654618",
+      "recipientUserId": "matar-manager",
+      "title": "Overdue Reminder: Update guest network documentation",
+      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
+      "category": "Alert",
+      "createdAt": "2026-08-31T12:24:56.544Z",
+      "isRead": false,
+      "eventKey": "task:task-aug-06:overdue:matar-manager",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788179056985-0.2521810680361515",
+      "recipientUserId": "hany-gm",
+      "title": "Overdue Reminder: Update guest network documentation",
+      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
+      "category": "Alert",
+      "createdAt": "2026-08-31T12:24:56.531Z",
+      "isRead": false,
+      "eventKey": "task:task-aug-06:overdue:hany-gm",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788166659710-0.057445052922895035",
+      "recipientUserId": "user-1788097963174-3osfg",
+      "title": "Task completed",
+      "message": "joe completed the task you switched to them: test 3",
+      "category": "Task",
+      "createdAt": "2026-08-31T08:57:39.956Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-08-31T08:57:51.100Z",
+      "eventKey": "task:task-1788166605583-0-qqs2i:completed:3:switch-owner:user-1788097963174-3osfg",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788166659710-0.5251400977302271",
+      "recipientUserId": "gm-admin",
+      "title": "Task completed",
+      "message": "joe completed the task you sent them: test 3",
+      "category": "Task",
+      "createdAt": "2026-08-31T08:57:39.942Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-08-31T08:58:37.943Z",
+      "eventKey": "task:task-1788166605583-0-qqs2i:completed:3:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788166659722-0.17342377705077672",
+      "recipientUserId": "user-1788097963174-3osfg",
+      "title": "Task completed",
+      "message": "joe completed the task you sent them: test 3",
+      "category": "Task",
+      "createdAt": "2026-08-31T08:57:39.928Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-08-31T08:57:50.659Z",
+      "eventKey": "task:task-1788166605583-0-qqs2i:completed:2026-08-31T08:57:39.710Z:direct-sender:user-1788097963174-3osfg",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788166659722-0.6898847870762759",
+      "recipientUserId": "gm-admin",
+      "title": "Task completed",
+      "message": "joe completed the task you sent them: test 3",
+      "category": "Task",
+      "createdAt": "2026-08-31T08:57:39.913Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-08-31T08:58:37.722Z",
+      "eventKey": "task:task-1788166605583-0-qqs2i:completed:2026-08-31T08:57:39.710Z:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788166649565-0.005015122320058074",
+      "recipientUserId": "user-1788097963174-3osfg",
+      "title": "Task started",
+      "message": "joe started working on: test 3",
+      "category": "Task",
+      "createdAt": "2026-08-31T08:57:29.764Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-08-31T08:57:50.211Z",
+      "eventKey": "task:task-1788166605583-0-qqs2i:started:2:owner:user-1788097963174-3osfg",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788166649565-0.3732988662240444",
+      "recipientUserId": "gm-admin",
+      "title": "Task started",
+      "message": "joe started the task you sent them: test 3",
+      "category": "Task",
+      "createdAt": "2026-08-31T08:57:29.755Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-08-31T08:58:37.435Z",
+      "eventKey": "task:task-1788166605583-0-qqs2i:started:2:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788166649580-0.6824959942821845",
+      "recipientUserId": "user-1788097963174-3osfg",
+      "title": "Task started",
+      "message": "joe started working on: test 3",
+      "category": "Task",
+      "createdAt": "2026-08-31T08:57:29.745Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-08-31T08:57:49.387Z",
+      "eventKey": "task:task-1788166605583-0-qqs2i:started:2026-08-31T08:57:29.565Z:owner:user-1788097963174-3osfg",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788166649580-0.5926746450989272",
+      "recipientUserId": "gm-admin",
+      "title": "Task started",
+      "message": "joe started the task you sent them: test 3",
+      "category": "Task",
+      "createdAt": "2026-08-31T08:57:29.737Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-08-31T08:58:37.132Z",
+      "eventKey": "task:task-1788166605583-0-qqs2i:started:2026-08-31T08:57:29.565Z:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788166605583-0.8153253911210536",
+      "recipientUserId": "gm-admin",
+      "title": "Task dispatched",
+      "message": "george sent a new task to joe: test 3",
+      "category": "Task",
+      "createdAt": "2026-08-31T08:56:45.814Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-08-31T08:58:36.740Z",
+      "eventKey": "task:task-1788166605583-0-qqs2i:new:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788166605583-0.4888750755404643",
+      "recipientUserId": "user-1788097980330-o7aei",
+      "title": "New task",
+      "message": "New task from: george — test 3",
+      "category": "Task",
+      "createdAt": "2026-08-31T08:56:45.802Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-08-31T08:57:02.546Z",
+      "eventKey": "task:task-1788166605583-0-qqs2i:new:user-1788097980330-o7aei",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788166575525-0.6478324598943999",
+      "recipientUserId": "user-1788097963174-3osfg",
+      "title": "Task completed",
+      "message": "joe completed the task you switched to them: test 2",
+      "category": "Task",
+      "createdAt": "2026-08-31T08:56:15.723Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-08-31T08:56:30.338Z",
+      "eventKey": "task:task-1788166546183-0-flh8p:completed:2:switch-owner:user-1788097963174-3osfg",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788166575525-0.07328506455108097",
+      "recipientUserId": "gm-admin",
+      "title": "Task completed",
+      "message": "joe completed the task you sent them: test 2",
+      "category": "Task",
+      "createdAt": "2026-08-31T08:56:15.716Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-08-31T08:58:36.372Z",
+      "eventKey": "task:task-1788166546183-0-flh8p:completed:2:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788166575532-0.1096784259343182",
+      "recipientUserId": "user-1788097963174-3osfg",
+      "title": "Task completed",
+      "message": "joe completed the task you sent them: test 2",
+      "category": "Task",
+      "createdAt": "2026-08-31T08:56:15.706Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-08-31T08:56:29.715Z",
+      "eventKey": "task:task-1788166546183-0-flh8p:completed:2026-08-31T08:56:15.525Z:direct-sender:user-1788097963174-3osfg",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788166575532-0.5346273828423905",
+      "recipientUserId": "gm-admin",
+      "title": "Task completed",
+      "message": "joe completed the task you sent them: test 2",
+      "category": "Task",
+      "createdAt": "2026-08-31T08:56:15.694Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-08-31T08:58:35.994Z",
+      "eventKey": "task:task-1788166546183-0-flh8p:completed:2026-08-31T08:56:15.525Z:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788166574285-0.4552348441889603",
+      "recipientUserId": "user-1788097963174-3osfg",
+      "title": "Task started",
+      "message": "joe started working on: test 2",
+      "category": "Task",
+      "createdAt": "2026-08-31T08:56:14.499Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-08-31T08:56:29.313Z",
+      "eventKey": "task:task-1788166546183-0-flh8p:started:1:owner:user-1788097963174-3osfg",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788166574285-0.7244379285679104",
+      "recipientUserId": "gm-admin",
+      "title": "Task started",
+      "message": "joe started the task you sent them: test 2",
+      "category": "Task",
+      "createdAt": "2026-08-31T08:56:14.490Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-08-31T08:58:35.596Z",
+      "eventKey": "task:task-1788166546183-0-flh8p:started:1:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788166574294-0.3146265084434887",
+      "recipientUserId": "user-1788097963174-3osfg",
+      "title": "Task started",
+      "message": "joe started working on: test 2",
+      "category": "Task",
+      "createdAt": "2026-08-31T08:56:14.479Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-08-31T08:56:29.153Z",
+      "eventKey": "task:task-1788166546183-0-flh8p:started:2026-08-31T08:56:14.285Z:owner:user-1788097963174-3osfg",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788166574294-0.11968806387823738",
+      "recipientUserId": "gm-admin",
+      "title": "Task started",
+      "message": "joe started the task you sent them: test 2",
+      "category": "Task",
+      "createdAt": "2026-08-31T08:56:14.468Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-08-31T08:58:35.180Z",
+      "eventKey": "task:task-1788166546183-0-flh8p:started:2026-08-31T08:56:14.285Z:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788166546183-0.7605899979596675",
+      "recipientUserId": "user-1788097980330-o7aei",
+      "title": "New task",
+      "message": "New task from: george — test 2",
+      "category": "Task",
+      "createdAt": "2026-08-31T08:55:46.456Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-08-31T08:55:54.241Z",
+      "eventKey": "task:task-1788166546183-0-flh8p:new:user-1788097980330-o7aei",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788166546184-0.42407668391298015",
+      "recipientUserId": "gm-admin",
+      "title": "Task dispatched",
+      "message": "george sent a new task to joe: test 2",
+      "category": "Task",
+      "createdAt": "2026-08-31T08:55:46.443Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-08-31T08:58:34.779Z",
+      "eventKey": "task:task-1788166546183-0-flh8p:new:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788098020085-0.43459727422194183",
+      "recipientUserId": "user-1788097963174-3osfg",
+      "title": "Task completed",
+      "message": "joe completed the task you switched to them: test",
+      "category": "Task",
+      "createdAt": "2026-08-30T13:53:40.236Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-08-30T13:53:49.366Z",
+      "eventKey": "task:task-1788097997745-0-opy00:completed:3:switch-owner:user-1788097963174-3osfg",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788098020085-0.49256850205052016",
+      "recipientUserId": "gm-admin",
+      "title": "Task completed",
+      "message": "joe completed the task you sent them: test",
+      "category": "Task",
+      "createdAt": "2026-08-30T13:53:40.226Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-08-31T08:58:34.356Z",
+      "eventKey": "task:task-1788097997745-0-opy00:completed:3:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788098020104-0.42464414894463187",
+      "recipientUserId": "user-1788097963174-3osfg",
+      "title": "Task completed",
+      "message": "joe completed the task you sent them: test",
+      "category": "Task",
+      "createdAt": "2026-08-30T13:53:40.216Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-08-30T13:53:48.884Z",
+      "eventKey": "task:task-1788097997745-0-opy00:completed:2026-08-30T13:53:40.085Z:direct-sender:user-1788097963174-3osfg",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788098020104-0.9208366225533915",
+      "recipientUserId": "gm-admin",
+      "title": "Task completed",
+      "message": "joe completed the task you sent them: test",
+      "category": "Task",
+      "createdAt": "2026-08-30T13:53:40.206Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-08-31T08:58:34.020Z",
+      "eventKey": "task:task-1788097997745-0-opy00:completed:2026-08-30T13:53:40.085Z:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788098006958-0.20397570982805358",
+      "recipientUserId": "user-1788097963174-3osfg",
+      "title": "Task started",
+      "message": "joe started working on: test",
+      "category": "Task",
+      "createdAt": "2026-08-30T13:53:27.108Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-08-30T13:53:48.460Z",
+      "eventKey": "task:task-1788097997745-0-opy00:started:1:owner:user-1788097963174-3osfg",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788098006958-0.80450447639297",
+      "recipientUserId": "gm-admin",
+      "title": "Task started",
+      "message": "joe started the task you sent them: test",
+      "category": "Task",
+      "createdAt": "2026-08-30T13:53:27.098Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-08-31T08:58:33.619Z",
+      "eventKey": "task:task-1788097997745-0-opy00:started:1:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788098006971-0.8154572381642492",
+      "recipientUserId": "user-1788097963174-3osfg",
+      "title": "Task started",
+      "message": "joe started working on: test",
+      "category": "Task",
+      "createdAt": "2026-08-30T13:53:27.084Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-08-30T13:53:47.846Z",
+      "eventKey": "task:task-1788097997745-0-opy00:started:2026-08-30T13:53:26.958Z:owner:user-1788097963174-3osfg",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788098006971-0.9468908621453763",
+      "recipientUserId": "gm-admin",
+      "title": "Task started",
+      "message": "joe started the task you sent them: test",
+      "category": "Task",
+      "createdAt": "2026-08-30T13:53:27.076Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-08-31T08:58:32.594Z",
+      "eventKey": "task:task-1788097997745-0-opy00:started:2026-08-30T13:53:26.958Z:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788097997745-0.8051607679782402",
+      "recipientUserId": "user-1788097980330-o7aei",
+      "title": "New task",
+      "message": "New task from: george — test",
+      "category": "Task",
+      "createdAt": "2026-08-30T13:53:17.882Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-08-30T13:53:25.198Z",
+      "eventKey": "task:task-1788097997745-0-opy00:new:user-1788097980330-o7aei",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788097997746-0.9317887935679661",
+      "recipientUserId": "gm-admin",
+      "title": "Task dispatched",
+      "message": "george sent a new task to joe: test",
+      "category": "Task",
+      "createdAt": "2026-08-30T13:53:17.868Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-08-31T08:58:27.089Z",
+      "eventKey": "task:task-1788097997745-0-opy00:new:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    }
+  ],
   "complaints": [],
-  "demoDataVersion": "command-center-aug-2026-v3"
+  "chats": []
 }
