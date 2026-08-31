@@ -150,6 +150,41 @@ describe('POST /api/state — mutations', () => {
     expect(t.assigneeIds).toEqual(['asst', 'mgr']);
   });
 
+  it('persists a checklist the client auto-provisions (no save/re-add loop)', async () => {
+    // Regression: mergeStateWithServer mapped only over the DB rows, so a
+    // department's freshly auto-provisioned Daily/Weekly/Monthly skeleton was
+    // silently dropped. The client re-added it every render → the Checklists
+    // screen flashed. A Manager opening their department's checklist tab is the
+    // real trigger, so exercise it as the Manager.
+    const mgr = await loginAs('mgr');
+    const snap = await stateOf(mgr);
+    expect(snap.checklists).toHaveLength(0);
+
+    const skeleton = ['Daily', 'Weekly', 'Monthly'].map((type) => ({
+      id: `chk-${type.toLowerCase()}-dept-it`,
+      type,
+      title: `${type} Inspection - IT Department`,
+      description: `Fixed ${type.toLowerCase()} checklist for IT Department.`,
+      departmentId: 'dept-it',
+      assignedToId: null,
+      items: [],
+      version: 1,
+      updatedAt: new Date().toISOString(),
+    }));
+
+    const first = await mgr.post('/api/state').send({ ...snap, checklists: skeleton });
+    expect(first.status).toBe(200);
+    expect((first.body.checklists as unknown[]).map((c: any) => c.id).sort())
+      .toEqual(['chk-daily-dept-it', 'chk-monthly-dept-it', 'chk-weekly-dept-it']);
+
+    // The client would now POST the same snapshot again on its next render —
+    // that must be a stable no-op, not another growth/loop.
+    const echo = await stateOf(mgr);
+    const second = await mgr.post('/api/state').send({ ...echo, checklists: echo.checklists });
+    expect(second.status).toBe(200);
+    expect(await prisma.checklist.count()).toBe(3);
+  });
+
   it('accepts repeated checklist-history sync without a duplicate-id crash', async () => {
     await prisma.checklist.create({
       data: { id: 'chk-1', type: 'Daily', title: 'Daily', items: JSON.stringify([]), version: 1 },

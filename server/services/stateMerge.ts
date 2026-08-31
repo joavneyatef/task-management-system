@@ -247,16 +247,26 @@ export function mergeStateWithServer(incomingState: SystemData, currentDb: Syste
 
   // 2. Process Checklists
   if (incomingState.checklists) {
-    mergedState.checklists = currentDb.checklists.map(serverChk => {
+    const reconciled = currentDb.checklists.map(serverChk => {
       const clientChk = incomingState.checklists.find(c => c.id === serverChk.id);
       if (!clientChk) return serverChk;
-      
+
       // Version-gating check: Ignore if client version is stale (less than server version)
       if (clientChk.version !== undefined && serverChk.version !== undefined && clientChk.version < serverChk.version) {
         // stale + changed: server wins silently (see note at top of function)
         return serverChk;
       }
-      
+
+      // Never let a sync that carries an empty item list wipe a checklist that
+      // already has items on the server. A client that POSTs before its initial
+      // state fetch has settled would otherwise blank the department's real
+      // checklist with the freshly auto-provisioned empty skeleton.
+      const clientItems = Array.isArray(clientChk.items) ? clientChk.items : [];
+      const serverItems = Array.isArray(serverChk.items) ? serverChk.items : [];
+      if (clientItems.length === 0 && serverItems.length > 0) {
+        return serverChk;
+      }
+
       const changed = didItemChange(clientChk, serverChk);
       if (changed) {
         return {
@@ -267,6 +277,23 @@ export function mergeStateWithServer(incomingState: SystemData, currentDb: Syste
       }
       return serverChk;
     });
+
+    // Keep checklists the client just created that the DB has not seen yet
+    // (e.g. the fixed Daily/Weekly/Monthly skeleton auto-provisioned the first
+    // time a department's checklist tab is opened). Mapping only over
+    // `currentDb.checklists` above would silently discard them, so the client
+    // re-adds them on the next render — an endless save/re-add loop. Mirrors the
+    // Projects reconciliation below.
+    const serverChkIds = new Set(currentDb.checklists.map(c => c.id));
+    const newClientChecklists = incomingState.checklists
+      .filter(c => !serverChkIds.has(c.id))
+      .map(c => ({
+        ...c,
+        version: c.version || 1,
+        updatedAt: c.updatedAt || new Date().toISOString()
+      }));
+
+    mergedState.checklists = [...reconciled, ...newClientChecklists];
   }
   
   // 3. Process Projects

@@ -271,17 +271,34 @@ describe('mergeStateWithServer — server-generated task notifications', () => {
 });
 
 describe('mergeStateWithServer — checklists, projects, complaints, users', () => {
-  it('only merges checklists that already exist on the server (no "new checklist" path)', () => {
+  it('bumps an edited existing checklist and keeps a client-new one', () => {
     const server = makeState({ users: [makeUser({ id: 'u1' })], checklists: [makeChecklist({ id: 'c1', version: 1 })] });
     const incoming = makeState({
       users: server.users,
-      checklists: [makeChecklist({ id: 'c1', title: 'renamed', version: 1 }), makeChecklist({ id: 'c-new' })],
+      checklists: [makeChecklist({ id: 'c1', title: 'renamed', version: 1 }), makeChecklist({ id: 'c-new', title: 'skeleton' })],
     });
 
     const merged = mergeStateWithServer(incoming, server, 'u1').mergedState.checklists;
-    expect(merged.map((c) => c.id)).toEqual(['c1']);
-    expect(merged[0].title).toBe('renamed');
-    expect(merged[0].version).toBe(2);
+    // The freshly auto-provisioned skeleton must survive the merge — mapping only
+    // over the DB rows would drop it and the client would re-add it forever.
+    expect(merged.map((c) => c.id).sort()).toEqual(['c-new', 'c1']);
+    expect(merged.find((c) => c.id === 'c1')).toMatchObject({ title: 'renamed', version: 2 });
+    expect(merged.find((c) => c.id === 'c-new')).toMatchObject({ title: 'skeleton', version: 1 });
+  });
+
+  it('does not let an empty client checklist wipe items already saved on the server', () => {
+    const server = makeState({
+      users: [makeUser({ id: 'u1' })],
+      checklists: [makeChecklist({ id: 'c1', version: 2, items: [{ id: 'i1', text: 'Check UPS', completed: true }] as any })],
+    });
+    const incoming = makeState({
+      users: server.users,
+      checklists: [makeChecklist({ id: 'c1', version: 2, items: [] })],
+    });
+
+    const merged = mergeStateWithServer(incoming, server, 'u1').mergedState.checklists;
+    expect(merged.find((c) => c.id === 'c1')!.items).toHaveLength(1);
+    expect(merged.find((c) => c.id === 'c1')).toMatchObject({ version: 2 });
   });
 
   it('discards a stale checklist edit and keeps an unchanged one untouched', () => {

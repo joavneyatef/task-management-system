@@ -39,6 +39,10 @@ export default function Checklists({
   const [itemNotes, setItemNotes] = useState<Record<string, string>>({});
   const [selectedDate, setSelectedDate] = useState<string>('');
   const focusedChecklistRef = React.useRef<string | null>(null);
+  // Departments we have already auto-provisioned the fixed Daily/Weekly/Monthly
+  // skeleton for this session. Guards against re-firing the provisioning sync in
+  // a tight loop if a save round-trips without the new rows for any reason.
+  const provisionedDeptsRef = React.useRef<Set<string>>(new Set());
 
   const canManageChecklist = hasManagerAccess(currentUser);
 
@@ -68,9 +72,11 @@ export default function Checklists({
 
   React.useEffect(() => {
     if (!viewDeptId) return;
+    if (provisionedDeptsRef.current.has(viewDeptId)) return;
     const existingTypes = new Set(checklists.filter(c => c.departmentId === viewDeptId).map(c => c.type));
     const missingTypes = (['Daily', 'Weekly', 'Monthly'] as const).filter(t => !existingTypes.has(t));
     if (missingTypes.length > 0) {
+      provisionedDeptsRef.current.add(viewDeptId);
       const dept = departments.find(d => d.id === viewDeptId);
       const deptName = dept?.name || viewDeptId.toUpperCase();
       const newChecklists: Checklist[] = missingTypes.map(type => ({
