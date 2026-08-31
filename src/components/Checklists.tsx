@@ -422,8 +422,11 @@ export default function Checklists({
         </div>
       </div>
 
-      {/* Department progress on the active checklist type (X/Y and %) */}
-      {departmentProgress.length > 0 && (
+      {/* Cross-department progress on the active checklist type (X/Y and %).
+          Only the General Manager sees this org-wide roll-up — a Director or
+          Manager runs their own department and has no business seeing another
+          department's compliance numbers. */}
+      {isTopAdmin && departmentProgress.length > 0 && (
         <div className="border border-white/5 rounded-xl bg-white/2 px-4 py-3 glass" data-testid="department-progress">
           <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-500 mb-2">
             {language === 'ar'

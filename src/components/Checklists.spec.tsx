@@ -67,6 +67,25 @@ describe('Checklists — department progress', () => {
     expect(within(panel).getByText('0/1')).toBeInTheDocument();
     expect(within(panel).getByRole('button', { name: /IT Department: 2 of 5 done, 40%/ })).toBeInTheDocument();
   });
+
+  it('hides the cross-department roll-up from a Director', () => {
+    const deps = [
+      makeDepartment({ id: 'dept-it', name: 'IT Department' }),
+      makeDepartment({ id: 'dept-fnb', name: 'F&B' }),
+    ];
+    const director = makeUser({ id: 'dir', role: 'Director', departmentId: 'dept-it', name: 'Dana' });
+    setup({ currentUser: director, users: [director], departments: deps });
+
+    expect(screen.queryByTestId('department-progress')).not.toBeInTheDocument();
+  });
+
+  it('hides the cross-department roll-up from a Manager', () => {
+    const deps = [makeDepartment({ id: 'dept-it', name: 'IT Department' })];
+    const manager = makeUser({ id: 'mgr', role: 'Manager', departmentId: 'dept-it', name: 'Mia' });
+    setup({ currentUser: manager, users: [manager], departments: deps });
+
+    expect(screen.queryByTestId('department-progress')).not.toBeInTheDocument();
+  });
 });
 
 describe('Checklists — signing items', () => {
