@@ -76,15 +76,16 @@ describe('POST /api/state — mutations', () => {
     expect(after.tasks.find((t) => t.id === 't1')!.title).toBe('Rack audit v2');
   });
 
-  it('403s an Assistant editing a task that is not theirs', async () => {
+  it('ignores an Assistant editing a task that is not theirs (sync succeeds, task unchanged)', async () => {
     await seedTask({ assigneeId: 'mgr', assigneeIds: JSON.stringify(['mgr']), creatorId: 'mgr' });
     const asst = await loginAs('asst');
     const snap = await stateOf(asst);
-    // the assistant can still SEE it via /api/state (server returns full state),
-    // but must not be able to mutate it
+    // The assistant can SEE it (server returns full state) and the client blindly
+    // re-POSTs the whole task list, so a stray edit must NOT 403 the sync — it is
+    // silently pinned back to the authoritative copy instead.
     const res = await asst.post('/api/state').send(withTaskEdit(snap, 't1', { title: 'sneaky' }));
-    expect(res.status).toBe(403);
-    expect(res.body.error).toBe('FORBIDDEN');
+    expect(res.status).toBe(200);
+    expect((await stateOf(asst)).tasks.find((t) => t.id === 't1')!.title).toBe('Rack audit');
   });
 
   it('lets an Assistant edit a task assigned to them', async () => {

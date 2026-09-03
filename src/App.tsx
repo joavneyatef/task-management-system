@@ -449,7 +449,10 @@ export default function App() {
       }
 
       if (nextTasks && nextTasks.length > 0) {
-        const archiveResult = autoArchiveTasksIfNeeded(nextTasks);
+        // Non-GM users only archive their own tickets — archiving a task outside
+        // their scope is a change the server rejects, which would block the sync.
+        const archiveOwnerId = isGeneralManager(currentUserRef.current) ? undefined : currentUserRef.current?.id;
+        const archiveResult = autoArchiveTasksIfNeeded(nextTasks, archiveOwnerId);
         if (archiveResult) {
           nextTasks = archiveResult;
           updateTasksState(archiveResult);

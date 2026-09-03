@@ -125,9 +125,22 @@ export function autoResetChecklistsIfNeeded(currentChecklists: Checklist[]): Che
  * their optimistic-concurrency `version`. Returns a new array when anything
  * changed, otherwise `null`.
  *
+ * `ownerId`, when given, restricts archiving to tasks that user actually owns
+ * (assignee / creator / dispatcher). This runs on every logged-in browser, so
+ * without the guard a Director in one department would keep re-archiving another
+ * department's tickets locally — a change the server then refuses (it is outside
+ * that user's scope), which used to 403 the whole state sync and silently strand
+ * every task the user created. The GM passes no `ownerId` and still archives
+ * org-wide.
+ *
  * Extracted from App.tsx for unit testing.
  */
-export function autoArchiveTasksIfNeeded(currentTasks: Task[]): Task[] | null {
+export function autoArchiveTasksIfNeeded(currentTasks: Task[], ownerId?: string): Task[] | null {
+  const ownsTask = (task: Task): boolean => {
+    if (!ownerId) return true;
+    const recipients = task.assigneeIds?.length ? task.assigneeIds : (task.assigneeId ? [task.assigneeId] : []);
+    return recipients.includes(ownerId) || task.createdBy === ownerId || task.assignedBy === ownerId;
+  };
   const formatter = new Intl.DateTimeFormat('en-US', {
     timeZone: 'Africa/Cairo',
     year: 'numeric',
@@ -153,7 +166,7 @@ export function autoArchiveTasksIfNeeded(currentTasks: Task[]): Task[] | null {
 
   let hasChanged = false;
   const updatedTasks = currentTasks.map(task => {
-    if (task.status === 'Completed' && task.completedAt) {
+    if (task.status === 'Completed' && task.completedAt && ownsTask(task)) {
       let completedCairoDate = '';
       try {
         const completedDateParts = formatter.formatToParts(new Date(task.completedAt));

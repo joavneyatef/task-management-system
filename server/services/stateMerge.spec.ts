@@ -485,11 +485,15 @@ describe('authorizeStateMutation', () => {
     expect(incoming.checklists[0].title).toBe('director edit');
   });
 
-  it('blocks an Assistant from editing a task that is not theirs', () => {
+  it('silently reverts an Assistant editing a task that is not theirs (no 403 for the whole sync)', () => {
     const { asst, all } = makeOrg();
-    const server = makeState({ users: all, tasks: [makeTask({ id: 't1', createdBy: 'mgr', assigneeIds: ['other'] })] });
+    const server = makeState({ users: all, tasks: [makeTask({ id: 't1', title: 'original', createdBy: 'mgr', assigneeIds: ['other'] })] });
     const incoming = withTask(makeState({ users: all }), makeTask({ id: 't1', title: 'sneaky edit', createdBy: 'mgr', assigneeIds: ['other'] }));
-    expect(authorizeStateMutation(incoming, server, asst)).toMatch(/not authorized to modify task t1/i);
+    // No error string — one foreign task must never strand the rest of the sync.
+    expect(authorizeStateMutation(incoming, server, asst)).toBeNull();
+    // ...but the unauthorized change is dropped: the server copy wins.
+    expect(incoming.tasks[0]).toBe(server.tasks[0]);
+    expect(incoming.tasks[0].title).toBe('original');
   });
 
   it('lets an Assistant edit a task assigned to them', () => {
@@ -507,15 +511,31 @@ describe('authorizeStateMutation', () => {
     expect(authorizeStateMutation(incoming, server, asst)).toBeNull();
   });
 
-  it('lets a Manager edit a task assigned into their team subtree, but not outside it', () => {
+  it('lets a Manager edit a task assigned into their team subtree, but reverts one outside it', () => {
     const { mgr, all } = makeOrg();
     const server = makeState({
       users: all,
-      tasks: [makeTask({ id: 'in', createdBy: 'x', assigneeIds: ['asst'] }), makeTask({ id: 'out', createdBy: 'x', assigneeIds: ['other'] })],
+      tasks: [makeTask({ id: 'in', createdBy: 'x', assigneeIds: ['asst'] }), makeTask({ id: 'out', title: 'original', createdBy: 'x', assigneeIds: ['other'] })],
     });
     const inScope = withTask(makeState({ users: all }), makeTask({ id: 'in', title: 'edit', createdBy: 'x', assigneeIds: ['asst'] }));
     const outScope = withTask(makeState({ users: all }), makeTask({ id: 'out', title: 'edit', createdBy: 'x', assigneeIds: ['other'] }));
     expect(authorizeStateMutation(inScope, server, mgr)).toBeNull();
-    expect(authorizeStateMutation(outScope, server, mgr)).toMatch(/not authorized/i);
+    expect(inScope.tasks[0].title).toBe('edit');
+    // Out-of-scope change is neutralised, not rejected wholesale.
+    expect(authorizeStateMutation(outScope, server, mgr)).toBeNull();
+    expect(outScope.tasks[0].title).toBe('original');
+  });
+
+  it('keeps a brand-new task the acting user legitimately created even when the snapshot carries a foreign task drifted out of scope', () => {
+    const { dir, all } = makeOrg();
+    const foreign = makeTask({ id: 'foreign', title: 'server', createdBy: 'gm', assigneeIds: ['other'] });
+    const server = makeState({ users: all, tasks: [foreign] });
+    const drifted = makeTask({ id: 'foreign', title: 'locally archived', status: 'Archived', createdBy: 'gm', assigneeIds: ['other'] });
+    const created = makeTask({ id: 'mine', title: 'from the director', createdBy: dir.id, assignedBy: dir.id, assigneeIds: ['asst'] });
+    const incoming = { ...makeState({ users: all }), tasks: [created, drifted] };
+
+    expect(authorizeStateMutation(incoming, server, dir)).toBeNull();
+    expect(incoming.tasks.find((t) => t.id === 'mine')!.title).toBe('from the director');
+    expect(incoming.tasks.find((t) => t.id === 'foreign')!.title).toBe('server'); // drift reverted
   });
 });

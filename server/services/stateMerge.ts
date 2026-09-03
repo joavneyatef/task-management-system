@@ -433,24 +433,43 @@ export function authorizeStateMutation(incomingState: SystemData, currentDb: Sys
   }
 
   if (incomingState.tasks) {
+    // The client POSTs its ENTIRE task list on every sync. A task the acting
+    // user has no business changing must not be allowed through — but neither
+    // should it 403 the whole request. A stale or client-mutated copy of some
+    // unrelated task (e.g. the background auto-archive flipping a long-Completed
+    // ticket to Archived on every logged-in browser, regardless of who owns it)
+    // would otherwise permanently block that user's own legitimate edits,
+    // including brand-new tasks they just created. So: silently pin a
+    // disallowed change back to the server copy (drop it outright if it is a
+    // brand-new task they may not create) and let the rest of the sync proceed.
+    // Mirrors the "server wins silently" stance the merge already takes.
+    const reconciledTasks: typeof incomingState.tasks = [];
     for (const clientTask of incomingState.tasks) {
       const serverTask = currentDb.tasks.find(t => t.id === clientTask.id);
-      // A stale client copy is discarded by mergeStateWithServer regardless, so
-      // it needs no authorization — don't 403 the whole sync because some
-      // unrelated task drifted between the client's GET and POST.
+
+      // Stale copy — the merge discards it anyway; pass it straight through.
       if (serverTask && clientTask.version != null && serverTask.version != null
-          && clientTask.version < serverTask.version) continue;
+          && clientTask.version < serverTask.version) { reconciledTasks.push(clientTask); continue; }
+
       const changed = !serverTask || !deepEqual(clientTask, serverTask);
-      if (!changed) continue;
-      if (isGeneralManager(actingUser)) continue;
+      if (!changed || isGeneralManager(actingUser)) { reconciledTasks.push(clientTask); continue; }
+
       const scope = new Set([actingUser.id, ...getDescendantIds(actingUser.id, currentDb.users)]);
       const oldRecipients = serverTask ? (serverTask.assigneeIds?.length ? serverTask.assigneeIds : (serverTask.assigneeId ? [serverTask.assigneeId] : [])) : [];
       const newRecipients = clientTask.assigneeIds?.length ? clientTask.assigneeIds : (clientTask.assigneeId ? [clientTask.assigneeId] : []);
       const allowed = actingUser.role === 'Director' || actingUser.role === 'Manager'
         ? (clientTask.createdBy === actingUser.id || oldRecipients.some(id => scope.has(id)) || newRecipients.every(id => scope.has(id)))
         : (clientTask.createdBy === actingUser.id || oldRecipients.includes(actingUser.id) || newRecipients.includes(actingUser.id));
-      if (!allowed) return `You are not authorized to modify task ${clientTask.id}.`;
+
+      if (allowed) {
+        reconciledTasks.push(clientTask);
+      } else if (serverTask) {
+        // Not theirs to touch — keep the authoritative copy, no error.
+        reconciledTasks.push(serverTask);
+      }
+      // else: a brand-new task attributed to someone else — drop it entirely.
     }
+    incomingState.tasks = reconciledTasks;
   }
 
   return null;

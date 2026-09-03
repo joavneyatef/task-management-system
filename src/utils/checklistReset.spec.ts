@@ -176,6 +176,32 @@ describe('autoArchiveTasksIfNeeded', () => {
     expect(autoArchiveTasksIfNeeded([task])![0].status).toBe('Archived');
   });
 
+  describe('ownerId guard', () => {
+    it('archives only the caller-owned stale tasks when an ownerId is given', () => {
+      at('2026-08-29T12:00:00Z');
+      const mine = makeTask({ id: 'mine', status: 'Completed', completedAt: '2026-08-20T00:00:00Z', assigneeId: 'me', assigneeIds: ['me'] });
+      const alsoMine = makeTask({ id: 'dispatched', status: 'Completed', completedAt: '2026-08-20T00:00:00Z', createdBy: 'x', assignedBy: 'me' });
+      const theirs = makeTask({ id: 'theirs', status: 'Completed', completedAt: '2026-08-20T00:00:00Z', createdBy: 'x', assignedBy: 'x', assigneeId: 'someone', assigneeIds: ['someone'] });
+
+      const out = autoArchiveTasksIfNeeded([mine, alsoMine, theirs], 'me')!;
+      expect(out.find((t) => t.id === 'mine')!.status).toBe('Archived');
+      expect(out.find((t) => t.id === 'dispatched')!.status).toBe('Archived');
+      expect(out.find((t) => t.id === 'theirs')!.status).toBe('Completed'); // untouched — not the caller's task
+    });
+
+    it('returns null when the only stale task belongs to someone else', () => {
+      at('2026-08-29T12:00:00Z');
+      const theirs = makeTask({ status: 'Completed', completedAt: '2026-08-20T00:00:00Z', createdBy: 'x', assignedBy: 'x', assigneeIds: ['someone'] });
+      expect(autoArchiveTasksIfNeeded([theirs], 'me')).toBeNull();
+    });
+
+    it('still archives org-wide when no ownerId is passed (the GM path)', () => {
+      at('2026-08-29T12:00:00Z');
+      const theirs = makeTask({ status: 'Completed', completedAt: '2026-08-20T00:00:00Z', createdBy: 'x', assigneeIds: ['someone'] });
+      expect(autoArchiveTasksIfNeeded([theirs])![0].status).toBe('Archived');
+    });
+  });
+
   it('returns null when Intl date formatting fails outright', () => {
     const RealIntl = globalThis.Intl;
     class BrokenDTF {
