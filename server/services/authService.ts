@@ -1,8 +1,11 @@
 import crypto from 'crypto';
 import prisma from '../db';
 import { User, UserRole } from '../../src/types';
+import { resolveSessionSecret } from './secret';
 
-const SESSION_SECRET = process.env.SESSION_SECRET || 'long_beach_hotel_super_secure_session_secret_2026';
+// Env var, else a per-install secret persisted next to the data store. Never a
+// literal — see server/services/secret.ts.
+const SESSION_SECRET = resolveSessionSecret();
 
 export function hashPassword(plain: string): string {
   const salt = crypto.randomBytes(16).toString('hex');

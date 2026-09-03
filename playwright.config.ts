@@ -48,6 +48,7 @@ export default defineConfig({
       BACKUPS_DIR: E2E_BACKUPS_DIR,
       SESSION_SECRET: 'e2e-session-secret',
       GEMINI_API_KEY: 'e2e-key-unused',
+      EXCLUSIVI_API_KEY: 'e2e-exclusivi-key',
     },
   },
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],

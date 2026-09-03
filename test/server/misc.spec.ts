@@ -56,12 +56,29 @@ describe('POST /api/chat', () => {
 });
 
 describe('POST /api/complaints/ingest', () => {
-  const key = process.env.EXCLUSIVI_API_KEY || 'exclusivi-dev-key';
+  // vitest.config.ts sets EXCLUSIVI_API_KEY for the server test project; there
+  // is no built-in default any more (an unset key disables the endpoint).
+  const key = process.env.EXCLUSIVI_API_KEY as string;
 
   it('401s a caller without a valid x-exclusivi-key', async () => {
     const gm = await loginAs('gm');
     const res = await gm.post('/api/complaints/ingest').send({ title: 't', description: 'd' });
     expect(res.status).toBe(401);
+  });
+
+  it('503s when the integration is not configured (no EXCLUSIVI_API_KEY)', async () => {
+    const saved = process.env.EXCLUSIVI_API_KEY;
+    delete process.env.EXCLUSIVI_API_KEY;
+    try {
+      const res = await api()
+        .post('/api/complaints/ingest')
+        .set('x-exclusivi-key', 'anything')
+        .send({ title: 't', description: 'd' });
+      expect(res.status).toBe(503);
+      expect(res.body.error).toBe('INTEGRATION_DISABLED');
+    } finally {
+      process.env.EXCLUSIVI_API_KEY = saved;
+    }
   });
 
   it('400s when title or description is missing', async () => {

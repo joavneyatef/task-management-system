@@ -28,5 +28,8 @@ e2e/.tmp/
 cookies*.txt
 .system_generated/
 
+# auto-generated per-install session-signing key (never commit)
+.session-secret
+
 # local run: isolated seeded DB with known logins
 .local-run/

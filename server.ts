@@ -1,3 +1,5 @@
+// Load .env before anything reads process.env (auth secret, PORT, integrations).
+import 'dotenv/config';
 import express from 'express';
 import path from 'path';
 import fs from 'fs';
@@ -791,9 +793,9 @@ app.get('/api/exclusivi/feedback', async (req, res) => {
    COMPLAINTS INTAKE — Exclusivi integration point
    External system (Exclusivi) POSTs complaint payloads here.
    Auth: shared secret header 'x-exclusivi-key' checked against
-   process.env.EXCLUSIVI_API_KEY (falls back to a dev default so
-   the endpoint is testable out of the box; set a real secret in
-   production via .env).
+   process.env.EXCLUSIVI_API_KEY. If that env var is not set the
+   integration is considered disabled and every call is refused
+   (503) — there is no default key.
    Body shape (JSON):
    {
      "externalId": "EXC-10293",          // optional, Exclusivi's own ticket id
@@ -805,8 +807,11 @@ app.get('/api/exclusivi/feedback', async (req, res) => {
    }
 ========================================================= */
 app.post('/api/complaints/ingest', (req, res) => {
+  const expectedKey = process.env.EXCLUSIVI_API_KEY;
+  if (!expectedKey) {
+    return res.status(503).json({ error: 'INTEGRATION_DISABLED', message: 'The Exclusivi complaint intake is not configured on this server.' });
+  }
   const providedKey = req.headers['x-exclusivi-key'] as string | undefined;
-  const expectedKey = process.env.EXCLUSIVI_API_KEY || 'exclusivi-dev-key';
   if (providedKey !== expectedKey) {
     return res.status(401).json({ error: 'UNAUTHORIZED', message: 'Invalid or missing x-exclusivi-key header.' });
   }
@@ -1595,31 +1600,14 @@ Format your responses with professional, polished, executive typography. Never u
   try {
     const key = process.env.GEMINI_API_KEY;
     if (!key || key === 'MY_GEMINI_API_KEY') {
-      // Graceful fallback when the key is not set up yet
-      const lastMsg = messages[messages.length - 1]?.text || '';
-      let mockReply = 'I am the Plaza IT Operations Assistant. ';
-      
-      if (lastMsg.toLowerCase().includes('overdue')) {
-        mockReply += `According to our current database, we have **1 Critical Overdue Task**:
-- **POS Server Database Backup Validation Failures**: Assigned to **Ahmed Adel**. Deadline was yesterday and is currently flagged as delayed because the disk partition reached storage thresholds.`;
-      } else if (lastMsg.toLowerCase().includes('most') || lastMsg.toLowerCase().includes('completed')) {
-        mockReply += `**Ahmed Khaled** has achieved peak checklist compliance and operational execution this period. He successfully conducted the key *UPS Power Redundancy Load simulation* (3.5 hours tracking) and fully finalized all Daily Server Room inspection checklists yesterday!`;
-      } else if (lastMsg.toLowerCase().includes('delay') || lastMsg.toLowerCase().includes('project')) {
-        mockReply += `We currently have **1 Delayed Project**:
-- **Opera PMS Cloud Integration Upgrade** is flagged with an active SLA block because **Mohamed Emad** (Database Integration Lead) registered for On-Leave yesterday afternoon, suspending custom card transaction gateway synchronization milestones.`;
-      } else if (lastMsg.toLowerCase().includes('network') || lastMsg.toLowerCase().includes('issue')) {
-        mockReply += `Current network-related activities show **1 Open Critical Ticket**:
-* **POS Server Database Backup Validation Failures** (Ahmed Adel is presently clearing stale files to run manual DB validation logs).`;
-      } else {
-        mockReply += `I have evaluated the database! Here is a brief summary:
-- **Team**: 5 Total Staff (George Hany, Ahmed Matar, Ahmed Khaled, Ahmed Adel, Mohamed Emad). Mohamed Emad is On Leave; his tasks have been distributed to Ahmed Khaled.
-- **Checklist SLA**: Daily checklist is at **40% completion**; weekly networks review is open.
-- **AI Recommendation**: Appoint Ahmed Adel to assist Ahmed Khaled on Opera cloud milestones while Mohamed Emad is on leave to retain project speed. 
-
-*(Note: Provide a Gemini API key in the Setup UI for live generative interactions!)*`;
-      }
-
-      return res.json({ text: mockReply });
+      // No AI provider configured. Return an honest notice rather than
+      // fabricated operational data.
+      return res.json({
+        text:
+          'The AI assistant is not configured on this server. ' +
+          'Set a `GEMINI_API_KEY` environment variable to enable it. ' +
+          'All other features work normally without it.',
+      });
     }
 
     const ai = new GoogleGenAI({

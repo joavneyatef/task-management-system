@@ -57,6 +57,7 @@ export default defineConfig({
             DATABASE_URL: TEST_DB_URL,
             SESSION_SECRET: 'test-session-secret',
             GEMINI_API_KEY: 'test-key-unused',
+            EXCLUSIVI_API_KEY: 'test-exclusivi-key',
             // Redirect the legacy JSON state store + backup files away from the repo.
             DATA_DIR: TMP_DIR,
             BACKUPS_DIR: `${TMP_DIR}/backups`,
