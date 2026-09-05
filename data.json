@@ -77,7 +77,7 @@
       "parentId": "user-1788289397885-6zbsu",
       "managerId": "user-1788289397885-6zbsu",
       "positionCode": "Assistant",
-      "updatedAt": "2026-09-05T09:38:21.794Z"
+      "updatedAt": "2026-09-05T14:05:02.759Z"
     },
     {
       "id": "user-1788289395384-9pyfh",
@@ -94,7 +94,7 @@
       "parentId": "user-1788289394557-yy52g",
       "managerId": "user-1788289394557-yy52g",
       "positionCode": "Manager",
-      "updatedAt": "2026-09-05T09:38:21.803Z"
+      "updatedAt": "2026-09-05T14:05:02.771Z"
     },
     {
       "id": "user-1788289397885-6zbsu",
@@ -111,7 +111,7 @@
       "parentId": "user-1788289397262-2nxtj",
       "managerId": "user-1788289397262-2nxtj",
       "positionCode": "Manager",
-      "updatedAt": "2026-09-05T09:38:21.812Z"
+      "updatedAt": "2026-09-05T14:05:02.782Z"
     },
     {
       "id": "user-1788289396595-hl1sp",
@@ -128,7 +128,7 @@
       "parentId": "user-1788289395384-9pyfh",
       "managerId": "user-1788289395384-9pyfh",
       "positionCode": "Assistant",
-      "updatedAt": "2026-09-05T09:38:21.822Z"
+      "updatedAt": "2026-09-05T14:05:02.792Z"
     },
     {
       "id": "user-1788289394557-yy52g",
@@ -145,7 +145,7 @@
       "parentId": "gm-admin",
       "managerId": "gm-admin",
       "positionCode": "Director",
-      "updatedAt": "2026-09-05T09:38:21.832Z"
+      "updatedAt": "2026-09-05T14:05:02.816Z"
     },
     {
       "id": "user-1788289393350-1gt7m",
@@ -162,7 +162,7 @@
       "parentId": "user-1788289392750-6lii3",
       "managerId": "user-1788289392750-6lii3",
       "positionCode": "Assistant",
-      "updatedAt": "2026-09-05T09:38:21.839Z"
+      "updatedAt": "2026-09-05T14:05:02.824Z"
     },
     {
       "id": "user-maya-manager",
@@ -177,7 +177,7 @@
       "skills": [],
       "departmentId": "it",
       "parentId": "user-1788097963174-3osfg",
-      "updatedAt": "2026-09-05T09:38:21.848Z"
+      "updatedAt": "2026-09-05T14:05:02.833Z"
     },
     {
       "id": "user-1788289392070-24tlf",
@@ -194,7 +194,7 @@
       "parentId": "gm-admin",
       "managerId": "gm-admin",
       "positionCode": "Director",
-      "updatedAt": "2026-09-05T09:38:21.855Z"
+      "updatedAt": "2026-09-05T14:05:02.841Z"
     },
     {
       "id": "user-1788289398651-zdady",
@@ -211,7 +211,7 @@
       "parentId": "user-1788289397885-6zbsu",
       "managerId": "user-1788289397885-6zbsu",
       "positionCode": "Assistant",
-      "updatedAt": "2026-09-05T09:38:21.863Z"
+      "updatedAt": "2026-09-05T14:05:02.847Z"
     },
     {
       "id": "user-1788289393887-0h35t",
@@ -228,7 +228,7 @@
       "parentId": "user-1788289392750-6lii3",
       "managerId": "user-1788289392750-6lii3",
       "positionCode": "Assistant",
-      "updatedAt": "2026-09-05T09:38:21.871Z"
+      "updatedAt": "2026-09-05T14:05:02.855Z"
     },
     {
       "id": "user-1788289397262-2nxtj",
@@ -245,7 +245,7 @@
       "parentId": "gm-admin",
       "managerId": "gm-admin",
       "positionCode": "Director",
-      "updatedAt": "2026-09-05T09:38:21.880Z"
+      "updatedAt": "2026-09-05T14:05:02.864Z"
     },
     {
       "id": "user-1788289392750-6lii3",
@@ -262,7 +262,7 @@
       "parentId": "user-1788289392070-24tlf",
       "managerId": "user-1788289392070-24tlf",
       "positionCode": "Manager",
-      "updatedAt": "2026-09-05T09:38:21.888Z"
+      "updatedAt": "2026-09-05T14:05:02.873Z"
     },
     {
       "id": "gm-admin",
@@ -277,7 +277,7 @@
       "skills": [],
       "departmentId": "operations",
       "positionCode": "GeneralManager",
-      "updatedAt": "2026-09-05T09:38:21.898Z"
+      "updatedAt": "2026-09-05T14:05:02.883Z"
     },
     {
       "id": "user-1788289396037-zb0ty",
@@ -294,7 +294,7 @@
       "parentId": "user-1788289395384-9pyfh",
       "managerId": "user-1788289395384-9pyfh",
       "positionCode": "Assistant",
-      "updatedAt": "2026-09-05T09:38:21.909Z"
+      "updatedAt": "2026-09-05T14:05:02.889Z"
     },
     {
       "id": "user-1788097963174-3osfg",
@@ -311,7 +311,7 @@
       "parentId": "gm-admin",
       "managerId": "gm-admin",
       "positionCode": "Director",
-      "updatedAt": "2026-09-05T09:38:21.915Z"
+      "updatedAt": "2026-09-05T14:05:02.901Z"
     },
     {
       "id": "user-1788097980330-o7aei",
@@ -328,7 +328,7 @@
       "parentId": "user-1788097963174-3osfg",
       "managerId": "user-1788097963174-3osfg",
       "positionCode": "Assistant",
-      "updatedAt": "2026-09-05T09:38:21.925Z"
+      "updatedAt": "2026-09-05T14:05:02.908Z"
     }
   ],
   "tasks": [
@@ -357,7 +357,7 @@
       "attachments": [],
       "version": 5,
       "createdAt": "2026-08-31T08:55:46.182Z",
-      "updatedAt": "2026-09-05T09:38:21.935Z",
+      "updatedAt": "2026-09-05T14:05:02.916Z",
       "history": []
     },
     {
@@ -387,7 +387,7 @@
       "attachments": [],
       "version": 5,
       "createdAt": "2026-08-30T13:53:17.745Z",
-      "updatedAt": "2026-09-05T09:38:21.945Z",
+      "updatedAt": "2026-09-05T14:05:02.926Z",
       "history": []
     },
     {
@@ -415,7 +415,7 @@
       "attachments": [],
       "version": 4,
       "createdAt": "2026-09-01T18:56:21.738Z",
-      "updatedAt": "2026-09-05T09:38:21.956Z",
+      "updatedAt": "2026-09-05T14:05:02.935Z",
       "history": []
     },
     {
@@ -443,7 +443,7 @@
       "attachments": [],
       "version": 4,
       "createdAt": "2026-09-01T18:56:21.738Z",
-      "updatedAt": "2026-09-05T09:38:21.966Z",
+      "updatedAt": "2026-09-05T14:05:02.946Z",
       "history": []
     },
     {
@@ -471,7 +471,7 @@
       "attachments": [],
       "version": 4,
       "createdAt": "2026-09-03T10:59:53.382Z",
-      "updatedAt": "2026-09-05T09:38:21.978Z",
+      "updatedAt": "2026-09-05T14:05:02.956Z",
       "history": []
     },
     {
@@ -499,7 +499,7 @@
       "attachments": [],
       "version": 4,
       "createdAt": "2026-09-03T11:01:25.416Z",
-      "updatedAt": "2026-09-05T09:38:21.985Z",
+      "updatedAt": "2026-09-05T14:05:02.966Z",
       "history": []
     },
     {
@@ -507,7 +507,7 @@
       "title": "BADGECHECK task two",
       "description": "",
       "priority": "Medium",
-      "status": "Open",
+      "status": "Completed",
       "deadline": "2026-09-08T09:15:58.819Z",
       "isOverdue": false,
       "departmentId": "fnb",
@@ -519,11 +519,15 @@
       ],
       "lastTransferredById": null,
       "originalAssigneeId": "user-1788289392750-6lii3",
+      "completedById": "user-1788289392750-6lii3",
+      "startedAt": "2026-09-05T10:39:32.074Z",
+      "completedAt": "2026-09-05T10:39:33.914Z",
+      "actualDurationSec": 1,
       "notes": [],
       "attachments": [],
-      "version": 1,
+      "version": 3,
       "createdAt": "2026-09-05T09:15:58.820Z",
-      "updatedAt": "2026-09-05T09:38:21.996Z",
+      "updatedAt": "2026-09-05T14:05:02.974Z",
       "history": []
     },
     {
@@ -531,7 +535,7 @@
       "title": "BADGECHECK task three",
       "description": "",
       "priority": "Medium",
-      "status": "Open",
+      "status": "Completed",
       "deadline": "2026-09-08T09:16:22.708Z",
       "isOverdue": false,
       "departmentId": "fnb",
@@ -543,11 +547,15 @@
       ],
       "lastTransferredById": null,
       "originalAssigneeId": "user-1788289392750-6lii3",
+      "completedById": "user-1788289392750-6lii3",
+      "startedAt": "2026-09-05T10:39:32.506Z",
+      "completedAt": "2026-09-05T10:39:34.306Z",
+      "actualDurationSec": 1,
       "notes": [],
       "attachments": [],
-      "version": 1,
+      "version": 3,
       "createdAt": "2026-09-05T09:16:22.710Z",
-      "updatedAt": "2026-09-05T09:38:22.008Z",
+      "updatedAt": "2026-09-05T14:05:02.984Z",
       "history": []
     },
     {
@@ -555,8 +563,36 @@
       "title": "BADGECHECK live update test",
       "description": "",
       "priority": "Medium",
-      "status": "Open",
+      "status": "Completed",
       "deadline": "2026-09-08T09:17:20.352Z",
+      "isOverdue": false,
+      "departmentId": "fnb",
+      "createdBy": "user-1788289392070-24tlf",
+      "assignedBy": "user-1788289392070-24tlf",
+      "assigneeId": "user-1788289392750-6lii3",
+      "assigneeIds": [
+        "user-1788289392750-6lii3"
+      ],
+      "lastTransferredById": null,
+      "originalAssigneeId": "user-1788289392750-6lii3",
+      "completedById": "user-1788289392750-6lii3",
+      "startedAt": "2026-09-05T10:39:32.906Z",
+      "completedAt": "2026-09-05T10:39:34.657Z",
+      "actualDurationSec": 1,
+      "notes": [],
+      "attachments": [],
+      "version": 3,
+      "createdAt": "2026-09-05T09:17:20.354Z",
+      "updatedAt": "2026-09-05T14:05:02.996Z",
+      "history": []
+    },
+    {
+      "id": "task-soundtest-1788605187026",
+      "title": "SOUNDTEST notification chime check",
+      "description": "",
+      "priority": "Medium",
+      "status": "Open",
+      "deadline": "2026-09-08T10:46:27.026Z",
       "isOverdue": false,
       "departmentId": "fnb",
       "createdBy": "user-1788289392070-24tlf",
@@ -570,8 +606,56 @@
       "notes": [],
       "attachments": [],
       "version": 1,
-      "createdAt": "2026-09-05T09:17:20.354Z",
-      "updatedAt": "2026-09-05T09:38:22.020Z",
+      "createdAt": "2026-09-05T10:46:27.027Z",
+      "updatedAt": "2026-09-05T14:05:03.008Z",
+      "history": []
+    },
+    {
+      "id": "task-soundtest2-1788605300563",
+      "title": "SOUNDTEST muted check",
+      "description": "",
+      "priority": "Medium",
+      "status": "Open",
+      "deadline": "2026-09-08T10:48:20.563Z",
+      "isOverdue": false,
+      "departmentId": "fnb",
+      "createdBy": "user-1788289392070-24tlf",
+      "assignedBy": "user-1788289392070-24tlf",
+      "assigneeId": "user-1788289392750-6lii3",
+      "assigneeIds": [
+        "user-1788289392750-6lii3"
+      ],
+      "lastTransferredById": null,
+      "originalAssigneeId": "user-1788289392750-6lii3",
+      "notes": [],
+      "attachments": [],
+      "version": 1,
+      "createdAt": "2026-09-05T10:48:20.564Z",
+      "updatedAt": "2026-09-05T14:05:03.016Z",
+      "history": []
+    },
+    {
+      "id": "task-notiftest-1788616248496",
+      "title": "NOTIFTEST cross-dept",
+      "description": "",
+      "priority": "Medium",
+      "status": "Open",
+      "deadline": "2026-09-08T13:50:48.496Z",
+      "isOverdue": false,
+      "departmentId": "operations",
+      "createdBy": "user-1788289394557-yy52g",
+      "assignedBy": "user-1788289394557-yy52g",
+      "assigneeId": "user-1788289392070-24tlf",
+      "assigneeIds": [
+        "user-1788289392070-24tlf"
+      ],
+      "lastTransferredById": null,
+      "originalAssigneeId": "user-1788289392070-24tlf",
+      "notes": [],
+      "attachments": [],
+      "version": 1,
+      "createdAt": "2026-09-05T13:50:48.497Z",
+      "updatedAt": "2026-09-05T14:05:03.029Z",
       "history": []
     }
   ],
@@ -592,8 +676,8 @@
           "completedBy": "user-1788289393350-1gt7m"
         }
       ],
-      "version": 246,
-      "updatedAt": "2026-09-05T09:38:22.033Z"
+      "version": 399,
+      "updatedAt": "2026-09-05T14:05:03.041Z"
     },
     {
       "id": "chk-daily-it",
@@ -625,8 +709,8 @@
           "completedBy": "gm-admin"
         }
       ],
-      "version": 560,
-      "updatedAt": "2026-09-05T09:38:22.043Z"
+      "version": 713,
+      "updatedAt": "2026-09-05T14:05:03.048Z"
     },
     {
       "id": "chk-daily-operations",
@@ -644,8 +728,8 @@
           "completedBy": "gm-admin"
         }
       ],
-      "version": 560,
-      "updatedAt": "2026-09-05T09:38:22.051Z"
+      "version": 713,
+      "updatedAt": "2026-09-05T14:05:03.056Z"
     },
     {
       "id": "chk-daily-rooms",
@@ -655,8 +739,8 @@
       "departmentId": "rooms",
       "assignedToId": null,
       "items": [],
-      "version": 241,
-      "updatedAt": "2026-09-05T09:38:22.065Z"
+      "version": 394,
+      "updatedAt": "2026-09-05T14:05:03.064Z"
     },
     {
       "id": "chk-monthly-fnb",
@@ -667,7 +751,7 @@
       "assignedToId": null,
       "items": [],
       "version": 57,
-      "updatedAt": "2026-09-05T09:38:22.076Z"
+      "updatedAt": "2026-09-05T14:05:03.074Z"
     },
     {
       "id": "chk-monthly-it",
@@ -678,7 +762,7 @@
       "assignedToId": null,
       "items": [],
       "version": 58,
-      "updatedAt": "2026-09-05T09:38:22.084Z"
+      "updatedAt": "2026-09-05T14:05:03.083Z"
     },
     {
       "id": "chk-monthly-operations",
@@ -689,7 +773,7 @@
       "assignedToId": null,
       "items": [],
       "version": 58,
-      "updatedAt": "2026-09-05T09:38:22.096Z"
+      "updatedAt": "2026-09-05T14:05:03.093Z"
     },
     {
       "id": "chk-monthly-rooms",
@@ -700,7 +784,7 @@
       "assignedToId": null,
       "items": [],
       "version": 58,
-      "updatedAt": "2026-09-05T09:38:22.107Z"
+      "updatedAt": "2026-09-05T14:05:03.101Z"
     },
     {
       "id": "chk-weekly-fnb",
@@ -711,7 +795,7 @@
       "assignedToId": null,
       "items": [],
       "version": 1,
-      "updatedAt": "2026-09-05T09:38:22.119Z"
+      "updatedAt": "2026-09-05T14:05:03.108Z"
     },
     {
       "id": "chk-weekly-it",
@@ -722,7 +806,7 @@
       "assignedToId": null,
       "items": [],
       "version": 1,
-      "updatedAt": "2026-09-05T09:38:22.131Z"
+      "updatedAt": "2026-09-05T14:05:03.117Z"
     },
     {
       "id": "chk-weekly-operations",
@@ -733,7 +817,7 @@
       "assignedToId": null,
       "items": [],
       "version": 1,
-      "updatedAt": "2026-09-05T09:38:22.144Z"
+      "updatedAt": "2026-09-05T14:05:03.128Z"
     },
     {
       "id": "chk-weekly-rooms",
@@ -744,22 +828,21 @@
       "assignedToId": null,
       "items": [],
       "version": 1,
-      "updatedAt": "2026-09-05T09:38:22.158Z"
+      "updatedAt": "2026-09-05T14:05:03.139Z"
     }
   ],
   "checklistHistory": [],
   "projects": [],
   "notifications": [
     {
-      "id": "notif-1788599758852-0.640067052116144",
-      "recipientUserId": "user-1788289392750-6lii3",
+      "id": "notif-1788616248530-0.08098778040608534",
+      "recipientUserId": "user-1788289392070-24tlf",
       "title": "New task",
-      "message": "New task from: Nadia Haddad — BADGECHECK task two",
+      "message": "New task from: Karim Mansour — NOTIFTEST cross-dept",
       "category": "Task",
-      "createdAt": "2026-09-05T09:18:37.027Z",
+      "createdAt": "2026-09-05T13:50:52.977Z",
       "isRead": false,
-      "acknowledgedAt": "2026-09-05T09:19:30.624Z",
-      "eventKey": "task:task-badgecheck-1788599758819-gebg:new:user-1788289392750-6lii3",
+      "eventKey": "task:task-notiftest-1788616248496:new:user-1788289392070-24tlf",
       "channels": {
         "inApp": true,
         "telegram": true,
@@ -767,15 +850,207 @@
       }
     },
     {
-      "id": "notif-1788599782719-0.595907228230478",
-      "recipientUserId": "user-1788289392750-6lii3",
+      "id": "notif-1788179096797-0.2332668639994624",
+      "recipientUserId": "gm-admin",
+      "title": "Overdue Reminder: Investigate guest Wi-Fi intermittent drops",
+      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
+      "category": "Alert",
+      "createdAt": "2026-09-05T13:48:20.003Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-08-31T12:31:17.544Z",
+      "eventKey": "task:task-aug-01:overdue:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788179096800-0.13732026889739912",
+      "recipientUserId": "gm-admin",
+      "title": "Overdue Reminder: Replace failed switch power module",
+      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
+      "category": "Alert",
+      "createdAt": "2026-09-05T13:48:19.997Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-08-31T12:31:18.952Z",
+      "eventKey": "task:task-aug-03:overdue:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788179096802-0.6651355310643721",
+      "recipientUserId": "gm-admin",
+      "title": "Overdue Reminder: Review firewall alert queue",
+      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
+      "category": "Alert",
+      "createdAt": "2026-09-05T13:48:19.991Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-08-31T12:31:20.795Z",
+      "eventKey": "task:task-aug-04:overdue:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788179096798-0.31186289605410766",
+      "recipientUserId": "gm-admin",
+      "title": "Overdue Reminder: Update guest network documentation",
+      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
+      "category": "Alert",
+      "createdAt": "2026-09-05T13:48:19.984Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-08-31T12:31:21.776Z",
+      "eventKey": "task:task-aug-06:overdue:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788433285449-0.7502959404356863",
+      "recipientUserId": "user-1788289393887-0h35t",
       "title": "New task",
-      "message": "New task from: Nadia Haddad — BADGECHECK task three",
+      "message": "New task from: Nadia Haddad — SMOKE Dir->Asst clean fridge",
       "category": "Task",
-      "createdAt": "2026-09-05T09:18:37.020Z",
+      "createdAt": "2026-09-05T13:48:19.959Z",
       "isRead": false,
-      "acknowledgedAt": "2026-09-05T09:19:16.244Z",
-      "eventKey": "task:task-badgecheck-1788599782708-ep5m:new:user-1788289392750-6lii3",
+      "acknowledgedAt": "2026-09-03T12:22:15.770Z",
+      "eventKey": "task:task-smoke-1788433285415-e741:new:user-1788289393887-0h35t",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788438621268-0.8230510278803767",
+      "recipientUserId": "gm-admin",
+      "title": "Task started",
+      "message": "Omar Riad started the task you sent them: SMOKE Dir->Asst clean fridge",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.946Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-03T12:31:17.601Z",
+      "eventKey": "task:task-smoke-1788433285415-e741:started:2026-09-03T12:30:21.240Z:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788438621268-0.5115638003826104",
+      "recipientUserId": "user-1788289392070-24tlf",
+      "title": "Task started",
+      "message": "Omar Riad started working on: SMOKE Dir->Asst clean fridge",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.938Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-03T12:30:55.581Z",
+      "eventKey": "task:task-smoke-1788433285415-e741:started:2026-09-03T12:30:21.240Z:owner:user-1788289392070-24tlf",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788438621240-0.5901809721267033",
+      "recipientUserId": "gm-admin",
+      "title": "Task started",
+      "message": "Omar Riad started the task you sent them: SMOKE Dir->Asst clean fridge",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.931Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-03T12:31:17.892Z",
+      "eventKey": "task:task-smoke-1788433285415-e741:started:1:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788438621240-0.13780682500810948",
+      "recipientUserId": "user-1788289392070-24tlf",
+      "title": "Task started",
+      "message": "Omar Riad started working on: SMOKE Dir->Asst clean fridge",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.925Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-03T12:30:56.277Z",
+      "eventKey": "task:task-smoke-1788433285415-e741:started:1:owner:user-1788289392070-24tlf",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788438622658-0.2908119909813234",
+      "recipientUserId": "gm-admin",
+      "title": "Task completed",
+      "message": "Omar Riad completed the task you sent them: SMOKE Dir->Asst clean fridge",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.918Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-03T12:31:18.195Z",
+      "eventKey": "task:task-smoke-1788433285415-e741:completed:2026-09-03T12:30:22.648Z:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788438622658-0.32629084761950844",
+      "recipientUserId": "user-1788289392070-24tlf",
+      "title": "Task completed",
+      "message": "Omar Riad completed the task you sent them: SMOKE Dir->Asst clean fridge",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.912Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-03T12:30:56.845Z",
+      "eventKey": "task:task-smoke-1788433285415-e741:completed:2026-09-03T12:30:22.648Z:direct-sender:user-1788289392070-24tlf",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788438622648-0.45888217463962666",
+      "recipientUserId": "gm-admin",
+      "title": "Task completed",
+      "message": "Omar Riad completed the task you sent them: SMOKE Dir->Asst clean fridge",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.906Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-03T12:31:18.451Z",
+      "eventKey": "task:task-smoke-1788433285415-e741:completed:2:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788438622648-0.5019577404621921",
+      "recipientUserId": "user-1788289392070-24tlf",
+      "title": "Task completed",
+      "message": "Omar Riad completed the task you switched to them: SMOKE Dir->Asst clean fridge",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.900Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-03T12:30:57.333Z",
+      "eventKey": "task:task-smoke-1788433285415-e741:completed:2:switch-owner:user-1788289392070-24tlf",
       "channels": {
         "inApp": true,
         "telegram": true,
@@ -788,10 +1063,446 @@
       "title": "New task",
       "message": "New task from: Nadia Haddad — BADGECHECK live update test",
       "category": "Task",
-      "createdAt": "2026-09-05T09:18:37.014Z",
-      "isRead": false,
+      "createdAt": "2026-09-05T13:48:19.869Z",
+      "isRead": true,
       "acknowledgedAt": "2026-09-05T09:19:12.176Z",
       "eventKey": "task:task-badgecheck-1788599840352-live:new:user-1788289392750-6lii3",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788599782719-0.595907228230478",
+      "recipientUserId": "user-1788289392750-6lii3",
+      "title": "New task",
+      "message": "New task from: Nadia Haddad — BADGECHECK task three",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.861Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-05T09:19:16.244Z",
+      "eventKey": "task:task-badgecheck-1788599782708-ep5m:new:user-1788289392750-6lii3",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788599758852-0.640067052116144",
+      "recipientUserId": "user-1788289392750-6lii3",
+      "title": "New task",
+      "message": "New task from: Nadia Haddad — BADGECHECK task two",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.853Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-05T09:19:30.624Z",
+      "eventKey": "task:task-badgecheck-1788599758819-gebg:new:user-1788289392750-6lii3",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788604772081-0.1957248386357614",
+      "recipientUserId": "gm-admin",
+      "title": "Task started",
+      "message": "Samir Fares started the task you sent them: BADGECHECK task two",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.844Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-05T10:39:40.812Z",
+      "eventKey": "task:task-badgecheck-1788599758819-gebg:started:2026-09-05T10:39:32.074Z:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788604772081-0.4310390119708697",
+      "recipientUserId": "user-1788289392070-24tlf",
+      "title": "Task started",
+      "message": "Samir Fares started working on: BADGECHECK task two",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.833Z",
+      "isRead": true,
+      "eventKey": "task:task-badgecheck-1788599758819-gebg:started:2026-09-05T10:39:32.074Z:owner:user-1788289392070-24tlf",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788604772075-0.9538801264860384",
+      "recipientUserId": "gm-admin",
+      "title": "Task started",
+      "message": "Samir Fares started the task you sent them: BADGECHECK task two",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.817Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-05T10:39:41.271Z",
+      "eventKey": "task:task-badgecheck-1788599758819-gebg:started:1:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788604772075-0.2082936635525935",
+      "recipientUserId": "user-1788289392070-24tlf",
+      "title": "Task started",
+      "message": "Samir Fares started working on: BADGECHECK task two",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.807Z",
+      "isRead": true,
+      "eventKey": "task:task-badgecheck-1788599758819-gebg:started:1:owner:user-1788289392070-24tlf",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788604772544-0.8356889893592974",
+      "recipientUserId": "gm-admin",
+      "title": "Task started",
+      "message": "Samir Fares started the task you sent them: BADGECHECK task three",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.797Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-05T10:39:41.662Z",
+      "eventKey": "task:task-badgecheck-1788599782708-ep5m:started:2026-09-05T10:39:32.506Z:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788604772544-0.689491739848098",
+      "recipientUserId": "user-1788289392070-24tlf",
+      "title": "Task started",
+      "message": "Samir Fares started working on: BADGECHECK task three",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.790Z",
+      "isRead": true,
+      "eventKey": "task:task-badgecheck-1788599782708-ep5m:started:2026-09-05T10:39:32.506Z:owner:user-1788289392070-24tlf",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788604772506-0.1314774883735147",
+      "recipientUserId": "gm-admin",
+      "title": "Task started",
+      "message": "Samir Fares started the task you sent them: BADGECHECK task three",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.784Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-05T10:39:41.816Z",
+      "eventKey": "task:task-badgecheck-1788599782708-ep5m:started:1:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788604772506-0.2844783362498581",
+      "recipientUserId": "user-1788289392070-24tlf",
+      "title": "Task started",
+      "message": "Samir Fares started working on: BADGECHECK task three",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.778Z",
+      "isRead": true,
+      "eventKey": "task:task-badgecheck-1788599782708-ep5m:started:1:owner:user-1788289392070-24tlf",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788604772967-0.20796754766194403",
+      "recipientUserId": "gm-admin",
+      "title": "Task started",
+      "message": "Samir Fares started the task you sent them: BADGECHECK live update test",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.771Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-05T10:39:41.957Z",
+      "eventKey": "task:task-badgecheck-1788599840352-live:started:2026-09-05T10:39:32.906Z:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788604772967-0.8563501529074566",
+      "recipientUserId": "user-1788289392070-24tlf",
+      "title": "Task started",
+      "message": "Samir Fares started working on: BADGECHECK live update test",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.764Z",
+      "isRead": true,
+      "eventKey": "task:task-badgecheck-1788599840352-live:started:2026-09-05T10:39:32.906Z:owner:user-1788289392070-24tlf",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788604772906-0.14133522610769944",
+      "recipientUserId": "gm-admin",
+      "title": "Task started",
+      "message": "Samir Fares started the task you sent them: BADGECHECK live update test",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.758Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-05T10:39:42.139Z",
+      "eventKey": "task:task-badgecheck-1788599840352-live:started:1:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788604772906-0.07756986389603338",
+      "recipientUserId": "user-1788289392070-24tlf",
+      "title": "Task started",
+      "message": "Samir Fares started working on: BADGECHECK live update test",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.751Z",
+      "isRead": true,
+      "eventKey": "task:task-badgecheck-1788599840352-live:started:1:owner:user-1788289392070-24tlf",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788604773918-0.41842589051261114",
+      "recipientUserId": "gm-admin",
+      "title": "Task completed",
+      "message": "Samir Fares completed the task you sent them: BADGECHECK task two",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.745Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-05T10:39:42.304Z",
+      "eventKey": "task:task-badgecheck-1788599758819-gebg:completed:2026-09-05T10:39:33.914Z:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788604773918-0.6089847636804174",
+      "recipientUserId": "user-1788289392070-24tlf",
+      "title": "Task completed",
+      "message": "Samir Fares completed the task you sent them: BADGECHECK task two",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.738Z",
+      "isRead": true,
+      "eventKey": "task:task-badgecheck-1788599758819-gebg:completed:2026-09-05T10:39:33.914Z:direct-sender:user-1788289392070-24tlf",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788604773914-0.0712690598087844",
+      "recipientUserId": "gm-admin",
+      "title": "Task completed",
+      "message": "Samir Fares completed the task you sent them: BADGECHECK task two",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.731Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-05T10:39:42.563Z",
+      "eventKey": "task:task-badgecheck-1788599758819-gebg:completed:2:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788604773914-0.013539096773931725",
+      "recipientUserId": "user-1788289392070-24tlf",
+      "title": "Task completed",
+      "message": "Samir Fares completed the task you switched to them: BADGECHECK task two",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.724Z",
+      "isRead": true,
+      "eventKey": "task:task-badgecheck-1788599758819-gebg:completed:2:switch-owner:user-1788289392070-24tlf",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788604774360-0.4746436547502042",
+      "recipientUserId": "gm-admin",
+      "title": "Task completed",
+      "message": "Samir Fares completed the task you sent them: BADGECHECK task three",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.718Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-05T10:39:42.985Z",
+      "eventKey": "task:task-badgecheck-1788599782708-ep5m:completed:2026-09-05T10:39:34.306Z:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788604774360-0.6159101041697131",
+      "recipientUserId": "user-1788289392070-24tlf",
+      "title": "Task completed",
+      "message": "Samir Fares completed the task you sent them: BADGECHECK task three",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.711Z",
+      "isRead": true,
+      "eventKey": "task:task-badgecheck-1788599782708-ep5m:completed:2026-09-05T10:39:34.306Z:direct-sender:user-1788289392070-24tlf",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788604774306-0.7256357591056345",
+      "recipientUserId": "gm-admin",
+      "title": "Task completed",
+      "message": "Samir Fares completed the task you sent them: BADGECHECK task three",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.700Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-05T10:39:43.308Z",
+      "eventKey": "task:task-badgecheck-1788599782708-ep5m:completed:2:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788604774306-0.9826990271257595",
+      "recipientUserId": "user-1788289392070-24tlf",
+      "title": "Task completed",
+      "message": "Samir Fares completed the task you switched to them: BADGECHECK task three",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.695Z",
+      "isRead": true,
+      "eventKey": "task:task-badgecheck-1788599782708-ep5m:completed:2:switch-owner:user-1788289392070-24tlf",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788604774758-0.29341213068401517",
+      "recipientUserId": "gm-admin",
+      "title": "Task completed",
+      "message": "Samir Fares completed the task you sent them: BADGECHECK live update test",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.688Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-05T10:39:43.931Z",
+      "eventKey": "task:task-badgecheck-1788599840352-live:completed:2026-09-05T10:39:34.657Z:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788604774758-0.11563100063986653",
+      "recipientUserId": "user-1788289392070-24tlf",
+      "title": "Task completed",
+      "message": "Samir Fares completed the task you sent them: BADGECHECK live update test",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.682Z",
+      "isRead": true,
+      "eventKey": "task:task-badgecheck-1788599840352-live:completed:2026-09-05T10:39:34.657Z:direct-sender:user-1788289392070-24tlf",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788604774658-0.5212311214964558",
+      "recipientUserId": "gm-admin",
+      "title": "Task completed",
+      "message": "Samir Fares completed the task you sent them: BADGECHECK live update test",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.675Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-05T10:39:44.297Z",
+      "eventKey": "task:task-badgecheck-1788599840352-live:completed:2:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788604774658-0.9897339439995935",
+      "recipientUserId": "user-1788289392070-24tlf",
+      "title": "Task completed",
+      "message": "Samir Fares completed the task you switched to them: BADGECHECK live update test",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.669Z",
+      "isRead": true,
+      "eventKey": "task:task-badgecheck-1788599840352-live:completed:2:switch-owner:user-1788289392070-24tlf",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788605300582-0.012114485293512223",
+      "recipientUserId": "user-1788289392750-6lii3",
+      "title": "New task",
+      "message": "New task from: Nadia Haddad — SOUNDTEST muted check",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.662Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-05T10:49:10.208Z",
+      "eventKey": "task:task-soundtest2-1788605300563:new:user-1788289392750-6lii3",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788605187051-0.7778054457741248",
+      "recipientUserId": "user-1788289392750-6lii3",
+      "title": "New task",
+      "message": "New task from: Nadia Haddad — SOUNDTEST notification chime check",
+      "category": "Task",
+      "createdAt": "2026-09-05T13:48:19.655Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-05T10:47:06.012Z",
+      "eventKey": "task:task-soundtest-1788605187026:new:user-1788289392750-6lii3",
       "channels": {
         "inApp": true,
         "telegram": true,
@@ -805,7 +1516,7 @@
       "message": "Samir Fares completed the task you switched to them: Restock minibar inventory in tower B",
       "category": "Task",
       "createdAt": "2026-09-03T12:30:44.575Z",
-      "isRead": false,
+      "isRead": true,
       "acknowledgedAt": "2026-09-03T12:30:58.171Z",
       "eventKey": "task:task-1788433193383-0-cnmzs:completed:2:switch-owner:user-1788289392070-24tlf",
       "channels": {
@@ -837,7 +1548,7 @@
       "message": "Samir Fares completed the task you sent them: Restock minibar inventory in tower B",
       "category": "Task",
       "createdAt": "2026-09-03T12:30:44.553Z",
-      "isRead": false,
+      "isRead": true,
       "acknowledgedAt": "2026-09-03T12:30:57.773Z",
       "eventKey": "task:task-1788433193383-0-cnmzs:completed:2026-09-03T12:30:44.112Z:direct-sender:user-1788289392070-24tlf",
       "channels": {
@@ -863,141 +1574,13 @@
       }
     },
     {
-      "id": "notif-1788438622648-0.5019577404621921",
-      "recipientUserId": "user-1788289392070-24tlf",
-      "title": "Task completed",
-      "message": "Omar Riad completed the task you switched to them: SMOKE Dir->Asst clean fridge",
-      "category": "Task",
-      "createdAt": "2026-09-03T12:30:23.054Z",
-      "isRead": false,
-      "acknowledgedAt": "2026-09-03T12:30:57.333Z",
-      "eventKey": "task:task-smoke-1788433285415-e741:completed:2:switch-owner:user-1788289392070-24tlf",
-      "channels": {
-        "inApp": true,
-        "telegram": true,
-        "email": true
-      }
-    },
-    {
-      "id": "notif-1788438622648-0.45888217463962666",
-      "recipientUserId": "gm-admin",
-      "title": "Task completed",
-      "message": "Omar Riad completed the task you sent them: SMOKE Dir->Asst clean fridge",
-      "category": "Task",
-      "createdAt": "2026-09-03T12:30:23.044Z",
-      "isRead": true,
-      "acknowledgedAt": "2026-09-03T12:31:18.451Z",
-      "eventKey": "task:task-smoke-1788433285415-e741:completed:2:gm:gm-admin",
-      "channels": {
-        "inApp": true,
-        "telegram": true,
-        "email": true
-      }
-    },
-    {
-      "id": "notif-1788438622658-0.32629084761950844",
-      "recipientUserId": "user-1788289392070-24tlf",
-      "title": "Task completed",
-      "message": "Omar Riad completed the task you sent them: SMOKE Dir->Asst clean fridge",
-      "category": "Task",
-      "createdAt": "2026-09-03T12:30:23.036Z",
-      "isRead": false,
-      "acknowledgedAt": "2026-09-03T12:30:56.845Z",
-      "eventKey": "task:task-smoke-1788433285415-e741:completed:2026-09-03T12:30:22.648Z:direct-sender:user-1788289392070-24tlf",
-      "channels": {
-        "inApp": true,
-        "telegram": true,
-        "email": true
-      }
-    },
-    {
-      "id": "notif-1788438622658-0.2908119909813234",
-      "recipientUserId": "gm-admin",
-      "title": "Task completed",
-      "message": "Omar Riad completed the task you sent them: SMOKE Dir->Asst clean fridge",
-      "category": "Task",
-      "createdAt": "2026-09-03T12:30:23.028Z",
-      "isRead": true,
-      "acknowledgedAt": "2026-09-03T12:31:18.195Z",
-      "eventKey": "task:task-smoke-1788433285415-e741:completed:2026-09-03T12:30:22.648Z:gm:gm-admin",
-      "channels": {
-        "inApp": true,
-        "telegram": true,
-        "email": true
-      }
-    },
-    {
-      "id": "notif-1788438621240-0.13780682500810948",
-      "recipientUserId": "user-1788289392070-24tlf",
-      "title": "Task started",
-      "message": "Omar Riad started working on: SMOKE Dir->Asst clean fridge",
-      "category": "Task",
-      "createdAt": "2026-09-03T12:30:21.705Z",
-      "isRead": false,
-      "acknowledgedAt": "2026-09-03T12:30:56.277Z",
-      "eventKey": "task:task-smoke-1788433285415-e741:started:1:owner:user-1788289392070-24tlf",
-      "channels": {
-        "inApp": true,
-        "telegram": true,
-        "email": true
-      }
-    },
-    {
-      "id": "notif-1788438621240-0.5901809721267033",
-      "recipientUserId": "gm-admin",
-      "title": "Task started",
-      "message": "Omar Riad started the task you sent them: SMOKE Dir->Asst clean fridge",
-      "category": "Task",
-      "createdAt": "2026-09-03T12:30:21.696Z",
-      "isRead": true,
-      "acknowledgedAt": "2026-09-03T12:31:17.892Z",
-      "eventKey": "task:task-smoke-1788433285415-e741:started:1:gm:gm-admin",
-      "channels": {
-        "inApp": true,
-        "telegram": true,
-        "email": true
-      }
-    },
-    {
-      "id": "notif-1788438621268-0.5115638003826104",
-      "recipientUserId": "user-1788289392070-24tlf",
-      "title": "Task started",
-      "message": "Omar Riad started working on: SMOKE Dir->Asst clean fridge",
-      "category": "Task",
-      "createdAt": "2026-09-03T12:30:21.687Z",
-      "isRead": false,
-      "acknowledgedAt": "2026-09-03T12:30:55.581Z",
-      "eventKey": "task:task-smoke-1788433285415-e741:started:2026-09-03T12:30:21.240Z:owner:user-1788289392070-24tlf",
-      "channels": {
-        "inApp": true,
-        "telegram": true,
-        "email": true
-      }
-    },
-    {
-      "id": "notif-1788438621268-0.8230510278803767",
-      "recipientUserId": "gm-admin",
-      "title": "Task started",
-      "message": "Omar Riad started the task you sent them: SMOKE Dir->Asst clean fridge",
-      "category": "Task",
-      "createdAt": "2026-09-03T12:30:21.675Z",
-      "isRead": true,
-      "acknowledgedAt": "2026-09-03T12:31:17.601Z",
-      "eventKey": "task:task-smoke-1788433285415-e741:started:2026-09-03T12:30:21.240Z:gm:gm-admin",
-      "channels": {
-        "inApp": true,
-        "telegram": true,
-        "email": true
-      }
-    },
-    {
       "id": "notif-1788438614705-0.7386630793408434",
       "recipientUserId": "user-1788289392070-24tlf",
       "title": "Task started",
       "message": "Samir Fares started working on: Restock minibar inventory in tower B",
       "category": "Task",
       "createdAt": "2026-09-03T12:30:15.428Z",
-      "isRead": false,
+      "isRead": true,
       "acknowledgedAt": "2026-09-03T12:30:54.030Z",
       "eventKey": "task:task-1788433193383-0-cnmzs:started:1:owner:user-1788289392070-24tlf",
       "channels": {
@@ -1029,7 +1612,7 @@
       "message": "Samir Fares started working on: Restock minibar inventory in tower B",
       "category": "Task",
       "createdAt": "2026-09-03T12:30:15.412Z",
-      "isRead": false,
+      "isRead": true,
       "acknowledgedAt": "2026-09-03T12:30:53.415Z",
       "eventKey": "task:task-1788433193383-0-cnmzs:started:2026-09-03T12:30:14.704Z:owner:user-1788289392070-24tlf",
       "channels": {
@@ -1055,29 +1638,13 @@
       }
     },
     {
-      "id": "notif-1788433285449-0.7502959404356863",
-      "recipientUserId": "user-1788289393887-0h35t",
-      "title": "New task",
-      "message": "New task from: Nadia Haddad — SMOKE Dir->Asst clean fridge",
-      "category": "Task",
-      "createdAt": "2026-09-03T11:01:51.101Z",
-      "isRead": false,
-      "acknowledgedAt": "2026-09-03T12:22:15.770Z",
-      "eventKey": "task:task-smoke-1788433285415-e741:new:user-1788289393887-0h35t",
-      "channels": {
-        "inApp": true,
-        "telegram": true,
-        "email": true
-      }
-    },
-    {
       "id": "notif-1788432276654-0.2764973037666476",
       "recipientUserId": "user-1788289392750-6lii3",
       "title": "New task",
       "message": "New task from: Nadia Haddad — REPRO fridge check",
       "category": "Task",
       "createdAt": "2026-09-03T11:01:23.347Z",
-      "isRead": false,
+      "isRead": true,
       "acknowledgedAt": "2026-09-03T12:22:28.320Z",
       "eventKey": "task:task-repro-1788432276615:new:user-1788289392750-6lii3",
       "channels": {
@@ -1109,7 +1676,7 @@
       "message": "New task from: Nadia Haddad — Restock minibar inventory in tower B",
       "category": "Task",
       "createdAt": "2026-09-03T10:59:53.808Z",
-      "isRead": false,
+      "isRead": true,
       "acknowledgedAt": "2026-09-03T12:22:27.448Z",
       "eventKey": "task:task-1788433193383-0-cnmzs:new:user-1788289392750-6lii3",
       "channels": {
@@ -1416,166 +1983,6 @@
       "isRead": false,
       "acknowledgedAt": "2026-08-31T12:36:31.697Z",
       "eventKey": "task:task-aug-06:overdue:user-maya-manager",
-      "channels": {
-        "inApp": true,
-        "telegram": true,
-        "email": true
-      }
-    },
-    {
-      "id": "notif-1788179102655-0.29189839338253654",
-      "recipientUserId": "gm-admin",
-      "title": "Overdue Reminder: Update guest network documentation",
-      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
-      "category": "Alert",
-      "createdAt": "2026-08-31T12:25:04.282Z",
-      "isRead": false,
-      "acknowledgedAt": "2026-08-31T12:31:33.962Z",
-      "eventKey": "task:task-aug-06:overdue:gm-admin",
-      "channels": {
-        "inApp": true,
-        "telegram": true,
-        "email": true
-      }
-    },
-    {
-      "id": "notif-1788179102645-0.8560199894256979",
-      "recipientUserId": "gm-admin",
-      "title": "Overdue Reminder: Update guest network documentation",
-      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
-      "category": "Alert",
-      "createdAt": "2026-08-31T12:25:04.077Z",
-      "isRead": false,
-      "acknowledgedAt": "2026-08-31T12:31:33.590Z",
-      "eventKey": "task:task-aug-06:overdue:gm-admin",
-      "channels": {
-        "inApp": true,
-        "telegram": true,
-        "email": true
-      }
-    },
-    {
-      "id": "notif-1788179096804-0.13437313736521628",
-      "recipientUserId": "gm-admin",
-      "title": "Overdue Reminder: Update guest network documentation",
-      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
-      "category": "Alert",
-      "createdAt": "2026-08-31T12:25:03.274Z",
-      "isRead": false,
-      "acknowledgedAt": "2026-08-31T12:31:21.776Z",
-      "eventKey": "task:task-aug-06:overdue:gm-admin",
-      "channels": {
-        "inApp": true,
-        "telegram": true,
-        "email": true
-      }
-    },
-    {
-      "id": "notif-1788179096798-0.31186289605410766",
-      "recipientUserId": "gm-admin",
-      "title": "Overdue Reminder: Update guest network documentation",
-      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
-      "category": "Alert",
-      "createdAt": "2026-08-31T12:25:02.766Z",
-      "isRead": true,
-      "acknowledgedAt": "2026-08-31T12:31:21.477Z",
-      "eventKey": "task:task-aug-06:overdue:gm-admin",
-      "channels": {
-        "inApp": true,
-        "telegram": true,
-        "email": true
-      }
-    },
-    {
-      "id": "notif-1788179096795-0.25021035473707787",
-      "recipientUserId": "gm-admin",
-      "title": "Overdue Reminder: Review firewall alert queue",
-      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
-      "category": "Alert",
-      "createdAt": "2026-08-31T12:25:02.008Z",
-      "isRead": false,
-      "acknowledgedAt": "2026-08-31T12:31:20.795Z",
-      "eventKey": "task:task-aug-04:overdue:gm-admin",
-      "channels": {
-        "inApp": true,
-        "telegram": true,
-        "email": true
-      }
-    },
-    {
-      "id": "notif-1788179096802-0.6651355310643721",
-      "recipientUserId": "gm-admin",
-      "title": "Overdue Reminder: Review firewall alert queue",
-      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
-      "category": "Alert",
-      "createdAt": "2026-08-31T12:25:01.920Z",
-      "isRead": true,
-      "acknowledgedAt": "2026-08-31T12:31:20.565Z",
-      "eventKey": "task:task-aug-04:overdue:gm-admin",
-      "channels": {
-        "inApp": true,
-        "telegram": true,
-        "email": true
-      }
-    },
-    {
-      "id": "notif-1788179096792-0.6363389255430313",
-      "recipientUserId": "gm-admin",
-      "title": "Overdue Reminder: Replace failed switch power module",
-      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
-      "category": "Alert",
-      "createdAt": "2026-08-31T12:25:01.727Z",
-      "isRead": false,
-      "acknowledgedAt": "2026-08-31T12:31:20.239Z",
-      "eventKey": "task:task-aug-03:overdue:gm-admin",
-      "channels": {
-        "inApp": true,
-        "telegram": true,
-        "email": true
-      }
-    },
-    {
-      "id": "notif-1788179096790-0.18778834338842432",
-      "recipientUserId": "gm-admin",
-      "title": "Overdue Reminder: Investigate guest Wi-Fi intermittent drops",
-      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
-      "category": "Alert",
-      "createdAt": "2026-08-31T12:25:01.395Z",
-      "isRead": false,
-      "acknowledgedAt": "2026-08-31T12:31:19.775Z",
-      "eventKey": "task:task-aug-01:overdue:gm-admin",
-      "channels": {
-        "inApp": true,
-        "telegram": true,
-        "email": true
-      }
-    },
-    {
-      "id": "notif-1788179096800-0.13732026889739912",
-      "recipientUserId": "gm-admin",
-      "title": "Overdue Reminder: Replace failed switch power module",
-      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
-      "category": "Alert",
-      "createdAt": "2026-08-31T12:25:00.802Z",
-      "isRead": true,
-      "acknowledgedAt": "2026-08-31T12:31:18.952Z",
-      "eventKey": "task:task-aug-03:overdue:gm-admin",
-      "channels": {
-        "inApp": true,
-        "telegram": true,
-        "email": true
-      }
-    },
-    {
-      "id": "notif-1788179096797-0.2332668639994624",
-      "recipientUserId": "gm-admin",
-      "title": "Overdue Reminder: Investigate guest Wi-Fi intermittent drops",
-      "message": "This item is overdue and requires follow-up. You are the assignee or the direct manager in its reporting line.",
-      "category": "Alert",
-      "createdAt": "2026-08-31T12:24:57.687Z",
-      "isRead": true,
-      "acknowledgedAt": "2026-08-31T12:31:17.544Z",
-      "eventKey": "task:task-aug-01:overdue:gm-admin",
       "channels": {
         "inApp": true,
         "telegram": true,
