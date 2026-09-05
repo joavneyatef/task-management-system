@@ -3,6 +3,9 @@ import { makeNotification } from '../../test/factories';
 import { renderWithProviders, screen } from '../../test/renderWithProviders';
 import NotificationAlertPopup from './NotificationAlertPopup';
 
+const { playNotificationChime } = vi.hoisted(() => ({ playNotificationChime: vi.fn() }));
+vi.mock('../utils/notificationSound', () => ({ playNotificationChime }));
+
 describe('NotificationAlertPopup', () => {
   it('renders nothing when there is no notification', () => {
     const { container } = renderWithProviders(
@@ -40,5 +43,28 @@ describe('NotificationAlertPopup', () => {
 
     rerender(<NotificationAlertPopup notification={makeNotification()} onAcknowledge={vi.fn()} queueCount={3} />);
     expect(screen.getByText(/\+3 more waiting/i)).toBeInTheDocument();
+  });
+
+  it('chimes once when a new alert becomes active, not on every re-render, and again for a genuinely new one', () => {
+    playNotificationChime.mockClear();
+    const first = makeNotification({ id: 'ntf-1' });
+    const { rerender } = renderWithProviders(
+      <NotificationAlertPopup notification={first} onAcknowledge={vi.fn()} />,
+    );
+    expect(playNotificationChime).toHaveBeenCalledTimes(1);
+
+    // Same notification re-rendered (e.g. a parent re-render) — no repeat chime.
+    rerender(<NotificationAlertPopup notification={first} onAcknowledge={vi.fn()} />);
+    expect(playNotificationChime).toHaveBeenCalledTimes(1);
+
+    // A different notification takes its place — chimes again.
+    rerender(<NotificationAlertPopup notification={makeNotification({ id: 'ntf-2' })} onAcknowledge={vi.fn()} />);
+    expect(playNotificationChime).toHaveBeenCalledTimes(2);
+  });
+
+  it('does not chime when there is nothing to show', () => {
+    playNotificationChime.mockClear();
+    renderWithProviders(<NotificationAlertPopup notification={null} onAcknowledge={vi.fn()} />);
+    expect(playNotificationChime).not.toHaveBeenCalled();
   });
 });

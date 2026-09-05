@@ -2,6 +2,7 @@ import React from 'react';
 import { AlertTriangle, Radio } from 'lucide-react';
 import { Notification } from '../types';
 import { useLanguage } from '../context/LanguageContext';
+import { playNotificationChime } from '../utils/notificationSound';
 
 interface NotificationAlertPopupProps {
   // The single next notification pending acknowledgement for the current user.
@@ -18,6 +19,16 @@ interface NotificationAlertPopupProps {
 // and reveals it inside the Notification Center (Header bell) instead.
 export default function NotificationAlertPopup({ notification, onAcknowledge, queueCount = 0 }: NotificationAlertPopupProps) {
   const { language, isRtl } = useLanguage();
+
+  // Chime exactly once per newly-arrived alert — not on every re-render of the
+  // same one, and not when the popup first mounts with nothing pending.
+  const lastSoundedIdRef = React.useRef<string | null>(null);
+  React.useEffect(() => {
+    if (notification && notification.id !== lastSoundedIdRef.current) {
+      lastSoundedIdRef.current = notification.id;
+      playNotificationChime();
+    }
+  }, [notification]);
 
   if (!notification) return null;
 

@@ -1,7 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { User } from '../types';
-import { X, User as UserIcon, Lock, Settings as SettingsIcon, Eye, EyeOff, Check, AlertCircle, Save, Camera, Mail, Phone, Shield, Moon, Sun, Languages } from 'lucide-react';
+import { X, User as UserIcon, Lock, Settings as SettingsIcon, Eye, EyeOff, Check, AlertCircle, Save, Camera, Mail, Phone, Shield, Moon, Sun, Languages, Volume2, VolumeX } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { isNotificationSoundEnabled, setNotificationSoundEnabled, playNotificationChime } from '../utils/notificationSound';
 
 interface UserProfileModalProps {
   isOpen: boolean;
@@ -42,6 +43,9 @@ export default function UserProfileModal({
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+
+  // Per-browser preference, not part of the account — see notificationSound.ts
+  const [soundEnabled, setSoundEnabled] = useState(() => isNotificationSoundEnabled());
 
   // Password rules validation
   const passwordRules = useMemo(() => {
@@ -515,6 +519,37 @@ export default function UserProfileModal({
                   className="px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-xs font-bold text-white cursor-pointer transition-colors"
                 >
                   {theme === 'dark' ? (isAr ? 'تفعيل الفاتح' : 'Switch Light') : (isAr ? 'تفعيل الداكن' : 'Switch Dark')}
+                </button>
+              </div>
+
+              {/* Notification Sound Preference */}
+              <div className="p-3.5 rounded-xl bg-black/30 border border-white/5 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-400">
+                    {soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+                  </div>
+                  <div>
+                    <span className="text-xs font-bold text-white block">
+                      {isAr ? 'صوت الإشعارات' : 'Notification Sound'}
+                    </span>
+                    <span className="text-[10px] text-zinc-400 font-mono">
+                      {soundEnabled
+                        ? (isAr ? 'يُسمع عند وصول مهمة جديدة' : 'Plays a chime for new alerts')
+                        : (isAr ? 'صامت على هذا الجهاز' : 'Muted on this device')}
+                    </span>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const next = !soundEnabled;
+                    setSoundEnabled(next);
+                    setNotificationSoundEnabled(next);
+                    if (next) playNotificationChime();
+                  }}
+                  className="px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 text-xs font-bold text-white cursor-pointer transition-colors"
+                >
+                  {soundEnabled ? (isAr ? 'كتم' : 'Mute') : (isAr ? 'تفعيل' : 'Unmute')}
                 </button>
               </div>
             </div>

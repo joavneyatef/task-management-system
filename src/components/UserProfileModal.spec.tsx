@@ -104,4 +104,20 @@ describe('UserProfileModal', () => {
     await user.click(screen.getByRole('button', { name: /^cancel$/i }));
     expect(onClose).toHaveBeenCalledTimes(1);
   });
+
+  it('mutes and unmutes the notification chime, persisting the choice locally', async () => {
+    window.localStorage.clear();
+    const { user } = setup();
+    await user.click(screen.getByRole('button', { name: /preferences/i }));
+
+    expect(screen.getByText(/plays a chime for new alerts/i)).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: /^mute$/i }));
+
+    expect(screen.getByText(/muted on this device/i)).toBeInTheDocument();
+    expect(window.localStorage.getItem('notification_sound_enabled')).toBe('off');
+
+    await user.click(screen.getByRole('button', { name: /^unmute$/i }));
+    expect(screen.getByText(/plays a chime for new alerts/i)).toBeInTheDocument();
+    expect(window.localStorage.getItem('notification_sound_enabled')).toBe('on');
+  });
 });
