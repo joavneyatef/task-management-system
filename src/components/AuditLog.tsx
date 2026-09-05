@@ -312,7 +312,8 @@ export default function AuditLog({ currentUser, users, departments }: AuditLogPr
         ) : entries.length === 0 ? (
           <p className="text-center text-zinc-500 text-xs p-8">{isAr ? 'لا توجد سجلات مطابقة' : 'No matching entries'}</p>
         ) : (
-          <table className="w-full text-xs">
+          <div className="overflow-x-auto">
+          <table className="w-full min-w-[900px] text-xs">
             <thead className="sticky top-0 bg-[#0a0a0f] border-b border-white/5">
               <tr className="text-left text-zinc-500 uppercase text-[10px] font-mono tracking-wider">
                 <th className="px-4 py-2.5">{isAr ? 'الوقت' : 'Timestamp'}</th>
@@ -344,6 +345,7 @@ export default function AuditLog({ currentUser, users, departments }: AuditLogPr
               ))}
             </tbody>
           </table>
+          </div>
         )}
       </div>
     </div>

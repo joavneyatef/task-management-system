@@ -92,4 +92,17 @@ describe('Header', () => {
     await user.click(screen.getByRole('button', { name: /log out/i }));
     expect(onLogout).toHaveBeenCalledTimes(1);
   });
+
+  it('shows the mobile sidebar-drawer toggle only when onOpenMenu is given', async () => {
+    const onOpenMenu = vi.fn();
+    const { user } = setup({ onOpenMenu });
+    const toggle = screen.getByRole('button', { name: /open menu/i });
+    await user.click(toggle);
+    expect(onOpenMenu).toHaveBeenCalledTimes(1);
+  });
+
+  it('renders no drawer toggle when onOpenMenu is not passed', () => {
+    setup();
+    expect(screen.queryByRole('button', { name: /open menu/i })).not.toBeInTheDocument();
+  });
 });

@@ -26,6 +26,9 @@ import { shouldSkipPoll, resolveLandingTab } from './utils/liveSync';
 export default function App() {
   const { language, t, isRtl } = useLanguage();
   const [loading, setLoading] = useState(true);
+  // Sidebar is an always-visible column at lg and above; below that it's an
+  // off-canvas drawer toggled from the header's hamburger button.
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<'Dashboard' | 'Tasks' | 'Checklists' | 'Roster' | 'Admin' | 'Complaints' | 'AuditLog'>(() => {
     if (typeof window !== 'undefined') {
       const hash = window.location.hash.replace('#', '').toLowerCase();
@@ -884,14 +887,30 @@ export default function App() {
         activePresences={activePresences}
         taskCounts={taskCounts}
         complaintCounts={complaintCounts}
+        onOpenMenu={() => setMobileNavOpen(true)}
       />
 
       {/* Main Container Layer */}
-      <div className="flex-1 flex flex-col lg:flex-row min-h-0 overflow-hidden">
-        
-        {/* SIDE BAR NAVIGATION */}
-        <aside className="w-full lg:w-64 border-b lg:border-b-0 lg:border-r border-white/5 bg-black/20 p-4 space-y-2 lg:block shrink-0 overflow-y-auto">
-          
+      <div className="flex-1 flex flex-col lg:flex-row min-h-0 overflow-hidden relative">
+
+        {/* Backdrop behind the off-canvas sidebar drawer (below lg only) */}
+        {mobileNavOpen && (
+          <div
+            className="fixed inset-0 z-40 bg-black/60 lg:hidden"
+            onClick={() => setMobileNavOpen(false)}
+            aria-hidden="true"
+          />
+        )}
+
+        {/* SIDE BAR NAVIGATION — an off-canvas drawer below lg, a static column at lg+ */}
+        <aside
+          onClick={() => setMobileNavOpen(false)}
+          className={`fixed inset-y-0 ${isRtl ? 'right-0' : 'left-0'} z-50 w-72 max-w-[85vw] transform transition-transform duration-200 ease-out
+            ${mobileNavOpen ? 'translate-x-0' : isRtl ? 'translate-x-full' : '-translate-x-full'}
+            lg:static lg:z-auto lg:w-64 lg:max-w-none lg:translate-x-0
+            border-b lg:border-b-0 lg:border-r border-white/5 bg-[#0b0c10] lg:bg-black/20 p-4 space-y-2 shrink-0 overflow-y-auto`}
+        >
+
           {/* Official Hotel Logo & Branding */}
           <div className="flex flex-col items-center justify-center p-4 mb-4 border border-orange-500/10 bg-orange-500/5 rounded-2xl">
             <LongBeachLogo size="sm" variant="light" showText={true} />

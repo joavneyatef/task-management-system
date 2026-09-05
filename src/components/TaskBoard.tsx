@@ -1577,7 +1577,7 @@ export default function TaskBoard({
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
                   <label className="block text-zinc-400 font-semibold mb-1.5 text-xs text-left">
                     {language === 'ar' ? 'مستوى الأهمية والاستعجال' : 'Urgency Level'}

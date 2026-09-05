@@ -452,7 +452,7 @@ export default function Complaints({
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <label className="block text-zinc-400 text-xs font-bold mb-1.5">{isAr ? 'سبب الشكوى *' : 'Complaint Reason *'}</label>
                 <select required value={newReason} onChange={(e) => setNewReason(e.target.value)} className="w-full bg-white border border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-slate-900 outline-none focus:border-indigo-500/50">

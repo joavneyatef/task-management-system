@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Shield, Bell, Check, Clock, Radio, ChevronDown, User as UserIcon, UserCheck, Terminal, AlertTriangle, LogOut, Sun, Moon, Settings as SettingsIcon, Languages, Mail, Phone } from 'lucide-react';
+import { Shield, Bell, Check, Clock, Radio, ChevronDown, User as UserIcon, UserCheck, Terminal, AlertTriangle, LogOut, Sun, Moon, Settings as SettingsIcon, Languages, Mail, Phone, Menu } from 'lucide-react';
 import { User, Notification } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { isGeneralManager, isDirector } from '../utils/permissions';
@@ -20,6 +20,9 @@ interface HeaderProps {
   activePresences?: any[];
   taskCounts?: Record<string, number>;
   complaintCounts?: Record<string, number>;
+  // Shown only below the lg breakpoint, where the sidebar becomes an
+  // off-canvas drawer instead of the always-visible column.
+  onOpenMenu?: () => void;
 }
 
 export default function Header({
@@ -34,7 +37,8 @@ export default function Header({
   onToggleTheme,
   activePresences = [],
   taskCounts = {},
-  complaintCounts = {}
+  complaintCounts = {},
+  onOpenMenu
 }: HeaderProps) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [profileModalOpen, setProfileModalOpen] = useState(false);
@@ -72,23 +76,33 @@ export default function Header({
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full border-b border-white/5 bg-black/40 backdrop-blur-md px-6 py-4 flex items-center justify-between">
+      <header className="sticky top-0 z-40 w-full border-b border-white/5 bg-black/40 backdrop-blur-md px-3 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-2">
         {/* Brand & Telemetry */}
-        <div className="flex items-center gap-3">
-          <div className="relative flex h-12 w-12 items-center justify-center shrink-0">
+        <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+          {/* Sidebar drawer toggle — the sidebar is off-canvas below lg */}
+          {onOpenMenu && (
+            <button
+              onClick={onOpenMenu}
+              className="lg:hidden p-2 -ms-1 rounded-xl bg-white/5 border border-white/10 text-zinc-300 hover:text-white hover:bg-white/10 transition-all cursor-pointer shrink-0"
+              aria-label={isAr ? 'فتح القائمة' : 'Open menu'}
+            >
+              <Menu className="h-4 w-4" />
+            </button>
+          )}
+          <div className="relative flex h-9 w-9 sm:h-12 sm:w-12 items-center justify-center shrink-0">
             <LongBeachLogo showText={false} size="sm" variant="light" className="!mt-0" />
             <div className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-emerald-400 border border-black animate-pulse" />
           </div>
-          <div>
+          <div className="min-w-0">
             <div className="flex items-center gap-2">
-              <h1 className="font-display text-lg font-bold tracking-tight text-white flex items-center gap-1.5">
+              <h1 className="font-display text-sm sm:text-lg font-bold tracking-tight text-white flex items-center gap-1.5 truncate">
                 {t('brand.title')} <span className="text-orange-500">{t('brand.subtitle')}</span>
               </h1>
-              <span className="rounded-full bg-emerald-500/10 border border-emerald-500/25 px-2 py-0.5 font-mono text-[10px] font-semibold text-emerald-450 flex items-center gap-1">
+              <span className="hidden sm:flex rounded-full bg-emerald-500/10 border border-emerald-500/25 px-2 py-0.5 font-mono text-[10px] font-semibold text-emerald-450 items-center gap-1">
                 <Radio className="h-2.5 w-2.5 animate-pulse text-emerald-400" /> {t('status.active_core')}
               </span>
             </div>
-            <p className="text-xs text-zinc-400 italic font-medium">{t('brand.command_center')}</p>
+            <p className="hidden sm:block text-xs text-zinc-400 italic font-medium truncate">{t('brand.command_center')}</p>
           </div>
         </div>
 
@@ -108,7 +122,7 @@ export default function Header({
         </div>
 
         {/* Control Actions & User Profile Menu */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-1.5 sm:gap-4 shrink-0">
           {/* Quick Theme Toggle */}
           <button
             onClick={onToggleTheme}
@@ -118,14 +132,14 @@ export default function Header({
             {theme === 'dark' ? <Moon className="h-4 w-4 text-indigo-400" /> : <Sun className="h-4 w-4 text-amber-400" />}
           </button>
 
-          {/* Quick Language Switcher */}
+          {/* Quick Language Switcher — icon-only on narrow screens */}
           <button
             onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')}
-            className="px-2.5 py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs font-bold text-zinc-300 hover:text-white hover:bg-white/10 transition-all flex items-center gap-1.5 cursor-pointer"
+            className="px-2 sm:px-2.5 py-2 sm:py-1.5 rounded-xl bg-white/5 border border-white/10 text-xs font-bold text-zinc-300 hover:text-white hover:bg-white/10 transition-all flex items-center gap-1.5 cursor-pointer"
             title="Toggle Arabic / English"
           >
             <Languages className="h-3.5 w-3.5 text-orange-400" />
-            <span>{language === 'en' ? 'العربية' : 'EN'}</span>
+            <span className="hidden sm:inline">{language === 'en' ? 'العربية' : 'EN'}</span>
           </button>
 
           {/* Notifications Center */}
@@ -148,7 +162,7 @@ export default function Header({
 
             {/* Notification Drawer */}
             {notifOpen && (
-              <div className={`absolute ${isRtl ? 'left-0' : 'right-0'} mt-2 w-80 sm:w-96 rounded-xl glass-heavy shadow-2xl p-4 z-50 animate-in fade-in slide-in-from-top-2 duration-200 border border-white/10`}>
+              <div className={`absolute ${isRtl ? 'left-0' : 'right-0'} mt-2 w-[calc(100vw-1.5rem)] max-w-80 sm:w-96 rounded-xl glass-heavy shadow-2xl p-4 z-50 animate-in fade-in slide-in-from-top-2 duration-200 border border-white/10`}>
                 <div className="flex items-center justify-between border-b border-white/10 pb-3">
                   <div className="flex items-center gap-2">
                     <Bell className="h-4 w-4 text-indigo-400" />
@@ -278,7 +292,7 @@ export default function Header({
               <div
                 className={`absolute ${
                   isRtl ? 'left-0' : 'right-0'
-                } mt-2 w-72 rounded-2xl glass-heavy shadow-2xl p-3 z-50 animate-in fade-in slide-in-from-top-3 duration-200 border border-white/10`}
+                } mt-2 w-[calc(100vw-1.5rem)] max-w-72 rounded-2xl glass-heavy shadow-2xl p-3 z-50 animate-in fade-in slide-in-from-top-3 duration-200 border border-white/10`}
               >
                 {/* User Summary Card */}
                 <div className="p-3 rounded-xl bg-white/[0.03] border border-white/5 mb-2.5 flex items-center gap-3">

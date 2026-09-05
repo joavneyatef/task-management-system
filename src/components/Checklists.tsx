@@ -503,7 +503,7 @@ export default function Checklists({
       )}
 
       {/* Checklist Tab bar */}
-      <div className="flex border-b border-white/5 pb-px">
+      <div className="flex border-b border-white/5 pb-px overflow-x-auto">
         {(['Daily', 'Weekly', 'Monthly'] as const).map(type => {
           const typeName = language === 'ar'
             ? type === 'Daily' ? 'يومي' : type === 'Weekly' ? 'أسبوعي' : 'شهري'
@@ -512,13 +512,16 @@ export default function Checklists({
             <button
               key={type}
               onClick={() => setActiveTab(type)}
-              className={`px-6 py-3 font-semibold font-display text-sm border-b-2 transition-all cursor-pointer ${
+              className={`shrink-0 whitespace-nowrap px-3 sm:px-6 py-3 font-semibold font-display text-sm border-b-2 transition-all cursor-pointer ${
                 activeTab === type
                   ? 'border-indigo-400 text-indigo-400 bg-indigo-500/5'
                   : 'border-transparent text-zinc-400 hover:text-white'
               }`}
             >
-              {language === 'ar' ? `فحص ${typeName} مجدول` : `${type} Inspection Schedule`}
+              <span className="sm:hidden">{typeName}</span>
+              <span className="hidden sm:inline">
+                {language === 'ar' ? `فحص ${typeName} مجدول` : `${type} Inspection Schedule`}
+              </span>
             </button>
           );
         })}

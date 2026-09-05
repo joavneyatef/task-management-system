@@ -349,7 +349,7 @@ export default function AdminPanel({
       </div>
 
       <div className="animate-in fade-in duration-200 space-y-6">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-xs text-zinc-400 max-w-lg leading-relaxed">
               {isAr
                 ? 'إدارة الأقسام (مثل تكنولوجيا المعلومات، الصيانة، الاستقبال...). كل قسم له مديرون وموظفون مرتبطون به، ويستخدم في قوائم الفحص اليومية وتوزيع الشكاوى.'
