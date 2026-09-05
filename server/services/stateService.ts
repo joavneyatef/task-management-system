@@ -343,6 +343,16 @@ export async function saveSystemState(state: Partial<SystemData>) {
           channels: JSON.stringify(n.channels || {})
         }
       });
+
+      // One notification per (recipient, eventKey). Concurrent state syncs can
+      // each generate their own row for the same event before either commits,
+      // leaving orphans that never get marked read. Collapse them onto the row
+      // we just wrote.
+      if (n.eventKey) {
+        await prisma.notification.deleteMany({
+          where: { recipientUserId: n.recipientUserId || '', eventKey: n.eventKey, id: { not: n.id } }
+        });
+      }
     }
   }
 

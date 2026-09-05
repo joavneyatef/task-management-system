@@ -359,8 +359,14 @@ export function mergeStateWithServer(incomingState: SystemData, currentDb: Syste
     [...mergedState.notifications, ...incomingState.notifications].forEach(n => {
       const key = n.eventKey ? `event:${n.recipientUserId}:${n.eventKey}` : `id:${n.id}`;
       const existing = mergedByIdentity.get(key);
-      // Acknowledgement/read changes from the client should still win for that exact event.
-      mergedByIdentity.set(key, existing ? { ...existing, ...n } : n);
+      // Acknowledgement/read changes from the client still win for that exact
+      // event — but the row's persisted `id` must not. The client mints its own
+      // random id for an optimistic copy of a server-generated notification, so
+      // letting it override `id` here leaves the original DB row orphaned (and
+      // stuck unread forever, since "mark all read" only touches the id the
+      // client currently holds). Pin the identity to whichever copy we saw first
+      // (the server / DB one when it exists).
+      mergedByIdentity.set(key, existing ? { ...existing, ...n, id: existing.id } : n);
     });
     mergedState.notifications = Array.from(mergedByIdentity.values()).sort((a, b) =>
       new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()

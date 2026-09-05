@@ -206,6 +206,26 @@ describe('mergeStateWithServer — server-generated task notifications', () => {
     expect(mergedState.notifications.filter((n) => n.eventKey === 'task:t1:new:asst')).toHaveLength(1);
   });
 
+  it('keeps the existing DB id when the client sends its own optimistic copy of the same event, and lets the client read/ack flags win', () => {
+    const server = orgState();
+    server.notifications = [
+      { id: 'db-row', title: 'New task', message: 'y', category: 'Task', createdAt: '2026-09-01T00:00:00Z', isRead: false, recipientUserId: 'asst', eventKey: 'task:t1:new:asst', channels: { inApp: true, telegram: true, email: true } },
+    ];
+    const incoming = makeState({
+      users: server.users,
+      // Client's locally-minted copy: different random id, same event, now read + acknowledged.
+      notifications: [
+        { id: 'client-random', title: 'New task', message: 'y', category: 'Task', createdAt: '2026-09-01T00:00:00Z', isRead: true, acknowledgedAt: '2026-09-02T00:00:00Z', recipientUserId: 'asst', eventKey: 'task:t1:new:asst', channels: { inApp: true, telegram: true, email: true } },
+      ],
+    });
+    const { mergedState } = mergeStateWithServer(incoming, server, 'mgr');
+    const rows = mergedState.notifications.filter((n) => n.eventKey === 'task:t1:new:asst');
+    expect(rows).toHaveLength(1);
+    expect(rows[0].id).toBe('db-row'); // persisted identity is preserved — no orphan
+    expect(rows[0].isRead).toBe(true); // client's read state still wins
+    expect(rows[0].acknowledgedAt).toBe('2026-09-02T00:00:00Z');
+  });
+
   it('on completion, notifies the switch owner (not the direct sender) plus every GM', () => {
     const server = orgState();
     const serverTask = makeTask({ id: 't1', title: 'Rack audit', status: 'In Progress', createdBy: 'gm', assignedBy: 'dir', lastTransferredById: 'mgr', assigneeIds: ['asst'] });
