@@ -4,8 +4,10 @@
       "id": "fnb",
       "name": "Food & Beverage",
       "description": "Food and beverage service",
-      "directorId": "ibrahim-director",
-      "managerIds": [],
+      "directorId": "user-1788289392070-24tlf",
+      "managerIds": [
+        "user-1788289392750-6lii3"
+      ],
       "complaintReasons": [
         "Food & Beverage Problems",
         "Food Problems",
@@ -18,7 +20,7 @@
       "id": "it",
       "name": "IT Department",
       "description": "Wi-Fi, network and technology",
-      "directorId": "george-director",
+      "directorId": "user-1788097963174-3osfg",
       "managerIds": [
         "user-maya-manager"
       ],
@@ -34,8 +36,10 @@
       "id": "operations",
       "name": "Operations",
       "description": "Hotel operations",
-      "directorId": "abdallah-director",
-      "managerIds": [],
+      "directorId": "user-1788289394557-yy52g",
+      "managerIds": [
+        "user-1788289395384-9pyfh"
+      ],
       "complaintReasons": [
         "Operations Problems",
         "General Operations Problems"
@@ -46,8 +50,10 @@
       "id": "rooms",
       "name": "Rooms Division",
       "description": "Rooms and guest accommodation",
-      "directorId": "mina-director",
-      "managerIds": [],
+      "directorId": "user-1788289397262-2nxtj",
+      "managerIds": [
+        "user-1788289397885-6zbsu"
+      ],
       "complaintReasons": [
         "Room Problems",
         "Housekeeping Problems"
@@ -56,6 +62,108 @@
     }
   ],
   "users": [
+    {
+      "id": "user-1788289399259-imxqs",
+      "username": "bassel",
+      "name": "Bassel Aoun",
+      "role": "Assistant",
+      "title": "Rooms Division Assistant",
+      "email": "bassel@longbeach.local",
+      "phone": "",
+      "avatar": "",
+      "status": "Active",
+      "skills": [],
+      "departmentId": "rooms",
+      "parentId": "user-1788289397885-6zbsu",
+      "managerId": "user-1788289397885-6zbsu",
+      "positionCode": "Assistant",
+      "updatedAt": "2026-09-05T09:38:21.794Z"
+    },
+    {
+      "id": "user-1788289395384-9pyfh",
+      "username": "dina",
+      "name": "Dina Saleh",
+      "role": "Manager",
+      "title": "Operations Manager",
+      "email": "dina@longbeach.local",
+      "phone": "",
+      "avatar": "",
+      "status": "Active",
+      "skills": [],
+      "departmentId": "operations",
+      "parentId": "user-1788289394557-yy52g",
+      "managerId": "user-1788289394557-yy52g",
+      "positionCode": "Manager",
+      "updatedAt": "2026-09-05T09:38:21.803Z"
+    },
+    {
+      "id": "user-1788289397885-6zbsu",
+      "username": "fadi",
+      "name": "Fadi Sabbagh",
+      "role": "Manager",
+      "title": "Rooms Division Manager",
+      "email": "fadi@longbeach.local",
+      "phone": "",
+      "avatar": "",
+      "status": "Active",
+      "skills": [],
+      "departmentId": "rooms",
+      "parentId": "user-1788289397262-2nxtj",
+      "managerId": "user-1788289397262-2nxtj",
+      "positionCode": "Manager",
+      "updatedAt": "2026-09-05T09:38:21.812Z"
+    },
+    {
+      "id": "user-1788289396595-hl1sp",
+      "username": "hana",
+      "name": "Hana Youssef",
+      "role": "Assistant",
+      "title": "Operations Assistant",
+      "email": "hana@longbeach.local",
+      "phone": "",
+      "avatar": "",
+      "status": "Active",
+      "skills": [],
+      "departmentId": "operations",
+      "parentId": "user-1788289395384-9pyfh",
+      "managerId": "user-1788289395384-9pyfh",
+      "positionCode": "Assistant",
+      "updatedAt": "2026-09-05T09:38:21.822Z"
+    },
+    {
+      "id": "user-1788289394557-yy52g",
+      "username": "karim",
+      "name": "Karim Mansour",
+      "role": "Director",
+      "title": "Director Operations",
+      "email": "karim@longbeach.local",
+      "phone": "",
+      "avatar": "",
+      "status": "Active",
+      "skills": [],
+      "departmentId": "operations",
+      "parentId": "gm-admin",
+      "managerId": "gm-admin",
+      "positionCode": "Director",
+      "updatedAt": "2026-09-05T09:38:21.832Z"
+    },
+    {
+      "id": "user-1788289393350-1gt7m",
+      "username": "layla",
+      "name": "Layla Aziz",
+      "role": "Assistant",
+      "title": "Food & Beverage Assistant",
+      "email": "layla@longbeach.local",
+      "phone": "",
+      "avatar": "",
+      "status": "Active",
+      "skills": [],
+      "departmentId": "fnb",
+      "parentId": "user-1788289392750-6lii3",
+      "managerId": "user-1788289392750-6lii3",
+      "positionCode": "Assistant",
+      "updatedAt": "2026-09-05T09:38:21.839Z"
+    },
     {
       "id": "user-maya-manager",
       "username": "maya",
@@ -69,7 +177,92 @@
       "skills": [],
       "departmentId": "it",
       "parentId": "user-1788097963174-3osfg",
-      "updatedAt": "2026-08-31T13:03:49.141Z"
+      "updatedAt": "2026-09-05T09:38:21.848Z"
+    },
+    {
+      "id": "user-1788289392070-24tlf",
+      "username": "nadia",
+      "name": "Nadia Haddad",
+      "role": "Director",
+      "title": "Director Food & Beverage",
+      "email": "nadia@longbeach.local",
+      "phone": "",
+      "avatar": "",
+      "status": "Active",
+      "skills": [],
+      "departmentId": "fnb",
+      "parentId": "gm-admin",
+      "managerId": "gm-admin",
+      "positionCode": "Director",
+      "updatedAt": "2026-09-05T09:38:21.855Z"
+    },
+    {
+      "id": "user-1788289398651-zdady",
+      "username": "nour",
+      "name": "Nour Hamdan",
+      "role": "Assistant",
+      "title": "Rooms Division Assistant",
+      "email": "nour@longbeach.local",
+      "phone": "",
+      "avatar": "",
+      "status": "Active",
+      "skills": [],
+      "departmentId": "rooms",
+      "parentId": "user-1788289397885-6zbsu",
+      "managerId": "user-1788289397885-6zbsu",
+      "positionCode": "Assistant",
+      "updatedAt": "2026-09-05T09:38:21.863Z"
+    },
+    {
+      "id": "user-1788289393887-0h35t",
+      "username": "omar",
+      "name": "Omar Riad",
+      "role": "Assistant",
+      "title": "Food & Beverage Assistant",
+      "email": "omar@longbeach.local",
+      "phone": "",
+      "avatar": "",
+      "status": "Active",
+      "skills": [],
+      "departmentId": "fnb",
+      "parentId": "user-1788289392750-6lii3",
+      "managerId": "user-1788289392750-6lii3",
+      "positionCode": "Assistant",
+      "updatedAt": "2026-09-05T09:38:21.871Z"
+    },
+    {
+      "id": "user-1788289397262-2nxtj",
+      "username": "rania",
+      "name": "Rania Khoury",
+      "role": "Director",
+      "title": "Director Rooms Division",
+      "email": "rania@longbeach.local",
+      "phone": "",
+      "avatar": "",
+      "status": "Active",
+      "skills": [],
+      "departmentId": "rooms",
+      "parentId": "gm-admin",
+      "managerId": "gm-admin",
+      "positionCode": "Director",
+      "updatedAt": "2026-09-05T09:38:21.880Z"
+    },
+    {
+      "id": "user-1788289392750-6lii3",
+      "username": "samir",
+      "name": "Samir Fares",
+      "role": "Manager",
+      "title": "Food & Beverage Manager",
+      "email": "samir@longbeach.local",
+      "phone": "",
+      "avatar": "",
+      "status": "Active",
+      "skills": [],
+      "departmentId": "fnb",
+      "parentId": "user-1788289392070-24tlf",
+      "managerId": "user-1788289392070-24tlf",
+      "positionCode": "Manager",
+      "updatedAt": "2026-09-05T09:38:21.888Z"
     },
     {
       "id": "gm-admin",
@@ -84,7 +277,24 @@
       "skills": [],
       "departmentId": "operations",
       "positionCode": "GeneralManager",
-      "updatedAt": "2026-08-31T13:03:49.149Z"
+      "updatedAt": "2026-09-05T09:38:21.898Z"
+    },
+    {
+      "id": "user-1788289396037-zb0ty",
+      "username": "tarek",
+      "name": "Tarek Nabil",
+      "role": "Assistant",
+      "title": "Operations Assistant",
+      "email": "tarek@longbeach.local",
+      "phone": "",
+      "avatar": "",
+      "status": "Active",
+      "skills": [],
+      "departmentId": "operations",
+      "parentId": "user-1788289395384-9pyfh",
+      "managerId": "user-1788289395384-9pyfh",
+      "positionCode": "Assistant",
+      "updatedAt": "2026-09-05T09:38:21.909Z"
     },
     {
       "id": "user-1788097963174-3osfg",
@@ -101,7 +311,7 @@
       "parentId": "gm-admin",
       "managerId": "gm-admin",
       "positionCode": "Director",
-      "updatedAt": "2026-08-31T13:03:49.156Z"
+      "updatedAt": "2026-09-05T09:38:21.915Z"
     },
     {
       "id": "user-1788097980330-o7aei",
@@ -118,7 +328,7 @@
       "parentId": "user-1788097963174-3osfg",
       "managerId": "user-1788097963174-3osfg",
       "positionCode": "Assistant",
-      "updatedAt": "2026-08-31T13:03:49.166Z"
+      "updatedAt": "2026-09-05T09:38:21.925Z"
     }
   ],
   "tasks": [
@@ -127,9 +337,9 @@
       "title": "test 2",
       "description": "test 2",
       "priority": "Critical",
-      "status": "Completed",
+      "status": "Archived",
       "deadline": "2026-08-31T17:00:00.000Z",
-      "isOverdue": false,
+      "isOverdue": true,
       "departmentId": "it",
       "createdBy": "user-1788097963174-3osfg",
       "assignedBy": "user-1788097963174-3osfg",
@@ -145,9 +355,9 @@
       "actualDurationSec": 1,
       "notes": [],
       "attachments": [],
-      "version": 3,
+      "version": 5,
       "createdAt": "2026-08-31T08:55:46.182Z",
-      "updatedAt": "2026-08-31T13:03:49.174Z",
+      "updatedAt": "2026-09-05T09:38:21.935Z",
       "history": []
     },
     {
@@ -157,7 +367,7 @@
       "priority": "Medium",
       "status": "Archived",
       "deadline": "2026-09-02T13:53:00.000Z",
-      "isOverdue": false,
+      "isOverdue": true,
       "departmentId": "it",
       "createdBy": "user-1788097963174-3osfg",
       "assignedBy": "user-1788097963174-3osfg",
@@ -177,11 +387,214 @@
       "attachments": [],
       "version": 5,
       "createdAt": "2026-08-30T13:53:17.745Z",
-      "updatedAt": "2026-08-31T13:03:49.185Z",
+      "updatedAt": "2026-09-05T09:38:21.945Z",
+      "history": []
+    },
+    {
+      "id": "task-1788288981739-0-qgxzq",
+      "title": "test 3",
+      "description": "test 3",
+      "priority": "High",
+      "status": "Archived",
+      "deadline": "2026-09-04T18:56:00.000Z",
+      "isOverdue": true,
+      "departmentId": "operations",
+      "createdBy": "gm-admin",
+      "assignedBy": "gm-admin",
+      "assigneeId": "user-1788097980330-o7aei",
+      "assigneeIds": [
+        "user-1788097980330-o7aei"
+      ],
+      "lastTransferredById": null,
+      "originalAssigneeId": "user-1788097980330-o7aei",
+      "completedById": "user-1788097980330-o7aei",
+      "startedAt": "2026-09-01T18:59:36.442Z",
+      "completedAt": "2026-09-01T18:59:39.518Z",
+      "actualDurationSec": 3,
+      "notes": [],
+      "attachments": [],
+      "version": 4,
+      "createdAt": "2026-09-01T18:56:21.738Z",
+      "updatedAt": "2026-09-05T09:38:21.956Z",
+      "history": []
+    },
+    {
+      "id": "task-1788288981739-1-ijqr5",
+      "title": "test 3",
+      "description": "test 3",
+      "priority": "High",
+      "status": "Archived",
+      "deadline": "2026-09-04T18:56:00.000Z",
+      "isOverdue": true,
+      "departmentId": "operations",
+      "createdBy": "gm-admin",
+      "assignedBy": "gm-admin",
+      "assigneeId": "user-1788097963174-3osfg",
+      "assigneeIds": [
+        "user-1788097963174-3osfg"
+      ],
+      "lastTransferredById": null,
+      "originalAssigneeId": "user-1788097963174-3osfg",
+      "completedById": "user-1788097963174-3osfg",
+      "startedAt": "2026-09-01T18:59:10.594Z",
+      "completedAt": "2026-09-01T18:59:53.315Z",
+      "actualDurationSec": 42,
+      "notes": [],
+      "attachments": [],
+      "version": 4,
+      "createdAt": "2026-09-01T18:56:21.738Z",
+      "updatedAt": "2026-09-05T09:38:21.966Z",
+      "history": []
+    },
+    {
+      "id": "task-1788433193383-0-cnmzs",
+      "title": "Restock minibar inventory in tower B",
+      "description": "",
+      "priority": "Medium",
+      "status": "Archived",
+      "deadline": "2026-09-06T10:59:00.000Z",
+      "isOverdue": false,
+      "departmentId": "fnb",
+      "createdBy": "user-1788289392070-24tlf",
+      "assignedBy": "user-1788289392070-24tlf",
+      "assigneeId": "user-1788289392750-6lii3",
+      "assigneeIds": [
+        "user-1788289392750-6lii3"
+      ],
+      "lastTransferredById": null,
+      "originalAssigneeId": "user-1788289392750-6lii3",
+      "completedById": "user-1788289392750-6lii3",
+      "startedAt": "2026-09-03T12:30:14.704Z",
+      "completedAt": "2026-09-03T12:30:44.112Z",
+      "actualDurationSec": 29,
+      "notes": [],
+      "attachments": [],
+      "version": 4,
+      "createdAt": "2026-09-03T10:59:53.382Z",
+      "updatedAt": "2026-09-05T09:38:21.978Z",
+      "history": []
+    },
+    {
+      "id": "task-smoke-1788433285415-e741",
+      "title": "SMOKE Dir->Asst clean fridge",
+      "description": "",
+      "priority": "Medium",
+      "status": "Archived",
+      "deadline": "2026-09-06T11:01:25.415Z",
+      "isOverdue": false,
+      "departmentId": "fnb",
+      "createdBy": "user-1788289392070-24tlf",
+      "assignedBy": "user-1788289392070-24tlf",
+      "assigneeId": "user-1788289393887-0h35t",
+      "assigneeIds": [
+        "user-1788289393887-0h35t"
+      ],
+      "lastTransferredById": null,
+      "originalAssigneeId": "user-1788289393887-0h35t",
+      "completedById": "user-1788289393887-0h35t",
+      "startedAt": "2026-09-03T12:30:21.240Z",
+      "completedAt": "2026-09-03T12:30:22.648Z",
+      "actualDurationSec": 1,
+      "notes": [],
+      "attachments": [],
+      "version": 4,
+      "createdAt": "2026-09-03T11:01:25.416Z",
+      "updatedAt": "2026-09-05T09:38:21.985Z",
+      "history": []
+    },
+    {
+      "id": "task-badgecheck-1788599758819-gebg",
+      "title": "BADGECHECK task two",
+      "description": "",
+      "priority": "Medium",
+      "status": "Open",
+      "deadline": "2026-09-08T09:15:58.819Z",
+      "isOverdue": false,
+      "departmentId": "fnb",
+      "createdBy": "user-1788289392070-24tlf",
+      "assignedBy": "user-1788289392070-24tlf",
+      "assigneeId": "user-1788289392750-6lii3",
+      "assigneeIds": [
+        "user-1788289392750-6lii3"
+      ],
+      "lastTransferredById": null,
+      "originalAssigneeId": "user-1788289392750-6lii3",
+      "notes": [],
+      "attachments": [],
+      "version": 1,
+      "createdAt": "2026-09-05T09:15:58.820Z",
+      "updatedAt": "2026-09-05T09:38:21.996Z",
+      "history": []
+    },
+    {
+      "id": "task-badgecheck-1788599782708-ep5m",
+      "title": "BADGECHECK task three",
+      "description": "",
+      "priority": "Medium",
+      "status": "Open",
+      "deadline": "2026-09-08T09:16:22.708Z",
+      "isOverdue": false,
+      "departmentId": "fnb",
+      "createdBy": "user-1788289392070-24tlf",
+      "assignedBy": "user-1788289392070-24tlf",
+      "assigneeId": "user-1788289392750-6lii3",
+      "assigneeIds": [
+        "user-1788289392750-6lii3"
+      ],
+      "lastTransferredById": null,
+      "originalAssigneeId": "user-1788289392750-6lii3",
+      "notes": [],
+      "attachments": [],
+      "version": 1,
+      "createdAt": "2026-09-05T09:16:22.710Z",
+      "updatedAt": "2026-09-05T09:38:22.008Z",
+      "history": []
+    },
+    {
+      "id": "task-badgecheck-1788599840352-live",
+      "title": "BADGECHECK live update test",
+      "description": "",
+      "priority": "Medium",
+      "status": "Open",
+      "deadline": "2026-09-08T09:17:20.352Z",
+      "isOverdue": false,
+      "departmentId": "fnb",
+      "createdBy": "user-1788289392070-24tlf",
+      "assignedBy": "user-1788289392070-24tlf",
+      "assigneeId": "user-1788289392750-6lii3",
+      "assigneeIds": [
+        "user-1788289392750-6lii3"
+      ],
+      "lastTransferredById": null,
+      "originalAssigneeId": "user-1788289392750-6lii3",
+      "notes": [],
+      "attachments": [],
+      "version": 1,
+      "createdAt": "2026-09-05T09:17:20.354Z",
+      "updatedAt": "2026-09-05T09:38:22.020Z",
       "history": []
     }
   ],
   "checklists": [
+    {
+      "id": "chk-daily-fnb",
+      "type": "Daily",
+      "title": "Daily Inspection - Food & Beverage",
+      "description": "Fixed daily checklist for Food & Beverage.",
+      "departmentId": "fnb",
+      "assignedToId": null,
+      "items": [
+        {
+          "id": "chk-item-1788289832117-0.8556286372811774",
+          "text": "Check walk-in fridge temperature log",
+          "completed": true,
+          "completedAt": "2026-09-01T19:11:26.744Z",
+          "completedBy": "user-1788289393350-1gt7m"
+        }
+      ],
+      "version": 246,
+      "updatedAt": "2026-09-05T09:38:22.033Z"
+    },
     {
       "id": "chk-daily-it",
       "type": "Daily",
@@ -193,21 +606,27 @@
         {
           "id": "chk-item-1788166686874-0.6096768736204109",
           "text": "test task 1",
-          "completed": false
+          "completed": true,
+          "completedAt": "2026-08-31T13:18:51.196Z",
+          "completedBy": "gm-admin"
         },
         {
           "id": "chk-item-1788166692933-0.26896909162037086",
           "text": "test task 2",
-          "completed": false
+          "completed": true,
+          "completedAt": "2026-08-31T13:18:51.845Z",
+          "completedBy": "gm-admin"
         },
         {
           "id": "chk-item-1788166699285-0.20424311424646624",
           "text": "test task 3",
-          "completed": false
+          "completed": true,
+          "completedAt": "2026-08-31T13:18:52.733Z",
+          "completedBy": "gm-admin"
         }
       ],
-      "version": 303,
-      "updatedAt": "2026-08-31T13:03:49.196Z"
+      "version": 560,
+      "updatedAt": "2026-09-05T09:38:22.043Z"
     },
     {
       "id": "chk-daily-operations",
@@ -225,8 +644,41 @@
           "completedBy": "gm-admin"
         }
       ],
-      "version": 306,
-      "updatedAt": "2026-08-31T13:03:49.205Z"
+      "version": 560,
+      "updatedAt": "2026-09-05T09:38:22.051Z"
+    },
+    {
+      "id": "chk-daily-rooms",
+      "type": "Daily",
+      "title": "Daily Inspection - Rooms Division",
+      "description": "Fixed daily checklist for Rooms Division.",
+      "departmentId": "rooms",
+      "assignedToId": null,
+      "items": [],
+      "version": 241,
+      "updatedAt": "2026-09-05T09:38:22.065Z"
+    },
+    {
+      "id": "chk-monthly-fnb",
+      "type": "Monthly",
+      "title": "Monthly Inspection - Food & Beverage",
+      "description": "Fixed monthly checklist for Food & Beverage.",
+      "departmentId": "fnb",
+      "assignedToId": null,
+      "items": [],
+      "version": 57,
+      "updatedAt": "2026-09-05T09:38:22.076Z"
+    },
+    {
+      "id": "chk-monthly-it",
+      "type": "Monthly",
+      "title": "Monthly Inspection - IT Department",
+      "description": "Fixed monthly checklist for IT Department.",
+      "departmentId": "it",
+      "assignedToId": null,
+      "items": [],
+      "version": 58,
+      "updatedAt": "2026-09-05T09:38:22.084Z"
     },
     {
       "id": "chk-monthly-operations",
@@ -236,8 +688,41 @@
       "departmentId": "operations",
       "assignedToId": null,
       "items": [],
+      "version": 58,
+      "updatedAt": "2026-09-05T09:38:22.096Z"
+    },
+    {
+      "id": "chk-monthly-rooms",
+      "type": "Monthly",
+      "title": "Monthly Inspection - Rooms Division",
+      "description": "Fixed monthly checklist for Rooms Division.",
+      "departmentId": "rooms",
+      "assignedToId": null,
+      "items": [],
+      "version": 58,
+      "updatedAt": "2026-09-05T09:38:22.107Z"
+    },
+    {
+      "id": "chk-weekly-fnb",
+      "type": "Weekly",
+      "title": "Weekly Inspection - Food & Beverage",
+      "description": "Fixed weekly checklist for Food & Beverage.",
+      "departmentId": "fnb",
+      "assignedToId": null,
+      "items": [],
       "version": 1,
-      "updatedAt": "2026-08-31T13:03:49.218Z"
+      "updatedAt": "2026-09-05T09:38:22.119Z"
+    },
+    {
+      "id": "chk-weekly-it",
+      "type": "Weekly",
+      "title": "Weekly Inspection - IT Department",
+      "description": "Fixed weekly checklist for IT Department.",
+      "departmentId": "it",
+      "assignedToId": null,
+      "items": [],
+      "version": 1,
+      "updatedAt": "2026-09-05T09:38:22.131Z"
     },
     {
       "id": "chk-weekly-operations",
@@ -248,12 +733,679 @@
       "assignedToId": null,
       "items": [],
       "version": 1,
-      "updatedAt": "2026-08-31T13:03:49.231Z"
+      "updatedAt": "2026-09-05T09:38:22.144Z"
+    },
+    {
+      "id": "chk-weekly-rooms",
+      "type": "Weekly",
+      "title": "Weekly Inspection - Rooms Division",
+      "description": "Fixed weekly checklist for Rooms Division.",
+      "departmentId": "rooms",
+      "assignedToId": null,
+      "items": [],
+      "version": 1,
+      "updatedAt": "2026-09-05T09:38:22.158Z"
     }
   ],
   "checklistHistory": [],
   "projects": [],
   "notifications": [
+    {
+      "id": "notif-1788599758852-0.640067052116144",
+      "recipientUserId": "user-1788289392750-6lii3",
+      "title": "New task",
+      "message": "New task from: Nadia Haddad — BADGECHECK task two",
+      "category": "Task",
+      "createdAt": "2026-09-05T09:18:37.027Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-09-05T09:19:30.624Z",
+      "eventKey": "task:task-badgecheck-1788599758819-gebg:new:user-1788289392750-6lii3",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788599782719-0.595907228230478",
+      "recipientUserId": "user-1788289392750-6lii3",
+      "title": "New task",
+      "message": "New task from: Nadia Haddad — BADGECHECK task three",
+      "category": "Task",
+      "createdAt": "2026-09-05T09:18:37.020Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-09-05T09:19:16.244Z",
+      "eventKey": "task:task-badgecheck-1788599782708-ep5m:new:user-1788289392750-6lii3",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788599840364-0.8344701448400482",
+      "recipientUserId": "user-1788289392750-6lii3",
+      "title": "New task",
+      "message": "New task from: Nadia Haddad — BADGECHECK live update test",
+      "category": "Task",
+      "createdAt": "2026-09-05T09:18:37.014Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-09-05T09:19:12.176Z",
+      "eventKey": "task:task-badgecheck-1788599840352-live:new:user-1788289392750-6lii3",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788438644112-0.5984939412581717",
+      "recipientUserId": "user-1788289392070-24tlf",
+      "title": "Task completed",
+      "message": "Samir Fares completed the task you switched to them: Restock minibar inventory in tower B",
+      "category": "Task",
+      "createdAt": "2026-09-03T12:30:44.575Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-09-03T12:30:58.171Z",
+      "eventKey": "task:task-1788433193383-0-cnmzs:completed:2:switch-owner:user-1788289392070-24tlf",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788438644112-0.7331767332350916",
+      "recipientUserId": "gm-admin",
+      "title": "Task completed",
+      "message": "Samir Fares completed the task you sent them: Restock minibar inventory in tower B",
+      "category": "Task",
+      "createdAt": "2026-09-03T12:30:44.563Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-03T12:31:19.207Z",
+      "eventKey": "task:task-1788433193383-0-cnmzs:completed:2:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788438644123-0.31224791244697647",
+      "recipientUserId": "user-1788289392070-24tlf",
+      "title": "Task completed",
+      "message": "Samir Fares completed the task you sent them: Restock minibar inventory in tower B",
+      "category": "Task",
+      "createdAt": "2026-09-03T12:30:44.553Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-09-03T12:30:57.773Z",
+      "eventKey": "task:task-1788433193383-0-cnmzs:completed:2026-09-03T12:30:44.112Z:direct-sender:user-1788289392070-24tlf",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788438644123-0.6388096390671241",
+      "recipientUserId": "gm-admin",
+      "title": "Task completed",
+      "message": "Samir Fares completed the task you sent them: Restock minibar inventory in tower B",
+      "category": "Task",
+      "createdAt": "2026-09-03T12:30:44.542Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-03T12:31:18.775Z",
+      "eventKey": "task:task-1788433193383-0-cnmzs:completed:2026-09-03T12:30:44.112Z:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788438622648-0.5019577404621921",
+      "recipientUserId": "user-1788289392070-24tlf",
+      "title": "Task completed",
+      "message": "Omar Riad completed the task you switched to them: SMOKE Dir->Asst clean fridge",
+      "category": "Task",
+      "createdAt": "2026-09-03T12:30:23.054Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-09-03T12:30:57.333Z",
+      "eventKey": "task:task-smoke-1788433285415-e741:completed:2:switch-owner:user-1788289392070-24tlf",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788438622648-0.45888217463962666",
+      "recipientUserId": "gm-admin",
+      "title": "Task completed",
+      "message": "Omar Riad completed the task you sent them: SMOKE Dir->Asst clean fridge",
+      "category": "Task",
+      "createdAt": "2026-09-03T12:30:23.044Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-03T12:31:18.451Z",
+      "eventKey": "task:task-smoke-1788433285415-e741:completed:2:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788438622658-0.32629084761950844",
+      "recipientUserId": "user-1788289392070-24tlf",
+      "title": "Task completed",
+      "message": "Omar Riad completed the task you sent them: SMOKE Dir->Asst clean fridge",
+      "category": "Task",
+      "createdAt": "2026-09-03T12:30:23.036Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-09-03T12:30:56.845Z",
+      "eventKey": "task:task-smoke-1788433285415-e741:completed:2026-09-03T12:30:22.648Z:direct-sender:user-1788289392070-24tlf",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788438622658-0.2908119909813234",
+      "recipientUserId": "gm-admin",
+      "title": "Task completed",
+      "message": "Omar Riad completed the task you sent them: SMOKE Dir->Asst clean fridge",
+      "category": "Task",
+      "createdAt": "2026-09-03T12:30:23.028Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-03T12:31:18.195Z",
+      "eventKey": "task:task-smoke-1788433285415-e741:completed:2026-09-03T12:30:22.648Z:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788438621240-0.13780682500810948",
+      "recipientUserId": "user-1788289392070-24tlf",
+      "title": "Task started",
+      "message": "Omar Riad started working on: SMOKE Dir->Asst clean fridge",
+      "category": "Task",
+      "createdAt": "2026-09-03T12:30:21.705Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-09-03T12:30:56.277Z",
+      "eventKey": "task:task-smoke-1788433285415-e741:started:1:owner:user-1788289392070-24tlf",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788438621240-0.5901809721267033",
+      "recipientUserId": "gm-admin",
+      "title": "Task started",
+      "message": "Omar Riad started the task you sent them: SMOKE Dir->Asst clean fridge",
+      "category": "Task",
+      "createdAt": "2026-09-03T12:30:21.696Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-03T12:31:17.892Z",
+      "eventKey": "task:task-smoke-1788433285415-e741:started:1:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788438621268-0.5115638003826104",
+      "recipientUserId": "user-1788289392070-24tlf",
+      "title": "Task started",
+      "message": "Omar Riad started working on: SMOKE Dir->Asst clean fridge",
+      "category": "Task",
+      "createdAt": "2026-09-03T12:30:21.687Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-09-03T12:30:55.581Z",
+      "eventKey": "task:task-smoke-1788433285415-e741:started:2026-09-03T12:30:21.240Z:owner:user-1788289392070-24tlf",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788438621268-0.8230510278803767",
+      "recipientUserId": "gm-admin",
+      "title": "Task started",
+      "message": "Omar Riad started the task you sent them: SMOKE Dir->Asst clean fridge",
+      "category": "Task",
+      "createdAt": "2026-09-03T12:30:21.675Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-03T12:31:17.601Z",
+      "eventKey": "task:task-smoke-1788433285415-e741:started:2026-09-03T12:30:21.240Z:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788438614705-0.7386630793408434",
+      "recipientUserId": "user-1788289392070-24tlf",
+      "title": "Task started",
+      "message": "Samir Fares started working on: Restock minibar inventory in tower B",
+      "category": "Task",
+      "createdAt": "2026-09-03T12:30:15.428Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-09-03T12:30:54.030Z",
+      "eventKey": "task:task-1788433193383-0-cnmzs:started:1:owner:user-1788289392070-24tlf",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788438614705-0.17334340367377932",
+      "recipientUserId": "gm-admin",
+      "title": "Task started",
+      "message": "Samir Fares started the task you sent them: Restock minibar inventory in tower B",
+      "category": "Task",
+      "createdAt": "2026-09-03T12:30:15.420Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-03T12:31:17.265Z",
+      "eventKey": "task:task-1788433193383-0-cnmzs:started:1:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788438615029-0.5522193083905417",
+      "recipientUserId": "user-1788289392070-24tlf",
+      "title": "Task started",
+      "message": "Samir Fares started working on: Restock minibar inventory in tower B",
+      "category": "Task",
+      "createdAt": "2026-09-03T12:30:15.412Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-09-03T12:30:53.415Z",
+      "eventKey": "task:task-1788433193383-0-cnmzs:started:2026-09-03T12:30:14.704Z:owner:user-1788289392070-24tlf",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788438615029-0.24831041320224667",
+      "recipientUserId": "gm-admin",
+      "title": "Task started",
+      "message": "Samir Fares started the task you sent them: Restock minibar inventory in tower B",
+      "category": "Task",
+      "createdAt": "2026-09-03T12:30:15.401Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-03T12:31:16.893Z",
+      "eventKey": "task:task-1788433193383-0-cnmzs:started:2026-09-03T12:30:14.704Z:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788433285449-0.7502959404356863",
+      "recipientUserId": "user-1788289393887-0h35t",
+      "title": "New task",
+      "message": "New task from: Nadia Haddad — SMOKE Dir->Asst clean fridge",
+      "category": "Task",
+      "createdAt": "2026-09-03T11:01:51.101Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-09-03T12:22:15.770Z",
+      "eventKey": "task:task-smoke-1788433285415-e741:new:user-1788289393887-0h35t",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788432276654-0.2764973037666476",
+      "recipientUserId": "user-1788289392750-6lii3",
+      "title": "New task",
+      "message": "New task from: Nadia Haddad — REPRO fridge check",
+      "category": "Task",
+      "createdAt": "2026-09-03T11:01:23.347Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-09-03T12:22:28.320Z",
+      "eventKey": "task:task-repro-1788432276615:new:user-1788289392750-6lii3",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788433193383-0.09986453571702192",
+      "recipientUserId": "gm-admin",
+      "title": "Task dispatched",
+      "message": "Nadia Haddad sent a new task to Samir Fares: Restock minibar inventory in tower B",
+      "category": "Task",
+      "createdAt": "2026-09-03T10:59:53.817Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-03T12:29:37.518Z",
+      "eventKey": "task:task-1788433193383-0-cnmzs:new:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788433193383-0.012111133354785975",
+      "recipientUserId": "user-1788289392750-6lii3",
+      "title": "New task",
+      "message": "New task from: Nadia Haddad — Restock minibar inventory in tower B",
+      "category": "Task",
+      "createdAt": "2026-09-03T10:59:53.808Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-09-03T12:22:27.448Z",
+      "eventKey": "task:task-1788433193383-0-cnmzs:new:user-1788289392750-6lii3",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788289193315-0.7765117875301882",
+      "recipientUserId": "gm-admin",
+      "title": "Task completed",
+      "message": "george completed the task you switched to them: test 3",
+      "category": "Task",
+      "createdAt": "2026-09-01T18:59:53.988Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-01T19:00:25.540Z",
+      "eventKey": "task:task-1788288981739-1-ijqr5:completed:2:switch-owner:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788289193315-0.5952011300556803",
+      "recipientUserId": "gm-admin",
+      "title": "Task completed",
+      "message": "george completed the task you sent them: test 3",
+      "category": "Task",
+      "createdAt": "2026-09-01T18:59:53.967Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-01T19:00:14.462Z",
+      "eventKey": "task:task-1788288981739-1-ijqr5:completed:2:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788289193333-0.0188791560802547",
+      "recipientUserId": "gm-admin",
+      "title": "Task completed",
+      "message": "george completed the task you sent them: test 3",
+      "category": "Task",
+      "createdAt": "2026-09-01T18:59:53.946Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-01T19:00:14.338Z",
+      "eventKey": "task:task-1788288981739-1-ijqr5:completed:2026-09-01T18:59:53.315Z:direct-sender:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788289193334-0.6330880775084099",
+      "recipientUserId": "gm-admin",
+      "title": "Task completed",
+      "message": "george completed the task you sent them: test 3",
+      "category": "Task",
+      "createdAt": "2026-09-01T18:59:53.923Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-01T19:00:14.089Z",
+      "eventKey": "task:task-1788288981739-1-ijqr5:completed:2026-09-01T18:59:53.315Z:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788289179519-0.4515686130135018",
+      "recipientUserId": "gm-admin",
+      "title": "Task completed",
+      "message": "joe completed the task you switched to them: test 3",
+      "category": "Task",
+      "createdAt": "2026-09-01T18:59:40.222Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-01T19:00:13.712Z",
+      "eventKey": "task:task-1788288981739-0-qgxzq:completed:2:switch-owner:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788289179519-0.9572476888825578",
+      "recipientUserId": "gm-admin",
+      "title": "Task completed",
+      "message": "joe completed the task you sent them: test 3",
+      "category": "Task",
+      "createdAt": "2026-09-01T18:59:40.194Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-01T19:00:13.517Z",
+      "eventKey": "task:task-1788288981739-0-qgxzq:completed:2:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788289179550-0.7611606113784228",
+      "recipientUserId": "gm-admin",
+      "title": "Task completed",
+      "message": "joe completed the task you sent them: test 3",
+      "category": "Task",
+      "createdAt": "2026-09-01T18:59:40.175Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-01T19:00:13.133Z",
+      "eventKey": "task:task-1788288981739-0-qgxzq:completed:2026-09-01T18:59:39.518Z:direct-sender:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788289179551-0.0662561667836733",
+      "recipientUserId": "gm-admin",
+      "title": "Task completed",
+      "message": "joe completed the task you sent them: test 3",
+      "category": "Task",
+      "createdAt": "2026-09-01T18:59:40.154Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-01T19:00:12.545Z",
+      "eventKey": "task:task-1788288981739-0-qgxzq:completed:2026-09-01T18:59:39.518Z:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788289176442-0.26526438175904454",
+      "recipientUserId": "gm-admin",
+      "title": "Task started",
+      "message": "joe started working on: test 3",
+      "category": "Task",
+      "createdAt": "2026-09-01T18:59:37.150Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-01T19:00:11.977Z",
+      "eventKey": "task:task-1788288981739-0-qgxzq:started:1:owner:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788289176442-0.9215672732021725",
+      "recipientUserId": "gm-admin",
+      "title": "Task started",
+      "message": "joe started the task you sent them: test 3",
+      "category": "Task",
+      "createdAt": "2026-09-01T18:59:37.125Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-01T19:00:11.296Z",
+      "eventKey": "task:task-1788288981739-0-qgxzq:started:1:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788289176463-0.922464950799869",
+      "recipientUserId": "gm-admin",
+      "title": "Task started",
+      "message": "joe started working on: test 3",
+      "category": "Task",
+      "createdAt": "2026-09-01T18:59:37.100Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-01T19:00:10.719Z",
+      "eventKey": "task:task-1788288981739-0-qgxzq:started:2026-09-01T18:59:36.442Z:owner:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788289176463-0.8147283215603345",
+      "recipientUserId": "gm-admin",
+      "title": "Task started",
+      "message": "joe started the task you sent them: test 3",
+      "category": "Task",
+      "createdAt": "2026-09-01T18:59:37.074Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-01T19:00:10.028Z",
+      "eventKey": "task:task-1788288981739-0-qgxzq:started:2026-09-01T18:59:36.442Z:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788289150594-0.8092058889154943",
+      "recipientUserId": "gm-admin",
+      "title": "Task started",
+      "message": "george started working on: test 3",
+      "category": "Task",
+      "createdAt": "2026-09-01T18:59:11.640Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-01T19:00:09.343Z",
+      "eventKey": "task:task-1788288981739-1-ijqr5:started:1:owner:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788289150594-0.2900456139457951",
+      "recipientUserId": "gm-admin",
+      "title": "Task started",
+      "message": "george started the task you sent them: test 3",
+      "category": "Task",
+      "createdAt": "2026-09-01T18:59:11.617Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-01T19:00:08.697Z",
+      "eventKey": "task:task-1788288981739-1-ijqr5:started:1:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788289150920-0.5360885172410365",
+      "recipientUserId": "gm-admin",
+      "title": "Task started",
+      "message": "george started working on: test 3",
+      "category": "Task",
+      "createdAt": "2026-09-01T18:59:11.588Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-01T19:00:08.000Z",
+      "eventKey": "task:task-1788288981739-1-ijqr5:started:2026-09-01T18:59:10.594Z:owner:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788289150920-0.7213370384512593",
+      "recipientUserId": "gm-admin",
+      "title": "Task started",
+      "message": "george started the task you sent them: test 3",
+      "category": "Task",
+      "createdAt": "2026-09-01T18:59:11.564Z",
+      "isRead": true,
+      "acknowledgedAt": "2026-09-01T19:00:07.322Z",
+      "eventKey": "task:task-1788288981739-1-ijqr5:started:2026-09-01T18:59:10.594Z:gm:gm-admin",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788288981740-0.6749791571713556",
+      "recipientUserId": "user-1788097980330-o7aei",
+      "title": "New task",
+      "message": "New task from: System Administrator — test 3",
+      "category": "Task",
+      "createdAt": "2026-09-01T18:56:23.809Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-09-01T18:59:30.973Z",
+      "eventKey": "task:task-1788288981739-0-qgxzq:new:user-1788097980330-o7aei",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
+    {
+      "id": "notif-1788288981740-0.6540117288412727",
+      "recipientUserId": "user-1788097963174-3osfg",
+      "title": "New task",
+      "message": "New task from: System Administrator — test 3",
+      "category": "Task",
+      "createdAt": "2026-09-01T18:56:23.737Z",
+      "isRead": false,
+      "acknowledgedAt": "2026-09-01T18:57:38.193Z",
+      "eventKey": "task:task-1788288981739-1-ijqr5:new:user-1788097963174-3osfg",
+      "channels": {
+        "inApp": true,
+        "telegram": true,
+        "email": true
+      }
+    },
     {
       "id": "notif-1788179654538-0.7294966280674278",
       "recipientUserId": "user-maya-manager",
