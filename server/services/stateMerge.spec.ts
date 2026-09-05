@@ -539,3 +539,44 @@ describe('authorizeStateMutation', () => {
     expect(incoming.tasks.find((t) => t.id === 'foreign')!.title).toBe('server'); // drift reverted
   });
 });
+
+describe('authorizeStateMutation — single GeneralManager invariant', () => {
+  it('reverts a Director trying to promote an Assistant to GeneralManager', () => {
+    const { dir, all } = makeOrg();
+    const server = makeState({ users: all });
+    const incoming = makeState({ users: all.map((u) => (u.id === 'asst' ? { ...u, role: 'GeneralManager' as const } : u)) });
+
+    expect(authorizeStateMutation(incoming, server, dir)).toBeNull();
+    expect(incoming.users.find((u) => u.id === 'asst')!.role).toBe('Assistant');
+  });
+
+  it('reverts the GM\'s own sync trying to promote someone else to GeneralManager too', () => {
+    const { gm, all } = makeOrg();
+    const server = makeState({ users: all });
+    const incoming = makeState({ users: all.map((u) => (u.id === 'mgr' ? { ...u, role: 'GeneralManager' as const } : u)) });
+
+    expect(authorizeStateMutation(incoming, server, gm)).toBeNull();
+    expect(incoming.users.find((u) => u.id === 'mgr')!.role).toBe('Manager');
+  });
+
+  it('leaves the real GeneralManager alone', () => {
+    const { gm, all } = makeOrg();
+    const server = makeState({ users: all });
+    const incoming = makeState({ users: all.map((u) => (u.id === 'gm' ? { ...u, title: 'Updated title' } : u)) });
+
+    expect(authorizeStateMutation(incoming, server, gm)).toBeNull();
+    const updatedGm = incoming.users.find((u) => u.id === 'gm')!;
+    expect(updatedGm.role).toBe('GeneralManager');
+    expect(updatedGm.title).toBe('Updated title');
+  });
+
+  it('forces a brand-new user claiming the GeneralManager role down to Assistant', () => {
+    const { dir, all } = makeOrg();
+    const server = makeState({ users: all });
+    const rogue = makeUser({ id: 'rogue-gm', role: 'GeneralManager' as const });
+    const incoming = makeState({ users: [...all, rogue] });
+
+    expect(authorizeStateMutation(incoming, server, dir)).toBeNull();
+    expect(incoming.users.find((u) => u.id === 'rogue-gm')!.role).toBe('Assistant');
+  });
+});

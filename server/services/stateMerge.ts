@@ -416,6 +416,19 @@ export function mergeStateWithServer(incomingState: SystemData, currentDb: Syste
 }
 
 export function authorizeStateMutation(incomingState: SystemData, currentDb: SystemData, actingUser: User): string | null {
+  // Exactly one GeneralManager may ever exist — whoever already holds the role.
+  // No sync, from anyone (including the GM's own client), may promote another
+  // user to GeneralManager or introduce a new one with that role. Applied before
+  // the management freeze below so it holds even for a GM's own payload.
+  if (incomingState.users) {
+    const currentGmId = currentDb.users.find(u => isGeneralManager(u))?.id;
+    incomingState.users = incomingState.users.map(u => {
+      if (!isGeneralManager(u) || u.id === currentGmId) return u;
+      const serverCopy = currentDb.users.find(s => s.id === u.id);
+      return { ...u, role: serverCopy ? serverCopy.role : 'Assistant' };
+    });
+  }
+
   const management = isGeneralManager(actingUser) || actingUser.role === 'Director' || actingUser.role === 'Manager';
 
   // If non-management user sent the state, preserve server-managed entities
